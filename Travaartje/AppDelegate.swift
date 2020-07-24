@@ -18,11 +18,10 @@ import HealthKitCombine
  class AppDelegate: UIResponder, UIApplicationDelegate {
     private var authCancellable: AnyCancellable?
     private var newWorkoutsCancellable: AnyCancellable?
-    private var workoutModel: WorkoutModel?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        workoutModel = WorkoutModel(context: persistentContainer.viewContext)
+        #if !targetEnvironment(simulator)
         authCancellable = HKHealthStore().authorize()
             .sink(receiveCompletion: { (finished) in
                 switch finished {
@@ -34,8 +33,7 @@ import HealthKitCombine
             }, receiveValue: { (result) in
                 print("Authorization result \(result)")
             })
-        
-        workoutModel?.reloadHealthKitWorkouts()
+        #endif
         
         return true
     }

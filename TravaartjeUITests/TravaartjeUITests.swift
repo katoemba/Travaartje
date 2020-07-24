@@ -60,7 +60,7 @@ class TravaartjeUITests: XCTestCase {
         
         let run = app.tables.cells.element(boundBy: 0)
         
-        _ = run.waitForExistence(timeout: TimeInterval(5))
+        //_ = run.waitForExistence(timeout: TimeInterval(5))
         
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend")
@@ -80,7 +80,7 @@ class TravaartjeUITests: XCTestCase {
 
         let run = app.tables.cells.element(boundBy: 0)
         
-        _ = run.waitForExistence(timeout: TimeInterval(5))
+        //_ = run.waitForExistence(timeout: TimeInterval(5))
         
         run.staticTexts["Details"].tap()
         
@@ -107,7 +107,7 @@ class TravaartjeUITests: XCTestCase {
 
         let run = app.tables.cells.element(boundBy: 0)
         
-        _ = run.waitForExistence(timeout: TimeInterval(5))
+        //_ = run.waitForExistence(timeout: TimeInterval(5))
         
         run.staticTexts["Details"].tap()
         

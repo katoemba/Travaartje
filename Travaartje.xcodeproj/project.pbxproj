@@ -3,18 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
+		C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
 		C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E40F24C1A407000E06B7 /* AppDelegate.swift */; };
 		C552E41224C1A407000E06B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E41124C1A407000E06B7 /* SceneDelegate.swift */; };
-		C552E41424C1A407000E06B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E41324C1A407000E06B7 /* ContentView.swift */; };
+		C552E41424C1A407000E06B7 /* WorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E41324C1A407000E06B7 /* WorkoutListView.swift */; };
 		C552E41624C1A408000E06B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C552E41524C1A408000E06B7 /* Assets.xcassets */; };
 		C552E41924C1A408000E06B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C552E41824C1A408000E06B7 /* Preview Assets.xcassets */; };
 		C552E41C24C1A408000E06B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C552E41A24C1A408000E06B7 /* LaunchScreen.storyboard */; };
 		C552E42724C1A408000E06B7 /* TravaartjeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E42624C1A408000E06B7 /* TravaartjeTests.swift */; };
 		C552E43224C1A408000E06B7 /* TravaartjeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E43124C1A408000E06B7 /* TravaartjeUITests.swift */; };
+		C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C552E44424C32966000E06B7 /* HealthKit.framework */; };
+		C562135F24C72F2D004A0FBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C562136124C72F2D004A0FBA /* Localizable.strings */; };
+		C562136424C736A0004A0FBA /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562136324C736A0004A0FBA /* WorkoutDetailView.swift */; };
+		C56213A624C82775004A0FBA /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
+		C56213B724C88E61004A0FBA /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56213B524C88E61004A0FBA /* Workout.swift */; };
+		C56213B824C88E61004A0FBA /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56213B624C88E61004A0FBA /* WorkoutModel.swift */; };
+		C5F5BBC724CAF0080065A283 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
+		C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C5F5BBCC24CB1B2B0065A283 /* HealthKitCombine */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
 		C552E40C24C1A407000E06B7 /* Travaartje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travaartje.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C552E40F24C1A407000E06B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C552E41124C1A407000E06B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C552E41324C1A407000E06B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C552E41324C1A407000E06B7 /* WorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListView.swift; sourceTree = "<group>"; };
 		C552E41524C1A408000E06B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C552E41824C1A408000E06B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C552E41B24C1A408000E06B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +61,14 @@
 		C552E42D24C1A408000E06B7 /* TravaartjeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravaartjeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C552E43124C1A408000E06B7 /* TravaartjeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravaartjeUITests.swift; sourceTree = "<group>"; };
 		C552E43324C1A408000E06B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C552E44324C32895000E06B7 /* Travaartje.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Travaartje.entitlements; sourceTree = "<group>"; };
+		C552E44424C32966000E06B7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C562136024C72F2D004A0FBA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C562136224C72F6A004A0FBA /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C562136324C736A0004A0FBA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
+		C56213A524C82775004A0FBA /* Travaartje.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Travaartje.xcdatamodel; sourceTree = "<group>"; };
+		C56213B524C88E61004A0FBA /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		C56213B624C88E61004A0FBA /* WorkoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */,
+				C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +101,12 @@
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
+				C56213AB24C829B9004A0FBA /* CoreData */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
 				C552E43024C1A408000E06B7 /* TravaartjeUITests */,
 				C552E40D24C1A407000E06B7 /* Products */,
+				C552E44024C327A9000E06B7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +123,16 @@
 		C552E40E24C1A407000E06B7 /* Travaartje */ = {
 			isa = PBXGroup;
 			children = (
+				C56213B424C88E4F004A0FBA /* Models */,
 				C552E40F24C1A407000E06B7 /* AppDelegate.swift */,
 				C552E41124C1A407000E06B7 /* SceneDelegate.swift */,
-				C552E41324C1A407000E06B7 /* ContentView.swift */,
+				C552E41324C1A407000E06B7 /* WorkoutListView.swift */,
+				C562136324C736A0004A0FBA /* WorkoutDetailView.swift */,
 				C552E41524C1A408000E06B7 /* Assets.xcassets */,
 				C552E41A24C1A408000E06B7 /* LaunchScreen.storyboard */,
 				C552E41D24C1A408000E06B7 /* Info.plist */,
+				C562136124C72F2D004A0FBA /* Localizable.strings */,
+				C552E44324C32895000E06B7 /* Travaartje.entitlements */,
 				C552E41724C1A408000E06B7 /* Preview Content */,
 			);
 			path = Travaartje;
@@ -122,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				C552E42624C1A408000E06B7 /* TravaartjeTests.swift */,
+				C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */,
 				C552E42824C1A408000E06B7 /* Info.plist */,
 			);
 			path = TravaartjeTests;
@@ -134,6 +163,32 @@
 				C552E43324C1A408000E06B7 /* Info.plist */,
 			);
 			path = TravaartjeUITests;
+			sourceTree = "<group>";
+		};
+		C552E44024C327A9000E06B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C552E44424C32966000E06B7 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C56213AB24C829B9004A0FBA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */,
+			);
+			name = CoreData;
+			path = Travaartje/CoreData;
+			sourceTree = "<group>";
+		};
+		C56213B424C88E4F004A0FBA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C56213B524C88E61004A0FBA /* Workout.swift */,
+				C56213B624C88E61004A0FBA /* WorkoutModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +207,9 @@
 			dependencies = (
 			);
 			name = Travaartje;
+			packageProductDependencies = (
+				C5F5BBCC24CB1B2B0065A283 /* HealthKitCombine */,
+			);
 			productName = Travaartje;
 			productReference = C552E40C24C1A407000E06B7 /* Travaartje.app */;
 			productType = "com.apple.product-type.application";
@@ -222,8 +280,12 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = C552E40324C1A407000E06B7;
+			packageReferences = (
+				C5F5BBCB24CB1B2B0065A283 /* XCRemoteSwiftPackageReference "HealthKitCombine" */,
+			);
 			productRefGroup = C552E40D24C1A407000E06B7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C552E41C24C1A408000E06B7 /* LaunchScreen.storyboard in Resources */,
+				C562135F24C72F2D004A0FBA /* Localizable.strings in Resources */,
 				C552E41924C1A408000E06B7 /* Preview Assets.xcassets in Resources */,
 				C552E41624C1A408000E06B7 /* Assets.xcassets in Resources */,
 			);
@@ -267,9 +330,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C56213B824C88E61004A0FBA /* WorkoutModel.swift in Sources */,
+				C56213B724C88E61004A0FBA /* Workout.swift in Sources */,
+				C5F5BBC724CAF0080065A283 /* HealthKitCombineMock.swift in Sources */,
 				C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */,
 				C552E41224C1A407000E06B7 /* SceneDelegate.swift in Sources */,
-				C552E41424C1A407000E06B7 /* ContentView.swift in Sources */,
+				C552E41424C1A407000E06B7 /* WorkoutListView.swift in Sources */,
+				C56213A624C82775004A0FBA /* Travaartje.xcdatamodeld in Sources */,
+				C562136424C736A0004A0FBA /* WorkoutDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +345,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */,
+				C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */,
 				C552E42724C1A408000E06B7 /* TravaartjeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,8 +379,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				C552E41B24C1A408000E06B7 /* Base */,
+				C547877D24C4661E0002BF47 /* nl */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C562136124C72F2D004A0FBA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C562136024C72F2D004A0FBA /* en */,
+				C562136224C72F6A004A0FBA /* nl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -320,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -366,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -380,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -420,7 +502,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -434,6 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Travaartje/Travaartje.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Travaartje/Preview Content\"";
 				DEVELOPMENT_TEAM = N7DKJ3YJS4;
@@ -454,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Travaartje/Travaartje.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Travaartje/Preview Content\"";
 				DEVELOPMENT_TEAM = N7DKJ3YJS4;
@@ -594,6 +678,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C5F5BBCB24CB1B2B0065A283 /* XCRemoteSwiftPackageReference "HealthKitCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/katoemba/HealthKitCombine.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C5F5BBCC24CB1B2B0065A283 /* HealthKitCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5F5BBCB24CB1B2B0065A283 /* XCRemoteSwiftPackageReference "HealthKitCombine" */;
+			productName = HealthKitCombine;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C56213A524C82775004A0FBA /* Travaartje.xcdatamodel */,
+			);
+			currentVersion = C56213A524C82775004A0FBA /* Travaartje.xcdatamodel */;
+			path = Travaartje.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C552E40424C1A407000E06B7 /* Project object */;
 }

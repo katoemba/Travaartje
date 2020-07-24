@@ -56,5 +56,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Travaartje wants to read your workout and heartrate data so it can export your workouts to Strava. </string>
 </dict>
 </plist>

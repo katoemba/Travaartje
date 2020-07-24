@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "HealthKitCombine",
+        "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
+        "state": {
+          "branch": "master",
+          "revision": "1d260f534f5eb6d4b24d321ae17c6f0b76c625a8",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

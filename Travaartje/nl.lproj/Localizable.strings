@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Travaartje
+
+  Created by Berrie Kremers on 21/07/2020.
+  Copyright © 2020 Katoemba Software. All rights reserved.
+*/
+
+"Send" = "Verzend";
+"Send Again" = "Verzend opnieuw";
+"Retry" = "Probeer opnieuw";
+"Name" = "Naam";
+"Description" = "Beschrijving";
+"Commute" = "Woon-werk verkeer";
+"Workout Details" = "Workout Details";
+"Run" = "Loopje";
+"Ride" = "Rit";
+"New" = "Nieuw";
+"Uploaded" = "Verzonden";
+"Failed" = "Mislukt";

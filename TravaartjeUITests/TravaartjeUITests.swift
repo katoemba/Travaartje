@@ -33,6 +33,9 @@ class TravaartjeUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let run = app.tables.cells.element(boundBy: 0)
+        
+        _ = run.waitForExistence(timeout: TimeInterval(5))
+        
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Send")
         run.staticTexts["WorkoutAction"].tap()
@@ -56,6 +59,9 @@ class TravaartjeUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let run = app.tables.cells.element(boundBy: 0)
+        
+        _ = run.waitForExistence(timeout: TimeInterval(5))
+        
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend")
         run.staticTexts["WorkoutAction"].tap()
@@ -73,6 +79,9 @@ class TravaartjeUITests: XCTestCase {
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
+        
+        _ = run.waitForExistence(timeout: TimeInterval(5))
+        
         run.staticTexts["Details"].tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Name")
@@ -97,6 +106,9 @@ class TravaartjeUITests: XCTestCase {
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
+        
+        _ = run.waitForExistence(timeout: TimeInterval(5))
+        
         run.staticTexts["Details"].tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Naam")

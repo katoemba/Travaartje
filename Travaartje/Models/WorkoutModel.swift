@@ -13,11 +13,10 @@ import HealthKitCombine
 
 public class WorkoutModel: ObservableObject {
     @Published public var workouts = [Workout]()
-    private var hkWorkoutsCancellable: AnyCancellable?
-    private var storedWorkoutsCancellable: AnyCancellable?
     private var context: NSManagedObjectContext?
     private var healthStoreCombine: HKHealthStoreCombine
     private var limit: Int
+    private var cancellables: Set<AnyCancellable> = []
 
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
@@ -37,7 +36,7 @@ public class WorkoutModel: ObservableObject {
         request.sortDescriptors = [NSSortDescriptor(key: "workoutDate", ascending: false)]
         do {
             let storedWorkouts = try context.fetch(request)
-            storedWorkoutsCancellable = healthStoreCombine.workouts(storedWorkouts.map({ $0.healthKitId}))
+            healthStoreCombine.workouts(storedWorkouts.map({ $0.healthKitId}))
                 .replaceError(with: [])
                 .sink { (workouts) in
                     for workout in workouts {
@@ -47,6 +46,7 @@ public class WorkoutModel: ObservableObject {
                     }
                     self.workouts = storedWorkouts
                 }
+                .store(in: &cancellables)
         }
         catch {
             print(error)
@@ -56,7 +56,7 @@ public class WorkoutModel: ObservableObject {
     func reloadHealthKitWorkouts() {
         guard let context = context else { return }
         
-        hkWorkoutsCancellable = healthStoreCombine.workouts(limit)
+        healthStoreCombine.workouts(limit)
             .replaceError(with: [])
             .removeDuplicates()
             .sink { (workouts) in
@@ -89,7 +89,8 @@ public class WorkoutModel: ObservableObject {
                     } catch {
                     }
                 }
-        }
+            }
+            .store(in: &cancellables)
     }
 
     func save() {

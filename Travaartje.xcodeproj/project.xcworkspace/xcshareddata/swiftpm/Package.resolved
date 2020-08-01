@@ -2,12 +2,39 @@
   "object": {
     "pins": [
       {
+        "package": "CoreGPX",
+        "repositoryURL": "https://github.com/vincentneo/CoreGPX.git",
+        "state": {
+          "branch": "master",
+          "revision": "8fe97cbd4021180589f74c901e5b4a04eb5bd966",
+          "version": null
+        }
+      },
+      {
+        "package": "HCKalmanFilter",
+        "repositoryURL": "https://github.com/katoemba/HCKalmanFilter",
+        "state": {
+          "branch": "master",
+          "revision": "1c4ebb34bcf3f2dcfeb20529784fa5eea2138557",
+          "version": null
+        }
+      },
+      {
         "package": "HealthKitCombine",
         "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
         "state": {
           "branch": "master",
-          "revision": "1d260f534f5eb6d4b24d321ae17c6f0b76c625a8",
+          "revision": "97c8d826123380600cce62d3a51ae43cb8c6264b",
           "version": null
+        }
+      },
+      {
+        "package": "Surge",
+        "repositoryURL": "https://github.com/Jounce/Surge",
+        "state": {
+          "branch": null,
+          "revision": "b9777a8d0c1df1ed0a22d238fb987c60d13513ac",
+          "version": "2.3.0"
         }
       }
     ]

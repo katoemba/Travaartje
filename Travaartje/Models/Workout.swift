@@ -5,7 +5,7 @@
 //  Created by Berrie Kremers on 19/07/2020.
 //
 
-import Foundation
+import UIKit
 import Combine
 import HealthKit
 import CoreData
@@ -37,6 +37,17 @@ extension Workout {
         }
         set {
             status = newValue.rawValue
+        }
+    }
+    
+    public var stateIcon: String {
+        switch state {
+        case .new:
+            return "star"
+        case .failed:
+            return "exclamationmark.triangle"
+        case .uploaded:
+            return "checkmark.circle"
         }
     }
     
@@ -98,17 +109,6 @@ extension Workout {
     convenience init(context: NSManagedObjectContext, healthKitId: UUID) {
         self.init(context: context)
         self.healthKitId = healthKitId
-    }
-    
-    convenience init(workout: HKWorkout) {
-        self.init()
-        self.workout = workout
-        
-        self.healthKitId = workout.uuid
-        workoutDate = workout.startDate
-        state = .new
-        stravaId = 0
-        commute = false
     }
 }
 

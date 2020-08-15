@@ -13,22 +13,25 @@ import HealthKitCombine
 import HCKalmanFilter
 import CoreLocation
 import CoreGPX
+import StravaCombine
 
 extension Workout {
-    var gpxRoute: AnyPublisher<GPXRoot, Error> {
+    public func gpxRoute(applyHallman: Bool = true, healthKitCombine: HKHealthStoreCombine) -> AnyPublisher<GPXRoot, Error> {
         CurrentValueSubject<Workout, Error>(self)
             .tryMap({ (workout) -> HKWorkout in
                 guard let workout = workout.workout else { throw HealthKitCombineError.init(kind: .noDataFound, errorCode: "No workouts found") }
                 return workout
             })
             .flatMap { workout in
-                return workout.workoutWithDetails
+                return healthKitCombine.workoutDetails(workout)
                     .mapError { error -> Error in
                            error
                     }
             }
             .map({ workoutDetails in
-                WorkoutDetails(workout: workoutDetails.workout, locationSamples: self.applyHalman(workoutDetails.locationSamples), heartRateSamples: workoutDetails.heartRateSamples)
+                applyHallman
+                    ? WorkoutDetails(workout: workoutDetails.workout, locationSamples: self.applyHalman(workoutDetails.locationSamples), heartRateSamples: workoutDetails.heartRateSamples)
+                    : workoutDetails
             })
             .map({ (workoutDetails) -> GPXRoot in
                 let root = GPXRoot(withExtensionAttributes: [:], schemaLocation: "")
@@ -104,5 +107,52 @@ extension GPXTrackPoint {
         self.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         elevation = location.altitude
         time = location.timestamp
+    }
+}
+
+extension HKWorkout {
+    var stravaActivityType: StravaActivityType {
+        switch workoutActivityType {
+        case .running:
+            return .run
+        case .cycling:
+            return .ride
+        case .swimming:
+            return .swim
+        case .downhillSkiing:
+            return .alpineSki
+        case .crossCountrySkiing:
+            return .backcountrySki
+        case .rowing:
+            return .rowing
+        case .skatingSports:
+            return .iceSkate
+        case .soccer:
+            return .soccer
+        case .snowboarding:
+            return .snowboard
+        case .surfingSports:
+            return .surfing
+        case .hiking:
+            return .hike
+        case .walking:
+            return .walk
+        case .wheelchairRunPace:
+            return .wheelchair
+        case .crossTraining:
+            return .crossfit
+        case .climbing:
+            return .rockClimbing
+        case .sailing:
+            return .sail
+        case .yoga:
+            return .yoga
+        case .paddleSports:
+            return .standUpPaddling
+        case .golf:
+            return .golf
+        default:
+            return .workout
+        }
     }
 }

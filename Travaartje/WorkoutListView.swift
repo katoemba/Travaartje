@@ -9,9 +9,10 @@
 import SwiftUI
 import Combine
 import HealthKit
-
+import StravaCombine
 
 struct WorkoutListView: View {
+    @State var cancellables = Set<AnyCancellable>()
     @ObservedObject var workoutModel: WorkoutModel
     
     var body: some View {

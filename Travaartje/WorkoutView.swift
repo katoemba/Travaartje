@@ -16,6 +16,8 @@ extension Workout {
         switch state {
         case .new:
             return .blue
+        case .generatingFile, .uploadingFile, .stravaProcessing:
+            return .purple
         case .uploaded:
             return .green
         case .failed:
@@ -27,6 +29,8 @@ extension Workout {
         switch state {
         case .new:
             return "Send"
+        case .generatingFile, .uploadingFile, .stravaProcessing:
+            return "In Progress"
         case .uploaded:
             return "Send Again"
         case .failed:
@@ -37,6 +41,7 @@ extension Workout {
 
 struct WorkoutCell: View {
     @ObservedObject var workout: Workout
+    @State private var showUploadResult: Bool = false
     @State private var showDetails: Bool = false
     var workoutModel: WorkoutModel
     @State var cancellables: Set<AnyCancellable> = []
@@ -63,8 +68,20 @@ struct WorkoutCell: View {
             HStack(alignment: .center) {
                 Image(systemName: workout.stateIcon)
                     .accessibility(identifier: "WorkoutStateIcon")
-                Text(LocalizedStringKey(workout.state.rawValue))
-                    .accessibility(identifier: "WorkoutState")
+                
+                VStack(alignment: .leading) {
+                    Text(LocalizedStringKey(workout.state.rawValue))
+                        .accessibility(identifier: "WorkoutState")
+                    
+                    if workout.uploadResult != "" {
+                        Text(workout.uploadResult)
+                            .accessibility(identifier: "WorkoutUploadResult")
+                            .font(.caption)
+                    } else {
+                        EmptyView()
+                    }
+                }
+                
                 Spacer()
             }
             
@@ -79,6 +96,7 @@ struct WorkoutCell: View {
                                 .navigationBarItems(
                                     trailing:
                                     Button("Done") {
+                                        self.workoutModel.save()
                                         self.showDetails = false
                                     }
                             )
@@ -96,28 +114,15 @@ struct WorkoutCell: View {
                 
                 Text(workout.action)
                     .onTapGesture {
-                        self.workout.state = self.workout.state == .new ? .uploaded : .failed
-                        self.workoutModel.save()
-                        self.workout.gpxRoute
-                            .sink(receiveCompletion: { (_) in
-                            }, receiveValue: { (gpx) in
-                                let fileManager = FileManager.default
-                                do {
-                                    let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
-                                    try gpx.outputToFile(saveAt: documentDirectory, fileName: "my")
-                                } catch {
-                                    print(error)
-                                }
-                            })
-                            .store(in: &self.cancellables)
-                }
-                .accessibility(identifier: "WorkoutAction")
+                        self.workoutModel.upload(self.workout)
+                    }
+                    .accessibility(identifier: "WorkoutAction")
             }
         }
         .foregroundColor(.white)
         .padding(.all, 10.0)
         .background(RoundedRectangle(cornerRadius: 10.0).foregroundColor(workout.stateColor))
-    }
+    }    
 }
 
 struct WorkoutCell_Previews: PreviewProvider {

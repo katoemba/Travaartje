@@ -12,10 +12,10 @@ import CoreLocation
 import Combine
 import CoreData
 import HealthKitCombine
-
+import StravaCombine
 
 @UIApplicationMain
- class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     private var cancellables: Set<AnyCancellable> = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -34,26 +34,26 @@ import HealthKitCombine
             })
             .store(in: &cancellables)
         #endif
-        
+                
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    
     // MARK: - Core Data stack
-
+    
     #if targetEnvironment(simulator)
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
         let healthKitMock = HealthKitCombineMock()
@@ -68,23 +68,29 @@ import HealthKitCombine
         return managedObjectModel
     }()
     lazy var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "Travaartje", managedObjectModel: self.managedObjectModel)
-            let description = NSPersistentStoreDescription()
-            description.type = NSInMemoryStoreType
-            description.shouldAddStoreAsynchronously = false
+        let container = NSPersistentContainer(name: "Travaartje", managedObjectModel: self.managedObjectModel)
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { (description, error) in
+            // Check if the data store is in memory
+            precondition( description.type == NSInMemoryStoreType )
             
-            container.persistentStoreDescriptions = [description]
-            container.loadPersistentStores { (description, error) in
-                // Check if the data store is in memory
-                precondition( description.type == NSInMemoryStoreType )
-                                            
-                // Check if creating container wrong
-                if let error = error {
-                    fatalError("Create an in-mem coordinator failed \(error)")
-                }
+            // Check if creating container wrong
+            if let error = error {
+                fatalError("Create an in-mem coordinator failed \(error)")
             }
-            return container
-        }()
+        }
+        return container
+    }()
+    lazy var workoutModel: WorkoutModel = {
+        return WorkoutModel(context: persistentContainer.viewContext,
+                            healthStoreCombine: healthKitStoreCombine,
+                            stravaOAuth: StravaOAuthMock(token: StravaToken(access_token: "access", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "refresh")),
+                            stravaUpload: StravaUploadMock())
+    }()
     #else
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
         HKHealthStore()
@@ -95,13 +101,13 @@ import HealthKitCombine
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentContainer(name: "Travaartje")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -115,10 +121,14 @@ import HealthKitCombine
         })
         return container
     }()
+    lazy var workoutModel: WorkoutModel = {
+        return WorkoutModel(context: persistentContainer.viewContext,
+                            healthStoreCombine: healthKitStoreCombine)
+    }()
     #endif
-
+    
     // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -132,5 +142,28 @@ import HealthKitCombine
             }
         }
     }
+    
+}
 
+extension StravaToken {
+    func store(defaults: UserDefaults, key: String) {
+        defaults.set(try? PropertyListEncoder().encode(self), forKey: key)
+    }
+    
+    func clear(defaults: UserDefaults, key: String) {
+        defaults.removeObject(forKey: key)
+    }
+    
+    public static func load(defaults: UserDefaults, key: String) -> StravaToken? {
+        if let data = UserDefaults.standard.value(forKey: key) as? Data {
+            return try? PropertyListDecoder().decode(StravaToken.self, from: data)
+        }
+        return nil
+    }
+}
+
+extension StravaConfig {
+    public static var standard: StravaConfig = {
+        return StravaConfig(client_id: Secrets.stravaClientId, client_secret: Secrets.stravaSecret, redirect_uri: Secrets.redirectUri)
+    }()
 }

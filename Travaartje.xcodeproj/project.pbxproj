@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C504578324D4411500D14221 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504578224D4411500D14221 /* WorkoutView.swift */; };
 		C504578624D4635E00D14221 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = C504578524D4635E00D14221 /* CoreGPX */; };
+		C504579624D84A6000D14221 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504579524D84A6000D14221 /* Secrets.swift */; };
 		C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
 		C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
 		C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E40F24C1A407000E06B7 /* AppDelegate.swift */; };
@@ -25,6 +26,9 @@
 		C56213A624C82775004A0FBA /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
 		C56213B724C88E61004A0FBA /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56213B524C88E61004A0FBA /* Workout.swift */; };
 		C56213B824C88E61004A0FBA /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56213B624C88E61004A0FBA /* WorkoutModel.swift */; };
+		C590E41D24E724A300387173 /* StravaCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590E41C24E724A300387173 /* StravaCombineMock.swift */; };
+		C590E41E24E724A300387173 /* StravaCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590E41C24E724A300387173 /* StravaCombineMock.swift */; };
+		C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4166724E46A91008F08E7 /* StravaCombine */; };
 		C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */; };
 		C5E4F18324CE29EE0005EEF9 /* Workout+GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */; };
 		C5F5BBC724CAF0080065A283 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
@@ -50,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		C504578224D4411500D14221 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		C504579924D8517700D14221 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		C504579A24D8517700D14221 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
 		C552E40C24C1A407000E06B7 /* Travaartje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travaartje.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +81,7 @@
 		C56213A524C82775004A0FBA /* Travaartje.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Travaartje.xcdatamodel; sourceTree = "<group>"; };
 		C56213B524C88E61004A0FBA /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		C56213B624C88E61004A0FBA /* WorkoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		C590E41C24E724A300387173 /* StravaCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaCombineMock.swift; sourceTree = "<group>"; };
 		C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+GPX.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */,
 				C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */,
 				C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */,
 				C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */,
@@ -106,10 +115,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C504579824D8517700D14221 /* BuildConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C504579924D8517700D14221 /* debug.xcconfig */,
+				C504579A24D8517700D14221 /* release.xcconfig */,
+			);
+			path = BuildConfig;
+			sourceTree = "<group>";
+		};
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
 				C56213AB24C829B9004A0FBA /* CoreData */,
+				C504579824D8517700D14221 /* BuildConfig */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
 				C552E43024C1A408000E06B7 /* TravaartjeUITests */,
@@ -137,6 +156,7 @@
 				C552E41324C1A407000E06B7 /* WorkoutListView.swift */,
 				C504578224D4411500D14221 /* WorkoutView.swift */,
 				C562136324C736A0004A0FBA /* WorkoutDetailView.swift */,
+				C504579524D84A6000D14221 /* Secrets.swift */,
 				C552E41524C1A408000E06B7 /* Assets.xcassets */,
 				C552E41A24C1A408000E06B7 /* LaunchScreen.storyboard */,
 				C552E41D24C1A408000E06B7 /* Info.plist */,
@@ -160,6 +180,7 @@
 			children = (
 				C552E42624C1A408000E06B7 /* TravaartjeTests.swift */,
 				C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */,
+				C590E41C24E724A300387173 /* StravaCombineMock.swift */,
 				C552E42824C1A408000E06B7 /* Info.plist */,
 			);
 			path = TravaartjeTests;
@@ -208,8 +229,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C552E43624C1A408000E06B7 /* Build configuration list for PBXNativeTarget "Travaartje" */;
 			buildPhases = (
+				C504579724D84D5A00D14221 /* Preprocess Secrets */,
 				C504578724D5B4AC00D14221 /* Set Build Number */,
 				C552E40824C1A407000E06B7 /* Sources */,
+				C504579B24D8532C00D14221 /* Reset Secrets */,
 				C552E40924C1A407000E06B7 /* Frameworks */,
 				C552E40A24C1A407000E06B7 /* Resources */,
 				C504578824D5B4BC00D14221 /* Reset Build Number */,
@@ -223,6 +246,7 @@
 				C5F5BBCC24CB1B2B0065A283 /* HealthKitCombine */,
 				C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */,
 				C504578524D4635E00D14221 /* CoreGPX */,
+				C5E4166724E46A91008F08E7 /* StravaCombine */,
 			);
 			productName = Travaartje;
 			productReference = C552E40C24C1A407000E06B7 /* Travaartje.app */;
@@ -301,6 +325,7 @@
 				C5F5BBCB24CB1B2B0065A283 /* XCRemoteSwiftPackageReference "HealthKitCombine" */,
 				C5E4F17F24CDD56B0005EEF9 /* XCRemoteSwiftPackageReference "HCKalmanFilter" */,
 				C504578424D4635E00D14221 /* XCRemoteSwiftPackageReference "CoreGPX" */,
+				C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */,
 			);
 			productRefGroup = C552E40D24C1A407000E06B7 /* Products */;
 			projectDirPath = "";
@@ -378,6 +403,44 @@
 			shellPath = /bin/sh;
 			shellScript = "# Set the build number to \"DEVELOPMENT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1\" \"${INFOPLIST_FILE}\"\n";
 		};
+		C504579724D84D5A00D14221 /* Preprocess Secrets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Preprocess Secrets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n";
+			showEnvVarsInLog = 0;
+		};
+		C504579B24D8532C00D14221 /* Reset Secrets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Reset Secrets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmv ${SRCROOT}/Travaartje/Secrets.swift.orig ${SRCROOT}/Travaartje/Secrets.swift\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -395,6 +458,8 @@
 				C552E41424C1A407000E06B7 /* WorkoutListView.swift in Sources */,
 				C56213A624C82775004A0FBA /* Travaartje.xcdatamodeld in Sources */,
 				C562136424C736A0004A0FBA /* WorkoutDetailView.swift in Sources */,
+				C590E41D24E724A300387173 /* StravaCombineMock.swift in Sources */,
+				C504579624D84A6000D14221 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +469,7 @@
 			files = (
 				C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */,
 				C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */,
+				C590E41E24E724A300387173 /* StravaCombineMock.swift in Sources */,
 				C552E42724C1A408000E06B7 /* TravaartjeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +521,7 @@
 /* Begin XCBuildConfiguration section */
 		C552E43424C1A408000E06B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C504579924D8517700D14221 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -516,6 +583,7 @@
 		};
 		C552E43524C1A408000E06B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C504579A24D8517700D14221 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -747,6 +815,14 @@
 				kind = branch;
 			};
 		};
+		C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/katoemba/StravaCombine.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C5E4F17F24CDD56B0005EEF9 /* XCRemoteSwiftPackageReference "HCKalmanFilter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/katoemba/HCKalmanFilter";
@@ -770,6 +846,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C504578424D4635E00D14221 /* XCRemoteSwiftPackageReference "CoreGPX" */;
 			productName = CoreGPX;
+		};
+		C5E4166724E46A91008F08E7 /* StravaCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */;
+			productName = StravaCombine;
 		};
 		C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */ = {
 			isa = XCSwiftPackageProductDependency;

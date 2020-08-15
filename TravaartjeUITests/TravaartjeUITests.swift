@@ -37,10 +37,6 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Send")
         run.staticTexts["WorkoutAction"].tap()
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Send Again")
-        run.staticTexts["WorkoutAction"].tap()
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Retry")
-        run.staticTexts["WorkoutAction"].tap()
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Retry")
         
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Ride")
@@ -60,8 +56,6 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend")
         run.staticTexts["WorkoutAction"].tap()
         XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend opnieuw")
-        run.staticTexts["WorkoutAction"].tap()
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Probeer opnieuw")
         
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")

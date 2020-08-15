@@ -10,20 +10,28 @@ import Combine
 import HealthKit
 import CoreData
 import HealthKitCombine
+import StravaCombine
+import CoreGPX
 
 public class WorkoutModel: ObservableObject {
     @Published public var workouts = [Workout]()
     private var context: NSManagedObjectContext?
-    private var healthStoreCombine: HKHealthStoreCombine
     private var limit: Int
     private var cancellables: Set<AnyCancellable> = []
+    private let healthStoreCombine: HKHealthStoreCombine
+    private let stravaAuth: StravaOAuthProtocol
+    private let stravaUpload: StravaUploadProtocol
 
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
-                healthStoreCombine: HKHealthStoreCombine = HKHealthStore()) {
+                healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
+                stravaOAuth: StravaOAuthProtocol = StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(defaults: UserDefaults.standard, key: "StravaToken"), presentationAnchor: gWindow!),
+                stravaUpload: StravaUploadProtocol = StravaUpload(StravaConfig.standard)) {
         self.context = context
-        self.healthStoreCombine = healthStoreCombine
         self.limit = limit
+        self.healthStoreCombine = healthStoreCombine
+        self.stravaAuth = stravaOAuth
+        self.stravaUpload = stravaUpload
         fetchStoredWorkouts()
         reloadHealthKitWorkouts()        
     }
@@ -89,6 +97,39 @@ public class WorkoutModel: ObservableObject {
                     } catch {
                     }
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func upload(_ workout: Workout) {
+        workout.state = .generatingFile
+        workout.uploadResult = ""
+        
+        workout.gpxRoute(healthKitCombine: healthStoreCombine)
+            .flatMap(maxPublishers: .max(1)) { (gpxRoot) -> AnyPublisher<(StravaToken, GPXRoot), Error> in
+                workout.state = .uploadingFile
+                return self.stravaAuth.token
+                    .tryMap { (token) -> (StravaToken, GPXRoot) in
+                        (token, gpxRoot)
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
+                self.stravaUpload.uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
+                                            activityType: workout.workout?.stravaActivityType ?? .workout,
+                                            accessToken: token.access_token)
+            }
+            .print("\(Date()) routeUpload")
+            .sink(receiveCompletion: { (completion) in
+                if case let .failure(error) = completion {
+                    workout.state = .failed
+                    workout.uploadResult = error.localizedDescription
+                }
+                else {
+                    workout.state = .uploaded
+                }
+            }) { (upload) in
+                workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
             }
             .store(in: &cancellables)
     }

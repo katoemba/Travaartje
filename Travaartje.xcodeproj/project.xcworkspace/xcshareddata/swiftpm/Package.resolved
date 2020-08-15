@@ -24,7 +24,16 @@
         "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
         "state": {
           "branch": "master",
-          "revision": "97c8d826123380600cce62d3a51ae43cb8c6264b",
+          "revision": "9fac809d53a4d0fc888a54da99a5858906bb7730",
+          "version": null
+        }
+      },
+      {
+        "package": "StravaCombine",
+        "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
+        "state": {
+          "branch": "master",
+          "revision": "39bfa792ddccf24b519872f1d53c6288aca59727",
           "version": null
         }
       },

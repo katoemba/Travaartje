@@ -20,6 +20,7 @@ public class Workout: NSManagedObject, Identifiable {
     @NSManaged public var workoutDate: Date
     @NSManaged public var stravaId: Int
     @NSManaged public var uploadDate: Date
+    @NSManaged public var uploadResult: String
 
     @Published public var workout: HKWorkout?
 }
@@ -27,6 +28,9 @@ public class Workout: NSManagedObject, Identifiable {
 extension Workout {
     public enum State: String {
         case new = "New"
+        case generatingFile = "Generating File"
+        case uploadingFile = "Uploading File"
+        case stravaProcessing = "Processing by Strava"
         case uploaded = "Uploaded"
         case failed = "Failed"
     }
@@ -44,6 +48,8 @@ extension Workout {
         switch state {
         case .new:
             return "star"
+        case .generatingFile, .uploadingFile, .stravaProcessing:
+            return "arrow.right.arrow.left.circle"
         case .failed:
             return "exclamationmark.triangle"
         case .uploaded:

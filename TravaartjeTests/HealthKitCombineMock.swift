@@ -11,6 +11,7 @@ import HealthKit
 import Combine
 import HealthKitCombine
 
+#if targetEnvironment(simulator)
 class HealthKitCombineMock: HKHealthStoreCombine {
     public var authorizationResult = true
     public var error: Error?
@@ -59,5 +60,11 @@ class HealthKitCombineMock: HKHealthStoreCombine {
             }
             .eraseToAnyPublisher()
     }
+    
+    func workoutDetails(_ workout: HKWorkout) -> AnyPublisher<WorkoutDetails, Error> {
+        let workoutDetails = WorkoutDetails(workout: workout, locationSamples: [], heartRateSamples: [])
+        return CurrentValueSubject<WorkoutDetails, Error>(workoutDetails)
+            .eraseToAnyPublisher()
+    }
 }
-
+#endif

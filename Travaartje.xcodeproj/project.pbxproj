@@ -55,8 +55,6 @@
 /* Begin PBXFileReference section */
 		C504578224D4411500D14221 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		C504579924D8517700D14221 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		C504579A24D8517700D14221 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
 		C552E40C24C1A407000E06B7 /* Travaartje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travaartje.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,20 +113,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C504579824D8517700D14221 /* BuildConfig */ = {
-			isa = PBXGroup;
-			children = (
-				C504579924D8517700D14221 /* debug.xcconfig */,
-				C504579A24D8517700D14221 /* release.xcconfig */,
-			);
-			path = BuildConfig;
-			sourceTree = "<group>";
-		};
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
 				C56213AB24C829B9004A0FBA /* CoreData */,
-				C504579824D8517700D14221 /* BuildConfig */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
 				C552E43024C1A408000E06B7 /* TravaartjeUITests */,
@@ -419,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nSTRAVA_CLIENT_ID=`grep STRAVA_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nSTRAVA_SECRET=`grep STRAVA_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nREDIRECT_URI=`grep REDIRECT_URI ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n";
 			showEnvVarsInLog = 0;
 		};
 		C504579B24D8532C00D14221 /* Reset Secrets */ = {
@@ -521,7 +509,6 @@
 /* Begin XCBuildConfiguration section */
 		C552E43424C1A408000E06B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C504579924D8517700D14221 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -583,7 +570,6 @@
 		};
 		C552E43524C1A408000E06B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C504579A24D8517700D14221 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

@@ -14,24 +14,25 @@ import StravaCombine
 import CoreGPX
 
 public class WorkoutModel: ObservableObject {
+    public typealias StravaUploadFactory = () -> (StravaUploadProtocol)
     @Published public var workouts = [Workout]()
     private var context: NSManagedObjectContext?
     private var limit: Int
     private var cancellables: Set<AnyCancellable> = []
     private let healthStoreCombine: HKHealthStoreCombine
     private let stravaAuth: StravaOAuthProtocol
-    private let stravaUpload: StravaUploadProtocol
+    private let stravaUploadFactory: StravaUploadFactory
 
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
                 healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
                 stravaOAuth: StravaOAuthProtocol = StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(defaults: UserDefaults.standard, key: "StravaToken"), presentationAnchor: gWindow!),
-                stravaUpload: StravaUploadProtocol = StravaUpload(StravaConfig.standard)) {
+                stravaUploadFactory: @escaping StravaUploadFactory = { StravaUpload(StravaConfig.standard) }) {
         self.context = context
         self.limit = limit
         self.healthStoreCombine = healthStoreCombine
         self.stravaAuth = stravaOAuth
-        self.stravaUpload = stravaUpload
+        self.stravaUploadFactory = stravaUploadFactory
         fetchStoredWorkouts()
         reloadHealthKitWorkouts()        
     }
@@ -115,9 +116,9 @@ public class WorkoutModel: ObservableObject {
                     .eraseToAnyPublisher()
             }
             .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
-                self.stravaUpload.uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
-                                            activityType: workout.workout?.stravaActivityType ?? .workout,
-                                            accessToken: token.access_token)
+                self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
+                                                     activityType: workout.workout?.stravaActivityType ?? .workout,
+                                                     accessToken: token.access_token)
             }
             .print("\(Date()) routeUpload")
             .sink(receiveCompletion: { (completion) in

@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return WorkoutModel(context: persistentContainer.viewContext,
                             healthStoreCombine: healthKitStoreCombine,
                             stravaOAuth: StravaOAuthMock(token: StravaToken(access_token: "access", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "refresh")),
-                            stravaUpload: StravaUploadMock())
+                            stravaUploadFactory: { StravaUploadMock() })
     }()
     #else
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {

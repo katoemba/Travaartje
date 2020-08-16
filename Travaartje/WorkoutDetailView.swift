@@ -25,3 +25,10 @@ struct WorkoutDetailView: View {
         .navigationBarTitle(Text("Workout Details"))
     }
 }
+
+struct WorkoutDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        let model = (UIApplication.shared.delegate as! AppDelegate).workoutModel
+        return WorkoutDetailView(workout: model.workouts[0])
+    }
+}

@@ -34,9 +34,9 @@ class TravaartjeUITests: XCTestCase {
         
         let run = app.tables.cells.element(boundBy: 0)
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Send")
-        run.staticTexts["WorkoutAction"].tap()
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Send Again")
+        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send")
+        run.buttons["WorkoutAction"].tap()
+        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send Again")
         
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Ride")
@@ -53,9 +53,9 @@ class TravaartjeUITests: XCTestCase {
         
         let run = app.tables.cells.element(boundBy: 0)
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend")
-        run.staticTexts["WorkoutAction"].tap()
-        XCTAssertEqual(run.staticTexts["WorkoutAction"].label, "Verzend opnieuw")
+        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend")
+        run.buttons["WorkoutAction"].tap()
+        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend opnieuw")
         
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")
@@ -67,7 +67,7 @@ class TravaartjeUITests: XCTestCase {
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
-        run.staticTexts["Details"].tap()
+        run.buttons["Details"].tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Name")
         XCTAssertEqual(app.tables.textFields["Description"].placeholderValue, "Description")
@@ -79,7 +79,7 @@ class TravaartjeUITests: XCTestCase {
         
         app.buttons["Done"].tap()
 
-        run.staticTexts["Details"].tap()
+        run.buttons["Details"].tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].value as? String, "My Run")
         XCTAssertEqual(app.tables.textFields["Description"].value as? String, "My Description")
@@ -91,7 +91,7 @@ class TravaartjeUITests: XCTestCase {
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
-        run.staticTexts["Details"].tap()
+        run.buttons["Details"].tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Naam")
         XCTAssertEqual(app.tables.textFields["Description"].placeholderValue, "Beschrijving")

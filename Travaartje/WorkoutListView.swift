@@ -23,6 +23,7 @@ struct WorkoutListView: View {
             .navigationBarTitle("Travaartje")
             .onAppear(perform: {
                 UITableView.appearance().separatorStyle = .none
+                UITableViewCell.appearance().selectionStyle = .none
             })
         }
     }

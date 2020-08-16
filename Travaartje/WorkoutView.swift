@@ -74,9 +74,10 @@ struct WorkoutCell: View {
                         .accessibility(identifier: "WorkoutState")
                     
                     if workout.uploadResult != "" {
-                        Text(workout.uploadResult)
-                            .accessibility(identifier: "WorkoutUploadResult")
-                            .font(.caption)
+                    Text(workout.uploadResult)
+                        .accessibility(identifier: "WorkoutUploadResult")
+                        .font(.caption)
+                        .lineLimit(2)
                     } else {
                         EmptyView()
                     }
@@ -85,38 +86,53 @@ struct WorkoutCell: View {
                 Spacer()
             }
             
-            Rectangle()
-                .frame(height: 1.0)
-            
-            HStack(alignment: .center) {
-                Text("Details")
-                    .sheet(isPresented: self.$showDetails) {
-                        NavigationView {
-                            WorkoutDetailView(workout: self.workout)
-                                .navigationBarItems(
-                                    trailing:
-                                    Button("Done") {
-                                        self.workoutModel.save()
-                                        self.showDetails = false
-                                    }
-                            )
-                        }
-                }
-                .onTapGesture {
+            Divider()
+                .padding(.horizontal, -10.0)
+
+            HStack() {
+                Button(action: {
                     self.showDetails = true
+                }) {
+                    HStack {
+                        Image(systemName: "info.circle")
+                        Text("Details")
+                    }
+                    .padding(8.0)
+                    .foregroundColor(.white)
+                    .background(Color.black.opacity(0.15))
+                    .cornerRadius(8)
                 }
                 .accessibility(identifier: "WorkoutDetails")
+                .buttonStyle(PlainButtonStyle())
+                .sheet(isPresented: self.$showDetails) {
+                    NavigationView {
+                        WorkoutDetailView(workout: self.workout)
+                            .navigationBarItems(
+                                trailing:
+                                Button("Done") {
+                                    self.workoutModel.save()
+                                    self.showDetails = false
+                                }
+                        )
+                    }
+                }
 
                 Spacer()
-                Rectangle()
-                    .frame(width: 1.0)
-                Spacer()
-                
-                Text(workout.action)
-                    .onTapGesture {
-                        self.workoutModel.upload(self.workout)
+
+                Button(action: {
+                    self.workoutModel.upload(self.workout)
+                }) {
+                    HStack {
+                        Image(systemName: "paperplane")
+                        Text(workout.action)
                     }
-                    .accessibility(identifier: "WorkoutAction")
+                    .padding(8.0)
+                    .foregroundColor(.white)
+                    .background(Color.black.opacity(0.15))
+                    .cornerRadius(8)
+                }
+                .accessibility(identifier: "WorkoutAction")
+                .buttonStyle(PlainButtonStyle())
             }
         }
         .foregroundColor(.white)

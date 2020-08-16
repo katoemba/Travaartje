@@ -371,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Set the build number to the count of Git commits\nbuildNumber=$(git rev-list --count HEAD)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${INFOPLIST_FILE}\"\n";
+			shellScript = "# Set the build number to the count of Git commits\nif [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    buildNumber=$(git rev-list --count HEAD)\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${INFOPLIST_FILE}\"\nfi\n";
 		};
 		C504578824D5B4BC00D14221 /* Reset Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -389,7 +389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Set the build number to \"DEVELOPMENT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1\" \"${INFOPLIST_FILE}\"\n";
+			shellScript = "# Set the build number to \"DEVELOPMENT\"\nif [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1\" \"${INFOPLIST_FILE}\"\nfi\n";
 		};
 		C504579724D84D5A00D14221 /* Preprocess Secrets */ = {
 			isa = PBXShellScriptBuildPhase;

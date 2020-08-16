@@ -127,9 +127,7 @@ struct WorkoutCell: View {
 
 struct WorkoutCell_Previews: PreviewProvider {
     static let localizations = Bundle.main.localizations.map(Locale.init).filter { $0.identifier != "base" }
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    static let healthKitStoreCombine = (UIApplication.shared.delegate as! AppDelegate).healthKitStoreCombine
-    static let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine)
+    static let model = (UIApplication.shared.delegate as! AppDelegate).workoutModel
 
     static var previews: some View {
         Group {

@@ -30,10 +30,7 @@ struct WorkoutListView: View {
 
 struct WorkoutListView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let healthKitStoreCombine = (UIApplication.shared.delegate as! AppDelegate).healthKitStoreCombine
-        let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine)
-        
+        let model = (UIApplication.shared.delegate as! AppDelegate).workoutModel
         return WorkoutListView(workoutModel: model)
     }
 }

@@ -126,6 +126,7 @@ public class WorkoutModel: ObservableObject {
                     }
                     .eraseToAnyPublisher()
             }
+            .first()
             .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
                 self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
                                                      activityType: workout.workout?.stravaActivityType ?? .workout,

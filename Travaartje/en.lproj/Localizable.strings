@@ -7,6 +7,7 @@
 */
 
 "Send" = "Send";
+"In Progress" = "In Progress";
 "Send Again" = "Send Again";
 "Retry" = "Retry";
 "Name" = "Name";
@@ -19,3 +20,5 @@
 "Uploaded" = "Uploaded";
 "Failed" = "Failed";
 "Done" = "Done";
+"Settings" = "Settings";
+"Connect your Strava account" = "Connect your Strava account";

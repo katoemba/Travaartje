@@ -29,11 +29,20 @@
         }
       },
       {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "175eeb4618b0a6ef4d69a7409b6a74ddd235a093",
+          "version": "5.15.0"
+        }
+      },
+      {
         "package": "StravaCombine",
         "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
         "state": {
           "branch": "master",
-          "revision": "39bfa792ddccf24b519872f1d53c6288aca59727",
+          "revision": "bb68284e893ec5834f33f7b5e90b5b9fb2693308",
           "version": null
         }
       },

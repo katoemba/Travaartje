@@ -74,10 +74,10 @@ struct WorkoutCell: View {
                         .accessibility(identifier: "WorkoutState")
                     
                     if workout.uploadResult != "" {
-                    Text(workout.uploadResult)
-                        .accessibility(identifier: "WorkoutUploadResult")
-                        .font(.caption)
-                        .lineLimit(2)
+                        Text(workout.uploadResult)
+                            .accessibility(identifier: "WorkoutUploadResult")
+                            .font(.caption)
+                            .lineLimit(2)
                     } else {
                         EmptyView()
                     }
@@ -94,7 +94,7 @@ struct WorkoutCell: View {
                     self.showDetails = true
                 }) {
                     HStack {
-                        Image(systemName: "info.circle")
+                        Image(systemName: "pencil.circle")
                         Text("Details")
                     }
                     .padding(8.0)
@@ -103,7 +103,7 @@ struct WorkoutCell: View {
                     .cornerRadius(8)
                 }
                 .accessibility(identifier: "WorkoutDetails")
-                .buttonStyle(PlainButtonStyle())
+                .buttonStyle(BorderlessButtonStyle())
                 .sheet(isPresented: self.$showDetails) {
                     NavigationView {
                         WorkoutDetailView(workout: self.workout)
@@ -132,18 +132,23 @@ struct WorkoutCell: View {
                     .cornerRadius(8)
                 }
                 .accessibility(identifier: "WorkoutAction")
-                .buttonStyle(PlainButtonStyle())
+                .buttonStyle(BorderlessButtonStyle())
             }
         }
         .foregroundColor(.white)
         .padding(.all, 10.0)
         .background(RoundedRectangle(cornerRadius: 10.0).foregroundColor(workout.stateColor))
-    }    
+        .onTapGesture {
+            if self.workout.stravaId != 0, let url = URL(string: "strava://activities/\(self.workout.stravaId)") {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
 }
 
 struct WorkoutCell_Previews: PreviewProvider {
     static let localizations = Bundle.main.localizations.map(Locale.init).filter { $0.identifier != "base" }
-    static let model = (UIApplication.shared.delegate as! AppDelegate).workoutModel
+    static let model = AppDelegate.shared.workoutModel
 
     static var previews: some View {
         Group {

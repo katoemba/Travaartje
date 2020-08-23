@@ -7,6 +7,7 @@
 */
 
 "Send" = "Verzend";
+"In Progress" = "Bezig";
 "Send Again" = "Verzend opnieuw";
 "Retry" = "Probeer opnieuw";
 "Name" = "Naam";
@@ -19,3 +20,5 @@
 "Uploaded" = "Verzonden";
 "Failed" = "Mislukt";
 "Done" = "Klaar";
+"Settings" = "Instellingen";
+"Connect your Strava account" = "Verbind met Strava";

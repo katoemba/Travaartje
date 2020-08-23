@@ -16,7 +16,7 @@ import CoreGPX
 public class WorkoutModel: ObservableObject {
     public typealias StravaUploadFactory = () -> (StravaUploadProtocol)
     @Published public var workouts = [Workout]()
-    private var context: NSManagedObjectContext?
+    private var context: NSManagedObjectContext
     private var limit: Int
     private var cancellables: Set<AnyCancellable> = []
     private let healthStoreCombine: HKHealthStoreCombine
@@ -26,7 +26,7 @@ public class WorkoutModel: ObservableObject {
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
                 healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
-                stravaOAuth: StravaOAuthProtocol = StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(defaults: UserDefaults.standard, key: "StravaToken"), presentationAnchor: gWindow!),
+                stravaOAuth: StravaOAuthProtocol,
                 stravaUploadFactory: @escaping StravaUploadFactory = { StravaUpload(StravaConfig.standard) }) {
         self.context = context
         self.limit = limit
@@ -38,8 +38,6 @@ public class WorkoutModel: ObservableObject {
     }
     
     private func fetchStoredWorkouts() {
-        guard let context = context else { return }
-        
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
         request.fetchLimit = limit
         request.sortDescriptors = [NSSortDescriptor(key: "workoutDate", ascending: false)]
@@ -63,8 +61,6 @@ public class WorkoutModel: ObservableObject {
     }
     
     func reloadHealthKitWorkouts() {
-        guard let context = context else { return }
-        
         healthStoreCombine.workouts(limit)
             .replaceError(with: [])
             .removeDuplicates()
@@ -74,9 +70,9 @@ public class WorkoutModel: ObservableObject {
                     let fetchWorkout = NSFetchRequest<Workout>(entityName: "Workout")
                     fetchWorkout.predicate = NSPredicate(format: "healthKitId == %@", workout.uuid as CVarArg)
                     do {
-                        let storedWorkouts = try context.fetch(fetchWorkout)
+                        let storedWorkouts = try self.context.fetch(fetchWorkout)
                         if storedWorkouts.count == 0 {
-                            let newWorkout = Workout(context: context, workout: workout)
+                            let newWorkout = Workout(context: self.context, workout: workout)
                             newWorkout.healthKitId = workout.uuid
                             newWorkout.workoutDate = workout.startDate
                             newWorkout.state = .new
@@ -92,11 +88,8 @@ public class WorkoutModel: ObservableObject {
                 }
 
                 if newWorkoutFound {
-                    do {
-                        try context.save()
-                        self.fetchStoredWorkouts()
-                    } catch {
-                    }
+                    self.save()
+                    self.fetchStoredWorkouts()
                 }
             }
             .store(in: &cancellables)
@@ -111,7 +104,10 @@ public class WorkoutModel: ObservableObject {
                 workout.state = .uploadingFile
                 return self.stravaAuth.token
                     .tryMap { (token) -> (StravaToken, GPXRoot) in
-                        (token, gpxRoot)
+                        if let token = token {
+                            return (token, gpxRoot)
+                        }
+                        throw StravaCombineError.authorizationCancelled
                     }
                     .eraseToAnyPublisher()
             }
@@ -129,15 +125,15 @@ public class WorkoutModel: ObservableObject {
                 else {
                     workout.state = .uploaded
                 }
+                self.save()
             }) { (upload) in
                 workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
+                self.save()
             }
             .store(in: &cancellables)
     }
 
     func save() {
-        guard let context = context else { return }
-        
         if context.hasChanges {
             try? context.save()
         }

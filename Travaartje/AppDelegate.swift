@@ -16,6 +16,9 @@ import StravaCombine
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static var shared: AppDelegate {
+        (UIApplication.shared.delegate as! AppDelegate)
+    }
     private var cancellables: Set<AnyCancellable> = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -85,11 +88,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return container
     }()
+    lazy var stravaOAuth: StravaOAuthProtocol = {
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+        return StravaOAuthMock(token: StravaToken(access_token: "access", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "refresh", athlete: athlete))
+    }()
     lazy var workoutModel: WorkoutModel = {
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
         return WorkoutModel(context: persistentContainer.viewContext,
                             healthStoreCombine: healthKitStoreCombine,
-                            stravaOAuth: StravaOAuthMock(token: StravaToken(access_token: "access", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "refresh")),
+                            stravaOAuth: stravaOAuth,
                             stravaUploadFactory: { StravaUploadMock() })
+    }()
+    lazy var settingsModel: SettingsModel = {
+        return SettingsModel(stravaOAuth: stravaOAuth)
     }()
     #else
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
@@ -121,9 +132,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    lazy var stravaOAuth: StravaOAuthProtocol = {
+        StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(), presentationAnchor: gWindow!)
+    }()
     lazy var workoutModel: WorkoutModel = {
         return WorkoutModel(context: persistentContainer.viewContext,
-                            healthStoreCombine: healthKitStoreCombine)
+                            healthStoreCombine: healthKitStoreCombine,
+                            stravaOAuth: stravaOAuth)
+    }()
+    lazy var settingsModel: SettingsModel = {
+        return SettingsModel(stravaOAuth: stravaOAuth)
     }()
     #endif
     
@@ -143,23 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-}
-
-extension StravaToken {
-    func store(defaults: UserDefaults, key: String) {
-        defaults.set(try? PropertyListEncoder().encode(self), forKey: key)
-    }
-    
-    func clear(defaults: UserDefaults, key: String) {
-        defaults.removeObject(forKey: key)
-    }
-    
-    public static func load(defaults: UserDefaults, key: String) -> StravaToken? {
-        if let data = UserDefaults.standard.value(forKey: key) as? Data {
-            return try? PropertyListDecoder().decode(StravaToken.self, from: data)
-        }
-        return nil
-    }
 }
 
 extension StravaConfig {

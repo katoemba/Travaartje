@@ -36,8 +36,11 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
         XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send")
         run.buttons["WorkoutAction"].tap()
-        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send Again")
         
+        XCTAssert(run.buttons["In Progress"].waitForExistence(timeout: 2.0))
+
+        XCTAssert(run.buttons["Send Again"].waitForExistence(timeout: 2.0))
+
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Ride")
     }
@@ -55,8 +58,11 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
         XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend")
         run.buttons["WorkoutAction"].tap()
-        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend opnieuw")
-        
+
+        XCTAssert(run.buttons["Bezig"].waitForExistence(timeout: 2.0))
+
+        XCTAssert(run.buttons["Verzend opnieuw"].waitForExistence(timeout: 2.0))
+
         let ride = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")
     }
@@ -98,6 +104,31 @@ class TravaartjeUITests: XCTestCase {
         
         app.buttons["Klaar"].tap()
     }
+
+    func testSettings() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launch()
+
+        app.buttons["Settings"].tap()
+        
+        XCTAssertEqual(app.staticTexts["Settings"].label, "Settings")
+        
+        app.buttons["Done"].tap()
+    }
+
+    func testSettingsDutch() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL"]
+        app.launch()
+
+        app.buttons["Settings"].tap()
+        
+        XCTAssertEqual(app.staticTexts["Instellingen"].label, "Instellingen")
+        
+        app.buttons["Klaar"].tap()
+    }
+
 
 //    func testLaunchPerformance() throws {
 //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

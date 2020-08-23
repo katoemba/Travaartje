@@ -24,8 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // Create the SwiftUI view that provides the window contents.
-        let workoutModel = (UIApplication.shared.delegate as! AppDelegate).workoutModel
-        let contentView = WorkoutListView(workoutModel: workoutModel)
+        let workoutModel = AppDelegate.shared.workoutModel
+        let settingsModel = AppDelegate.shared.settingsModel
+        let contentView = WorkoutListView(workoutModel: workoutModel, settingsModel: settingsModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -67,3 +68,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+struct SettingsModelKey: EnvironmentKey {
+    static let defaultValue: SettingsModel = AppDelegate.shared.settingsModel
+}
+
+struct WorkoutModelKey: EnvironmentKey {
+    static let defaultValue: WorkoutModel = AppDelegate.shared.workoutModel
+}
+
+extension EnvironmentValues {
+    var settingsModel: SettingsModel {
+        get { self[SettingsModelKey.self] }
+    }
+    var workoutModel: WorkoutModel {
+        get { self[WorkoutModelKey.self] }
+    }
+}

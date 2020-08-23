@@ -19,6 +19,10 @@
 "New" = "Nieuw";
 "Uploaded" = "Verzonden";
 "Failed" = "Mislukt";
+"Generating File" = "Bestand aanmaken";
+"Uploading File" = "Bestand versturen";
+"Processing by Strava" = "Verwerking door Strava";
 "Done" = "Klaar";
 "Settings" = "Instellingen";
 "Connect your Strava account" = "Verbind met Strava";
+"Travaartje is not connected to your Strava account. You can do this on the settings page." = "Travaartje is niet verbonden met je Strava account. Je kan dit doen via de instellingen pagina.";

@@ -121,6 +121,11 @@ struct WorkoutCell: View {
 
                 Button(action: {
                     self.workoutModel.upload(self.workout)
+                        .sink {
+                            self.workout.state = $0.state
+                            self.workout.uploadResult = $0.uploadResult
+                        }
+                        .store(in: &self.cancellables)
                 }) {
                     HStack {
                         Image(systemName: "paperplane")

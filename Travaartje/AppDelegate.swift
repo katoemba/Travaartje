@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rideDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 08, minute: 58, second: 23).date!
         healthKitMock.hkWorkouts = [HKWorkout(activityType: .running, start: runDate, end: runDate.addingTimeInterval(4040), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 8765.9), metadata: nil),
                                     HKWorkout(activityType: .cycling, start: rideDate, end: rideDate.addingTimeInterval(1000), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 5609.0), metadata: nil)]
+        
         return healthKitMock
     }()
     lazy var managedObjectModel: NSManagedObjectModel = {

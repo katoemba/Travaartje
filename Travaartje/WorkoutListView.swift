@@ -26,7 +26,6 @@ struct WorkoutListView: View {
             .navigationBarItems(
                 trailing:
                 Button(action: {
-                    print("Show settings right")
                     self.showSettings = true
                 }) {
                     Image(systemName: "gear")

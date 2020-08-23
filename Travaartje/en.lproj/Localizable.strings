@@ -19,6 +19,10 @@
 "New" = "New";
 "Uploaded" = "Uploaded";
 "Failed" = "Failed";
+"Generating File" = "Generating File";
+"Uploading File" = "Uploading File";
+"Processing by Strava" = "Processing by Strava";
 "Done" = "Done";
 "Settings" = "Settings";
 "Connect your Strava account" = "Connect your Strava account";
+"Travaartje is not connected to your Strava account. You can do this on the settings page." = "Travaartje is not connected to your Strava account. You can do this on the settings page.";

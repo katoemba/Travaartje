@@ -24,12 +24,8 @@ struct AthleteCell: View {
             
             KFImage(URL(string: self.athlete.profile_medium)!)
                 .onSuccess { r in
-                    // r: RetrieveImageResult
-                    print("success: \(r)")
             }
             .onFailure { e in
-                // e: KingfisherError
-                print("failure: \(e)")
             }
             .placeholder {
                 // Placeholder while downloading.
@@ -59,62 +55,6 @@ struct AthleteCell: View {
             self.settingsModel.deauthorize()
         }
     }
-    
-    
-    //        Button(action: {
-    //            self.showDetails = true
-    //        }) {
-    //            HStack(alignment: .center, spacing: 10.0) {
-    //                Spacer()
-    //                    .frame(width: 0.0)
-    //
-    //                KFImage(URL(string: self.athlete.profile_medium)!)
-    //                    .onSuccess { r in
-    //                        // r: RetrieveImageResult
-    //                        print("success: \(r)")
-    //                    }
-    //                    .onFailure { e in
-    //                        // e: KingfisherError
-    //                        print("failure: \(e)")
-    //                    }
-    //                    .placeholder {
-    //                        // Placeholder while downloading.
-    //                        Image(systemName: "arrow.2.circlepath.circle")
-    //                            .font(.largeTitle)
-    //                            .opacity(0.3)
-    //                    }
-    //                    .frame(width: 60.0, height: 60.0)
-    //                    .scaledToFit()
-    //                    .cornerRadius(10)
-    //
-    //                Text(self.athlete.firstname + " " + self.athlete.lastname)
-    //                    .accessibility(identifier: "NameLabel")
-    //
-    //                Spacer()
-    //            }
-    //        }
-    //        .buttonStyle(BorderlessButtonStyle())
-    //        .font(.body)
-    //        .foregroundColor(.white)
-    //        .padding(.vertical, 15.0)
-    //        .background(RoundedRectangle(cornerRadius: 10.0).foregroundColor(.blue))
-    //        .sheet(isPresented: self.$showDetails) {
-    //            NavigationView {
-    //                if self.url != nil {
-    //                    WebView(request: URLRequest(url: self.url!))
-    //                        .navigationBarTitle("Info", displayMode: .inline)
-    //                        .navigationBarItems(
-    //                            trailing:
-    //                            Button("Done") {
-    //                                self.showDetails = false
-    //                            }
-    //                        )
-    //                }
-    //                else {
-    //                    EmptyView()
-    //                }
-    //            }
-    //        }
 }
 
 struct UserCell_Previews: PreviewProvider {

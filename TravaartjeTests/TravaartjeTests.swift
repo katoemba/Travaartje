@@ -12,6 +12,7 @@ import HealthKit
 import CoreData
 import Combine
 import StravaCombine
+import SwiftUI
 
 class TravaartjeTests: XCTestCase {
     var cancellable: AnyCancellable?
@@ -23,6 +24,17 @@ class TravaartjeTests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        let context = AppDelegate.shared.persistentContainer.viewContext
+        let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine
+        let stravaOAuth = AppDelegate.shared.stravaOAuth
+        let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine, stravaOAuth: stravaOAuth)
+
+        // Reset the models after each test, as this data carries over into subsequent tests.
+        for workout in model.workouts {
+            workout.state = .new
+            workout.uploadResult = ""
+            workout.stravaId = 0
+        }
     }
 
     func testWorkoutModel() {
@@ -34,11 +46,12 @@ class TravaartjeTests: XCTestCase {
         var workouts = [Workout]()
         let expectation = self.expectation(description: "Load workouts")
         model.reloadHealthKitWorkouts()
-        cancellable = model.$workouts
+        model.$workouts
             .sink {
                 workouts = $0
                 expectation.fulfill()
             }
+            .store(in: &cancellables)
         waitForExpectations(timeout: 1, handler: nil)
 
         XCTAssertEqual(workouts.count, 2)
@@ -69,11 +82,12 @@ class TravaartjeTests: XCTestCase {
         var workouts = [Workout]()
         let expectation = self.expectation(description: "Load workouts")
         model.reloadHealthKitWorkouts()
-        cancellable = model.$workouts
+        model.$workouts
             .sink {
                 workouts = $0
                 expectation.fulfill()
             }
+            .store(in: &cancellables)
         waitForExpectations(timeout: 1, handler: nil)
 
         XCTAssertEqual(workouts.count, 1)
@@ -219,5 +233,24 @@ class TravaartjeTests: XCTestCase {
 
         model.deauthorize()
         wait(for: [deauthorizedExpection], timeout: 1.0)
+    }
+    
+    func testLoggedOfUpload() {
+        let context = AppDelegate.shared.persistentContainer.viewContext
+        let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine
+        let stravaOAuth = StravaOAuthMock(token: nil)
+        let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine, stravaOAuth: stravaOAuth)
+
+        let notAuthorizedExpectation = expectation(description: "Not authorized")
+
+        model.upload(model.workouts[0])
+            .sink { (uploadStatus) in
+                if uploadStatus.state == Workout.State.failed {
+                    notAuthorizedExpectation.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+
+        wait(for: [notAuthorizedExpectation], timeout: 1.0)
     }
 }

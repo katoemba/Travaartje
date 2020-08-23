@@ -13,7 +13,18 @@ import HealthKitCombine
 import StravaCombine
 import CoreGPX
 
+
 public class WorkoutModel: ObservableObject {
+    struct UploadStatus {
+        let state: Workout.State
+        let uploadResult: String
+        
+        init(_ workout: Workout) {
+            state = workout.state
+            uploadResult = workout.uploadResult
+        }
+    }
+
     public typealias StravaUploadFactory = () -> (StravaUploadProtocol)
     @Published public var workouts = [Workout]()
     private var context: NSManagedObjectContext
@@ -95,11 +106,15 @@ public class WorkoutModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func upload(_ workout: Workout) {
+    func upload(_ workout: Workout) -> AnyPublisher<UploadStatus, Never> {
+        let uploadStatusSubject = PassthroughSubject<UploadStatus, Never>()
+        
         workout.state = .generatingFile
         workout.uploadResult = ""
+        uploadStatusSubject.send(UploadStatus(workout))
         
         workout.gpxRoute(healthKitCombine: healthStoreCombine)
+            .subscribe(on: RunLoop.main)
             .flatMap(maxPublishers: .max(1)) { (gpxRoot) -> AnyPublisher<(StravaToken, GPXRoot), Error> in
                 workout.state = .uploadingFile
                 return self.stravaAuth.token
@@ -107,7 +122,7 @@ public class WorkoutModel: ObservableObject {
                         if let token = token {
                             return (token, gpxRoot)
                         }
-                        throw StravaCombineError.authorizationCancelled
+                        throw StravaCombineError.uploadFailed(NSLocalizedString("Travaartje is not connected to your Strava account. You can do this on the settings page.", comment: ""))
                     }
                     .eraseToAnyPublisher()
             }
@@ -126,11 +141,18 @@ public class WorkoutModel: ObservableObject {
                     workout.state = .uploaded
                 }
                 self.save()
+                
+                uploadStatusSubject.send(UploadStatus(workout))
+                uploadStatusSubject.send(completion: .finished)
             }) { (upload) in
                 workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
                 self.save()
+                
+                uploadStatusSubject.send(UploadStatus(workout))
             }
             .store(in: &cancellables)
+        
+        return uploadStatusSubject.eraseToAnyPublisher()
     }
 
     func save() {

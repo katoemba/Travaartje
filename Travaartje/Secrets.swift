@@ -12,4 +12,5 @@ struct Secrets {
     static let stravaClientId = "{STRAVA_CLIENT_ID}"
     static let stravaSecret = "{STRAVA_SECRET}"
     static let redirectUri = "{REDIRECT_URI}"
+    static let developerStravaId = "{DEVELOPER_STRAVA_ID}"
 }

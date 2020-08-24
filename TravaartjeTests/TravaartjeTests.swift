@@ -171,7 +171,15 @@ class TravaartjeTests: XCTestCase {
         
         if settings.count > 0 {
             for setting in settings {
-                if setting.identifier == "FAQ" {
+                if setting.identifier == "News" {
+                    if case let .openURL(faq) = setting.action {
+                        XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/whats-new")!)
+                    }
+                    else {
+                        XCTAssert(false, "Faq setting has invalid type")
+                    }
+                }
+                else if setting.identifier == "FAQ" {
                     if case let .openURL(faq) = setting.action {
                         XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/faq")!)
                     }

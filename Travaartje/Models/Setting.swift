@@ -28,4 +28,18 @@ public class Setting: ObservableObject, Identifiable {
         self.label = label
         self.action = action
     }
+    
+    public var url: URL? {
+        if case let .openURL(url) = action {
+            return url
+        }
+        return nil
+    }
+    
+    public var athlete: Athlete? {
+        if case let .showAccount(athlete) = action {
+            return athlete
+        }
+        return nil
+    }
 }

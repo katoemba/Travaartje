@@ -12,17 +12,10 @@ import StravaCombine
 struct SettingsView: View {
     @ObservedObject var settingsModel: SettingsModel
 
-    private func athlete(setting: Setting) -> Athlete? {
-        if case let .showAccount(athlete) = setting.action {
-            return athlete
-        }
-        return nil
-    }
-
     var body: some View {
         List(settingsModel.settings) { setting in
-            if self.athlete(setting: setting) != nil {
-                AthleteCell(athlete: self.athlete(setting: setting)!)
+            if setting.athlete != nil {
+                AthleteCell(athlete: setting.athlete!)
             }
             else {
                 SettingCell(setting: setting)

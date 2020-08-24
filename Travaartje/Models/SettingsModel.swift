@@ -24,16 +24,17 @@ public class SettingsModel: ObservableObject {
                 var updatedSettings = [Setting]()
                 
                 if let athlete = stravaToken?.athlete {
-                    updatedSettings.append(Setting(identifier: "Account", icon: "person.crop.circle", label: "Show Account", action: .showAccount(athlete)))
+                    updatedSettings.append(Setting(identifier: "Account", icon: "person.crop.circle.badge.plus", label: NSLocalizedString("Strava account", comment: ""), action: .showAccount(athlete)))
                 }
                 else {
-                    updatedSettings.append(Setting(identifier: "ConnectStrava", icon: "person.crop.circle", label: "Connect your Strava account", action: .connectAccount))
+                    updatedSettings.append(Setting(identifier: "ConnectStrava", icon: "person.crop.circle.badge.plus", label: NSLocalizedString("Connect your Strava account", comment: ""), action: .connectAccount))
                 }
-                updatedSettings.append(Setting(identifier: "AutomaticUpload", icon: "bolt.badge.a.fill", label: "Upload on open", action: .toggle))
-                updatedSettings.append(Setting(identifier: "FollowOnStrava", icon: "person.crop.circle.badge.plus", label: "Follow the author on Strava", action: .openStrava))
-                updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: "Frequently asked questions", action: .openURL(URL(string: "https://www.travaartje.net/faq")!)))
-                updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: "Privacy", action: .openURL(URL(string: "https://www.travaartje.net/privacy")!)))
-                updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: "Acknowledgements", action: .openURL(URL(string: "https://www.travaartje.net/acknowledgements")!)))
+                //updatedSettings.append(Setting(identifier: "AutomaticUpload", icon: "bolt.badge.a.fill", label: "Upload on open", action: .toggle))
+                updatedSettings.append(Setting(identifier: "FollowOnStrava", icon: "eye", label: NSLocalizedString("Follow the developer on Strava", comment: ""), action: .openStrava))
+                updatedSettings.append(Setting(identifier: "New", icon: "tray.full", label: NSLocalizedString("What's new", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/whats-new")!)))
+                updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: NSLocalizedString("Frequently asked questions", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/faq")!)))
+                updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: NSLocalizedString("Privacy", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/privacy")!)))
+                updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: NSLocalizedString("Acknowledgements", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/acknowledgements")!)))
                 
                 self.settings = updatedSettings
             }

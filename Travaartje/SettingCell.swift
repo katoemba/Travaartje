@@ -13,21 +13,19 @@ import os
 struct SettingCell: View {
     @ObservedObject var setting: Setting
     @State var enabled: String = "checkmark.circle"
-    @State var showDetails: Bool = false
+    @State var showWebView: Bool = false
     @Environment(\.settingsModel) var settingsModel: SettingsModel
     
-    private var url: URL? {
-        if case let .openURL(url) = setting.action {
-            return url
-        }
-        return nil
-    }
-
     var body: some View {
         Button(action: {
             self.enabled = self.enabled == "circle" ? "checkmark.circle" : "circle"
-            if self.url != nil {
-                self.showDetails = true
+            if self.setting.url != nil {
+                self.showWebView = true
+            }
+            else if self.setting.action == .openStrava {
+                if let url = URL(string: "strava://athletes/\(Secrets.developerStravaId)") {
+                    UIApplication.shared.open(url)
+                }
             }
             else if self.setting.action == .connectAccount {
                 self.settingsModel.authorize()
@@ -59,15 +57,15 @@ struct SettingCell: View {
         .foregroundColor(.white)
         .padding(.vertical, 15.0)
         .background(RoundedRectangle(cornerRadius: 10.0).foregroundColor(.blue))
-        .sheet(isPresented: self.$showDetails) {
+        .sheet(isPresented: self.$showWebView) {
             NavigationView {
-                if self.url != nil {
-                    WebView(request: URLRequest(url: self.url!))
-                        .navigationBarTitle("Info", displayMode: .inline)
+                if self.setting.url != nil {
+                    WebView(request: URLRequest(url: self.setting.url!))
+                        .navigationBarTitle("", displayMode: .inline)
                         .navigationBarItems(
                             trailing:
                             Button("Done") {
-                                self.showDetails = false
+                                self.showWebView = false
                             }
                         )
                 }

@@ -46,14 +46,23 @@ struct AthleteCell: View {
             }
             
             Spacer()
+
+            Button(action: {
+                self.settingsModel.deauthorize()
+            }) {
+                Image(systemName: "person.crop.circle.badge.xmark")
+                    .font(.largeTitle)
+            }
+            .accessibility(identifier: "Deauthorize")
+            .buttonStyle(BorderlessButtonStyle())
+
+            Spacer()
+                .frame(width: 0.0)
         }
         .font(.body)
         .foregroundColor(.white)
         .padding(.vertical, 15.0)
         .background(RoundedRectangle(cornerRadius: 10.0).foregroundColor(.blue))
-        .onTapGesture {
-            self.settingsModel.deauthorize()
-        }
     }
 }
 

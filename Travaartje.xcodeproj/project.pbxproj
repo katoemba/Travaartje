@@ -67,7 +67,6 @@
 /* Begin PBXFileReference section */
 		C504578224D4411500D14221 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		C509983524FBB90900CA9886 /* HealthKitCombine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HealthKitCombine; path = ../HealthKitCombine; sourceTree = "<group>"; };
 		C51FA0AF24F838D90029C763 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C523A1C824F5872100FED1A6 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		C535011424EB0252009F5900 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
-				C509983524FBB90900CA9886 /* HealthKitCombine */,
 				C56213AB24C829B9004A0FBA /* CoreData */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,

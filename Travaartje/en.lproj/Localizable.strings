@@ -43,3 +43,5 @@
 "Travaartje needs to be authorized before it can upload workouts to Strava. Click the button above to go to Strava to provide this authorization." = "Travaartje needs to be authorized before it can upload workouts to Strava. Click the button above to go to Strava to provide this authorization.";
 "Get started" = "Get started";
 "All set, let's get started!" = "All set, let's get started!";
+
+"No workouts found, did you give Travaartje access to your workouts in the Privacy settings?" = "No workouts found, did you give Travaartje access to your workouts in the Privacy settings?";

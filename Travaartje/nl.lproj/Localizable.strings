@@ -43,3 +43,5 @@
 "Travaartje needs to be authorized before it can upload workouts to Strava. Click the button above to go to Strava to provide this authorization." = "Travaartje heeft toegang tot je Strava account nodig om workouts te kunnen verzenden. Klik op de knop hierboven om naar Strava te gaan waar je deze toestemming kan geven.";
 "Get started" = "Klaar";
 "All set, let's get started!" = "Dat was alles, laten we beginnen!";
+
+"No workouts found, did you give Travaartje access to your workouts in the Privacy settings?" = "Er zijn geen workouts gevonden, heb je Travaartje de benodigde toegangsrechten in de Privacy instellingen gegeven?";

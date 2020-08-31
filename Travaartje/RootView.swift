@@ -12,11 +12,13 @@ import Combine
  struct RootView: View {
     @State var cancellables = Set<AnyCancellable>()
     @ObservedObject var onboardingModel: OnboardingModel
+    @ObservedObject var settingsModel: SettingsModel
+    @ObservedObject var workoutModel: WorkoutModel
 
     var body: some View {
         NavigationView {
             if onboardingModel.onboardingDone {
-                WorkoutListView()
+                WorkoutListView(settingsModel: settingsModel, workoutModel: workoutModel)
             }
             else {
                 OnboardingView(onboardingModel: onboardingModel)

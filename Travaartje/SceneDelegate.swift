@@ -24,10 +24,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // Create the SwiftUI view that provides the window contents.
-//        let workoutModel = AppDelegate.shared.workoutModel
-//        let settingsModel = AppDelegate.shared.settingsModel
+        let workoutModel = AppDelegate.shared.workoutModel
+        let settingsModel = AppDelegate.shared.settingsModel
         let onboardingModel = AppDelegate.shared.onboardingModel
-        let contentView = RootView(onboardingModel: onboardingModel)
+        let contentView = RootView(onboardingModel: onboardingModel,
+                                   settingsModel: settingsModel,
+                                   workoutModel: workoutModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

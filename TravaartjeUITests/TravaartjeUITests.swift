@@ -67,6 +67,19 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")
     }
     
+    func testWorkoutListEmpty() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
+        app.launchArguments += ["-testNoWorkouts", "1"]
+        app.launch()
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        XCTAssertTrue(app.tables.cells.staticTexts["No workouts found, did you give Travaartje access to your workouts in the Privacy settings?"].exists)
+    }
+    
     func testWorkoutDetails() throws {
         let app = XCUIApplication()
         app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]

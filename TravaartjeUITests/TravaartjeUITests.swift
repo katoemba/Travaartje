@@ -26,7 +26,7 @@ class TravaartjeUITests: XCTestCase {
     func testWorkoutList() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -48,7 +48,7 @@ class TravaartjeUITests: XCTestCase {
     func testWorkoutListDutch() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL"]
+        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL", "-test"]
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -69,7 +69,7 @@ class TravaartjeUITests: XCTestCase {
     
     func testWorkoutDetails() throws {
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
@@ -93,7 +93,7 @@ class TravaartjeUITests: XCTestCase {
 
     func testWorkoutDetailsDutch() throws {
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL"]
+        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL", "-test"]
         app.launch()
 
         let run = app.tables.cells.element(boundBy: 0)
@@ -107,7 +107,7 @@ class TravaartjeUITests: XCTestCase {
 
     func testSettings() throws {
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
         app.launch()
 
         app.buttons["Settings"].tap()
@@ -119,7 +119,7 @@ class TravaartjeUITests: XCTestCase {
 
     func testSettingsDutch() throws {
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL"]
+        app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL", "-test"]
         app.launch()
 
         app.buttons["Settings"].tap()
@@ -127,6 +127,40 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["Instellingen"].label, "Instellingen")
         
         app.buttons["Klaar"].tap()
+    }
+
+    func testOnboarding() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
+        app.launchArguments += ["-testOnboarding", "1"]
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Give HealthKit access"].exists)
+        XCTAssertEqual(app.buttons["Give HealthKit access"].isEnabled, true)
+        XCTAssertTrue(app.buttons["Connect to Strava"].exists)
+        XCTAssertEqual(app.buttons["Connect to Strava"].isEnabled, false)
+        XCTAssertTrue(app.buttons["Get started"].exists)
+        XCTAssertEqual(app.buttons["Get started"].isEnabled, false)
+
+        app.buttons["Give HealthKit access"].tap()
+        
+        let isEnabled = NSPredicate(format: "isEnabled == 1")
+        let button2Enabled = expectation(for: isEnabled, evaluatedWith: app.buttons["Connect to Strava"], handler: nil)
+        wait(for: [button2Enabled], timeout: 2)
+        
+        XCTAssertEqual(app.buttons["Give HealthKit access"].isEnabled, false)
+        XCTAssertEqual(app.buttons["Connect to Strava"].isEnabled, true)
+        XCTAssertEqual(app.buttons["Get started"].isEnabled, false)
+        app.buttons["Connect to Strava"].tap()
+
+        let button3Enabled = expectation(for: isEnabled, evaluatedWith: app.buttons["Get started"], handler: nil)
+        wait(for: [button3Enabled], timeout: 2)
+
+        XCTAssertEqual(app.buttons["Give HealthKit access"].isEnabled, false)
+        XCTAssertEqual(app.buttons["Connect to Strava"].isEnabled, false)
+        XCTAssertEqual(app.buttons["Get started"].isEnabled, true)
+        
+        app.buttons["Get started"].tap()
     }
 
 

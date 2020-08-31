@@ -23,7 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-                
+               
+        #if DEBUG
+        if CommandLine.arguments.contains("-test") {
+            setupForTest()
+        }
+        #endif
+
         return true
     }
     
@@ -89,11 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var settingsModel: SettingsModel = {
         return SettingsModel(stravaOAuth: stravaOAuth)
     }()
-    lazy var onboardingModel: OnboardingModel = {
-        var onboardingModel = OnboardingModel(settingsModel: self.settingsModel)
-        onboardingModel.onboardingDone = true
-        return onboardingModel
-    }()
     #else
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
         HKHealthStore()
@@ -135,11 +136,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var settingsModel: SettingsModel = {
         return SettingsModel(stravaOAuth: stravaOAuth)
     }()
+    #endif
     lazy var onboardingModel: OnboardingModel = {
         return OnboardingModel(settingsModel: self.settingsModel)
     }()
-    #endif
-    
+
     // MARK: - Core Data Saving support
     
     func saveContext () {
@@ -157,6 +158,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
+
+#if DEBUG
+extension AppDelegate {
+    private func setupForTest() {
+        if UserDefaults.standard.integer(forKey: "testOnboarding") == 1 {
+            onboardingModel.onboardingDone = false
+        }
+        else {
+            onboardingModel.onboardingDone = true
+        }
+    }
+}
+#endif
 
 extension StravaConfig {
     public static var standard: StravaConfig = {

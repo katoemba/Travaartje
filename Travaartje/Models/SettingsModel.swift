@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import StravaCombine
+import KeychainAccess
 
 public class SettingsModel: ObservableObject {
     @Published public var settings = [Setting]()
@@ -65,19 +66,24 @@ extension StravaToken {
     private static var tokenKey: String {
         "Travaartje.Token"
     }
+    private static var keychain: Keychain {
+        Keychain(service: "com.katoemba.travaartje")
+    }
     
-    public static func load(defaults: UserDefaults = UserDefaults.standard) -> StravaToken? {
-        if let data = UserDefaults.standard.value(forKey: StravaToken.tokenKey) as? Data {
+    static func load() -> StravaToken? {
+        if let data = try? keychain.getData(tokenKey) {
             return try? PropertyListDecoder().decode(StravaToken.self, from: data)
         }
         return nil
     }
 
-    static func clear(defaults: UserDefaults = UserDefaults.standard) {
-        defaults.removeObject(forKey: StravaToken.tokenKey)
+    static func clear() {
+        try? keychain.remove(tokenKey)
     }
     
-    func store(defaults: UserDefaults = UserDefaults.standard) {
-        defaults.set(try? PropertyListEncoder().encode(self), forKey: StravaToken.tokenKey)
+    func store() {
+        if let data = try? PropertyListEncoder().encode(self) {
+            try? StravaToken.keychain.set(data, key: StravaToken.tokenKey)
+        }
     }
 }

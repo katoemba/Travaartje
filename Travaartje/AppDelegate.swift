@@ -23,20 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        #if !targetEnvironment(simulator)
-        HKHealthStore().authorize()
-            .sink(receiveCompletion: { (finished) in
-                switch finished {
-                case .finished:
-                    print("Authorization completed")
-                case let .failure(error):
-                    print("Authorization failed \(error)")
-                }
-            }, receiveValue: { (result) in
-                print("Authorization result \(result)")
-            })
-            .store(in: &cancellables)
-        #endif
                 
         return true
     }
@@ -90,11 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     lazy var stravaOAuth: StravaOAuthProtocol = {
-        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg")
         return StravaOAuthMock(token: StravaToken(access_token: "access", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "refresh", athlete: athlete))
     }()
     lazy var workoutModel: WorkoutModel = {
-        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "Nederland", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg")
         return WorkoutModel(context: persistentContainer.viewContext,
                             healthStoreCombine: healthKitStoreCombine,
                             stravaOAuth: stravaOAuth,
@@ -102,6 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     lazy var settingsModel: SettingsModel = {
         return SettingsModel(stravaOAuth: stravaOAuth)
+    }()
+    lazy var onboardingModel: OnboardingModel = {
+        var onboardingModel = OnboardingModel(settingsModel: self.settingsModel)
+        onboardingModel.onboardingDone = true
+        return onboardingModel
     }()
     #else
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
@@ -143,6 +134,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     lazy var settingsModel: SettingsModel = {
         return SettingsModel(stravaOAuth: stravaOAuth)
+    }()
+    lazy var onboardingModel: OnboardingModel = {
+        return OnboardingModel(settingsModel: self.settingsModel)
     }()
     #endif
     

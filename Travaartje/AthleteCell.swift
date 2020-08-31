@@ -22,7 +22,7 @@ struct AthleteCell: View {
             Spacer()
                 .frame(width: 0.0)
             
-            KFImage(URL(string: self.athlete.profile_medium)!)
+            KFImage(URL(string: self.athlete.profile)!)
                 .onSuccess { r in
             }
             .onFailure { e in
@@ -66,8 +66,8 @@ struct AthleteCell: View {
     }
 }
 
-struct UserCell_Previews: PreviewProvider {
-    static let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+struct AthleteCell_Previews: PreviewProvider {
+    static let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg")
     static let localizations = Bundle.main.localizations.map(Locale.init).filter { $0.identifier != "base" }
     
     static var previews: some View {

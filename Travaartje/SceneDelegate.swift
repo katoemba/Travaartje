@@ -24,9 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // Create the SwiftUI view that provides the window contents.
-        let workoutModel = AppDelegate.shared.workoutModel
-        let settingsModel = AppDelegate.shared.settingsModel
-        let contentView = WorkoutListView(workoutModel: workoutModel, settingsModel: settingsModel)
+//        let workoutModel = AppDelegate.shared.workoutModel
+//        let settingsModel = AppDelegate.shared.settingsModel
+        let onboardingModel = AppDelegate.shared.onboardingModel
+        let contentView = RootView(onboardingModel: onboardingModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -57,6 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        AppDelegate.shared.workoutModel.reloadHealthKitWorkouts()        
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -76,11 +78,18 @@ struct WorkoutModelKey: EnvironmentKey {
     static let defaultValue: WorkoutModel = AppDelegate.shared.workoutModel
 }
 
+struct OnboardingModelKey: EnvironmentKey {
+    static let defaultValue: OnboardingModel = AppDelegate.shared.onboardingModel
+}
+
 extension EnvironmentValues {
     var settingsModel: SettingsModel {
         get { self[SettingsModelKey.self] }
     }
     var workoutModel: WorkoutModel {
         get { self[WorkoutModelKey.self] }
+    }
+    var onboardingModel: OnboardingModel {
+        get { self[OnboardingModelKey.self] }
     }
 }

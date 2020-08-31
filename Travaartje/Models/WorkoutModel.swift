@@ -56,14 +56,15 @@ public class WorkoutModel: ObservableObject {
             let storedWorkouts = try context.fetch(request)
             healthStoreCombine.workouts(storedWorkouts.map({ $0.healthKitId}))
                 .replaceError(with: [])
-                .sink { (workouts) in
+                .map({ (workouts) -> [Workout] in
                     for workout in workouts {
                         if let storedWorkout = storedWorkouts.first(where: { $0.healthKitId == workout.uuid }) {
                             storedWorkout.workout = workout
                         }
                     }
-                    self.workouts = storedWorkouts
-                }
+                    return storedWorkouts
+                })
+                .assign(to: \.workouts, on: self)
                 .store(in: &cancellables)
         }
         catch {

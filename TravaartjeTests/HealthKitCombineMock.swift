@@ -13,11 +13,21 @@ import HealthKitCombine
 
 #if targetEnvironment(simulator)
 class HealthKitCombineMock: HKHealthStoreCombine {
+    public var shouldAuthorizeResult = true
     public var authorizationResult = true
     public var error: Error?
     
     public var hkWorkouts = [HKWorkout]()
     
+    func shouldAuthorize() -> AnyPublisher<Bool, Error> {
+        Just(shouldAuthorizeResult)
+            .tryMap { (result) -> Bool in
+                guard error == nil else { throw error! }
+                return result
+            }
+            .eraseToAnyPublisher()
+    }
+
     func authorize() -> AnyPublisher<Bool, Error> {
         Just(authorizationResult)
             .tryMap { (result) -> Bool in

@@ -103,7 +103,7 @@ class TravaartjeTests: XCTestCase {
     }
     
     func testLoggedInSettingsModel() {
-        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg")
         let stravaToken = StravaToken(access_token: "123", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "456", athlete: athlete)
         let stravaOAuth = StravaOAuthMock(token: stravaToken)
         let model = SettingsModel(stravaOAuth: stravaOAuth)
@@ -234,7 +234,7 @@ class TravaartjeTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "")
+        let athlete = Athlete(id: 1, username: "Fast Abdi", firstname: "Abdi", lastname: "Nageeye", city: "Nijmegen", country: "The Netherlands", profile_medium: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg", profile: "https://www.wereldvanculturen.nl/wp-content/uploads/2019/03/Abdi-Nageeye-Atleet-zonder-grenzen-1.jpg")
         stravaOAuth.stravaToken = StravaToken(access_token: "123", expires_at: Date(timeIntervalSinceNow: 3600).timeIntervalSince1970, refresh_token: "456", athlete: athlete)
         model.authorize()
         wait(for: [notAuthorizedExpection, authorizedExpection], timeout: 1.0)

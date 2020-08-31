@@ -10,9 +10,14 @@
 		C504578324D4411500D14221 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504578224D4411500D14221 /* WorkoutCell.swift */; };
 		C504578624D4635E00D14221 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = C504578524D4635E00D14221 /* CoreGPX */; };
 		C504579624D84A6000D14221 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504579524D84A6000D14221 /* Secrets.swift */; };
+		C51FA0B024F838D90029C763 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51FA0AF24F838D90029C763 /* RootView.swift */; };
+		C523A1C624F56DF300FED1A6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C523A1C524F56DF300FED1A6 /* KeychainAccess */; };
+		C523A1C924F5872100FED1A6 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523A1C824F5872100FED1A6 /* OnboardingModel.swift */; };
 		C535011524EB0252009F5900 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535011424EB0252009F5900 /* WebView.swift */; };
 		C535011724EB2167009F5900 /* AthleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535011624EB2167009F5900 /* AthleteCell.swift */; };
 		C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C535011924EB24E9009F5900 /* KingfisherSwiftUI */; };
+		C53947D524F3E0B700C6137E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D424F3E0B700C6137E /* OnboardingView.swift */; };
+		C53947D724F3EAC300C6137E /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D624F3EAC300C6137E /* StepView.swift */; };
 		C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
 		C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
 		C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E40F24C1A407000E06B7 /* AppDelegate.swift */; };
@@ -62,8 +67,13 @@
 /* Begin PBXFileReference section */
 		C504578224D4411500D14221 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		C509983524FBB90900CA9886 /* HealthKitCombine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HealthKitCombine; path = ../HealthKitCombine; sourceTree = "<group>"; };
+		C51FA0AF24F838D90029C763 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		C523A1C824F5872100FED1A6 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		C535011424EB0252009F5900 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C535011624EB2167009F5900 /* AthleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteCell.swift; sourceTree = "<group>"; };
+		C53947D424F3E0B700C6137E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C53947D624F3EAC300C6137E /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
 		C552E40C24C1A407000E06B7 /* Travaartje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travaartje.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +113,7 @@
 			files = (
 				C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */,
 				C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */,
+				C523A1C624F56DF300FED1A6 /* KeychainAccess in Frameworks */,
 				C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */,
 				C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */,
 				C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */,
@@ -127,9 +138,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C523A1C724F5870E00FED1A6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C523A1C824F5872100FED1A6 /* OnboardingModel.swift */,
+				C53947D424F3E0B700C6137E /* OnboardingView.swift */,
+				C53947D624F3EAC300C6137E /* StepView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
+				C509983524FBB90900CA9886 /* HealthKitCombine */,
 				C56213AB24C829B9004A0FBA /* CoreData */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
@@ -152,9 +174,11 @@
 		C552E40E24C1A407000E06B7 /* Travaartje */ = {
 			isa = PBXGroup;
 			children = (
+				C523A1C724F5870E00FED1A6 /* Onboarding */,
 				C56213B424C88E4F004A0FBA /* Models */,
 				C552E40F24C1A407000E06B7 /* AppDelegate.swift */,
 				C552E41124C1A407000E06B7 /* SceneDelegate.swift */,
+				C51FA0AF24F838D90029C763 /* RootView.swift */,
 				C552E41324C1A407000E06B7 /* WorkoutListView.swift */,
 				C504578224D4411500D14221 /* WorkoutCell.swift */,
 				C562136324C736A0004A0FBA /* WorkoutDetailView.swift */,
@@ -256,6 +280,7 @@
 				C504578524D4635E00D14221 /* CoreGPX */,
 				C5E4166724E46A91008F08E7 /* StravaCombine */,
 				C535011924EB24E9009F5900 /* KingfisherSwiftUI */,
+				C523A1C524F56DF300FED1A6 /* KeychainAccess */,
 			);
 			productName = Travaartje;
 			productReference = C552E40C24C1A407000E06B7 /* Travaartje.app */;
@@ -336,6 +361,7 @@
 				C504578424D4635E00D14221 /* XCRemoteSwiftPackageReference "CoreGPX" */,
 				C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */,
 				C535011824EB24E9009F5900 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = C552E40D24C1A407000E06B7 /* Products */;
 			projectDirPath = "";
@@ -466,9 +492,13 @@
 				C590E42724E965F800387173 /* SettingCell.swift in Sources */,
 				C590E42524E9656400387173 /* Setting.swift in Sources */,
 				C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */,
+				C53947D724F3EAC300C6137E /* StepView.swift in Sources */,
 				C552E41224C1A407000E06B7 /* SceneDelegate.swift in Sources */,
+				C51FA0B024F838D90029C763 /* RootView.swift in Sources */,
 				C552E41424C1A407000E06B7 /* WorkoutListView.swift in Sources */,
+				C523A1C924F5872100FED1A6 /* OnboardingModel.swift in Sources */,
 				C56213A624C82775004A0FBA /* Travaartje.xcdatamodeld in Sources */,
+				C53947D524F3E0B700C6137E /* OnboardingView.swift in Sources */,
 				C535011524EB0252009F5900 /* WebView.swift in Sources */,
 				C562136424C736A0004A0FBA /* WorkoutDetailView.swift in Sources */,
 				C590E41D24E724A300387173 /* StravaCombineMock.swift in Sources */,
@@ -829,6 +859,14 @@
 				kind = branch;
 			};
 		};
+		C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 		C535011824EB24E9009F5900 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -868,6 +906,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C504578424D4635E00D14221 /* XCRemoteSwiftPackageReference "CoreGPX" */;
 			productName = CoreGPX;
+		};
+		C523A1C524F56DF300FED1A6 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		C535011924EB24E9009F5900 /* KingfisherSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

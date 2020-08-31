@@ -33,3 +33,13 @@
 "Frequently asked questions" = "Veelgestelde vragen";
 "Privacy" = "Privacy";
 "Acknowledgements" = "Bedankjes";
+
+"Welcome" = "Welkom";
+"Travaartje lets you upload workouts that you recorded with the Workout app on your AppleWatch or iPhone to Strava in the easiest possible way." = "Met Travaartje kan je workouts die je opgenomen hebt met je AppleWatch of iPhone heel eenvoudig naar Strava versturen.";
+"We will now guide you through the setup process in a few simple steps, so that you can get started." = "We gaan eerst in een paar eenvoudige stappen de instellingen goed zetten, zodat we kunnen beginnen.";
+"Give HealthKit access" = "Geef HealthKit toegang";
+"Travaartje needs access to your workout data so it can show your recent workouts. Click the above button to open the configuration screen (this may take a few seconds)." = "Travaartje heeft toegang tot je workout gegevens nodig. Klik op de knop hierboven om het instellingen scherm daarvoor te openen (dit kan een paar seconden duren).";
+"Connect to Strava" = "Verbind met Strava";
+"Travaartje needs to be authorized before it can upload workouts to Strava. Click the button above to go to Strava to provide this authorization." = "Travaartje heeft toegang tot je Strava account nodig om workouts te kunnen verzenden. Klik op de knop hierboven om naar Strava te gaan waar je deze toestemming kan geven.";
+"Get started" = "Klaar";
+"All set, let's get started!" = "Dat was alles, laten we beginnen!";

@@ -18,6 +18,7 @@
 		C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C535011924EB24E9009F5900 /* KingfisherSwiftUI */; };
 		C53947D524F3E0B700C6137E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D424F3E0B700C6137E /* OnboardingView.swift */; };
 		C53947D724F3EAC300C6137E /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D624F3EAC300C6137E /* StepView.swift */; };
+		C5479ABC24FEC6310004B5A3 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */; };
 		C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
 		C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
 		C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552E40F24C1A407000E06B7 /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 		C53947D424F3E0B700C6137E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C53947D624F3EAC300C6137E /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
 		C552E40C24C1A407000E06B7 /* Travaartje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travaartje.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C552E40F24C1A407000E06B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				C590E42624E965F800387173 /* SettingCell.swift */,
 				C535011624EB2167009F5900 /* AthleteCell.swift */,
 				C535011424EB0252009F5900 /* WebView.swift */,
+				C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */,
 				C504579524D84A6000D14221 /* Secrets.swift */,
 				C552E41524C1A408000E06B7 /* Assets.xcassets */,
 				C552E41A24C1A408000E06B7 /* LaunchScreen.storyboard */,
@@ -487,6 +490,7 @@
 				C56213B724C88E61004A0FBA /* Workout.swift in Sources */,
 				C5F5BBC724CAF0080065A283 /* HealthKitCombineMock.swift in Sources */,
 				C504578324D4411500D14221 /* WorkoutCell.swift in Sources */,
+				C5479ABC24FEC6310004B5A3 /* AppDefaults.swift in Sources */,
 				C590E42724E965F800387173 /* SettingCell.swift in Sources */,
 				C590E42524E9656400387173 /* Setting.swift in Sources */,
 				C552E41024C1A407000E06B7 /* AppDelegate.swift in Sources */,

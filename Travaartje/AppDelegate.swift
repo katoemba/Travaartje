@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #if targetEnvironment(simulator)
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
         let healthKitMock = HealthKitCombineMock()
-        if UserDefaults.standard.integer(forKey: "testNoWorkouts") != 1 {
+        if AppDefaults.standard.integer(forKey: "testNoWorkouts") != 1 {
             let runDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 14, minute: 7, second: 58).date!
             let rideDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 08, minute: 58, second: 23).date!
             healthKitMock.hkWorkouts = [HKWorkout(activityType: .running, start: runDate, end: runDate.addingTimeInterval(4040), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 8765.9), metadata: nil),
@@ -108,6 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "Travaartje")
+        let storeURL = URL.storeURL(for: "group.com.katoemba.travaartje", databaseName: "Travaartje")
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        container.persistentStoreDescriptions = [storeDescription]
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -163,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if DEBUG
 extension AppDelegate {
     private func setupForTest() {
-        if UserDefaults.standard.integer(forKey: "testOnboarding") == 1 {
+        if AppDefaults.standard.integer(forKey: "testOnboarding") == 1 {
             onboardingModel.onboardingDone = false
         }
         else {
@@ -177,4 +181,15 @@ extension StravaConfig {
     public static var standard: StravaConfig = {
         return StravaConfig(client_id: Secrets.stravaClientId, client_secret: Secrets.stravaSecret, redirect_uri: Secrets.redirectUri)
     }()
+}
+
+extension URL {
+    /// Returns a URL for the given app group and database pointing to the sqlite database.
+    static func storeURL(for appGroup: String, databaseName: String) -> URL {
+        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+            fatalError("Shared file container could not be created.")
+        }
+
+        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
+    }
 }

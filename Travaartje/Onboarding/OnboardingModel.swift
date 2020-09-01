@@ -24,13 +24,11 @@ struct OnboardingStep: Identifiable {
     let action: StepAction
 }
 
-class OnboardingModel: ObservableObject {
-    private static let onboardingRequiredKey = "Travaartje.Onboarding.Required"
-    
+class OnboardingModel: ObservableObject {    
     private var settingsModel: SettingsModel
-    @Published var onboardingDone = UserDefaults.standard.bool(forKey: OnboardingModel.onboardingRequiredKey) {
+    @Published var onboardingDone = AppDefaults.standard.bool(forKey: AppDefaults.onboardingRequiredKey) {
         didSet {
-            UserDefaults.standard.set(onboardingDone, forKey: OnboardingModel.onboardingRequiredKey)
+            AppDefaults.standard.set(onboardingDone, forKey: AppDefaults.onboardingRequiredKey)
         }
     }
     
@@ -104,6 +102,7 @@ class OnboardingModel: ObservableObject {
         
         #if !targetEnvironment(simulator)
         HKHealthStore().shouldAuthorize()
+            .receive(on: RunLoop.main)
             .replaceError(with: false)
             .map { $0 == true ? 1 : 2 }
             .sink(receiveValue: { (step) in
@@ -116,6 +115,7 @@ class OnboardingModel: ObservableObject {
     func healthKitAuthorization() -> AnyPublisher<Bool, Never> {
         #if !targetEnvironment(simulator)
         return HKHealthStore().authorize()
+            .receive(on: RunLoop.main)
             .replaceError(with: false)
             .eraseToAnyPublisher()
         #else

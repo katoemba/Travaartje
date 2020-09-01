@@ -167,7 +167,7 @@ class TravaartjeUITests: XCTestCase {
         app.buttons["Connect to Strava"].tap()
 
         let button3Enabled = expectation(for: isEnabled, evaluatedWith: app.buttons["Get started"], handler: nil)
-        wait(for: [button3Enabled], timeout: 2)
+        wait(for: [button3Enabled], timeout: 3)
 
         XCTAssertEqual(app.buttons["Give HealthKit access"].isEnabled, false)
         XCTAssertEqual(app.buttons["Connect to Strava"].isEnabled, false)

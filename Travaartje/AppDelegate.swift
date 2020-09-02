@@ -13,6 +13,9 @@ import Combine
 import CoreData
 import HealthKitCombine
 import StravaCombine
+import AppCenter
+import AppCenterCrashes
+import AppCenterAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
 
+        MSAppCenter.start(Secrets.appcenterSecret, withServices: [MSAnalytics.self, MSCrashes.self])
+        
         return true
     }
     

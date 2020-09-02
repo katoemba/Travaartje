@@ -76,6 +76,7 @@ public class WorkoutModel: ObservableObject {
         healthStoreCombine.workouts(limit)
             .replaceError(with: [])
             .removeDuplicates()
+            .receive(on: RunLoop.main)
             .sink { (workouts) in
                 var newWorkoutFound = false
                 for workout in workouts {
@@ -109,6 +110,12 @@ public class WorkoutModel: ObservableObject {
     
     func upload(_ workout: Workout) -> AnyPublisher<UploadStatus, Never> {
         let uploadStatusSubject = PassthroughSubject<UploadStatus, Never>()
+        let uploadParameters = UploadParameters(activityType: workout.workout?.stravaActivityType ?? .workout,
+        name: workout.name,
+        description: workout.descr,
+        commute: workout.commute,
+        trainer: false,
+        private: false)
         
         workout.state = .generatingFile
         workout.uploadResult = ""
@@ -130,22 +137,20 @@ public class WorkoutModel: ObservableObject {
         .first()
         .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
             return self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
-                                                        uploadParameters: UploadParameters(activityType: workout.workout?.stravaActivityType ?? .workout,
-                                                                                           name: workout.name,
-                                                                                           description: workout.descr,
-                                                                                           commute: workout.commute,
-                                                                                           trainer: false,
-                                                                                           private: false),
+                                                        uploadParameters: uploadParameters,
                                                         accessToken: token.access_token)
         }
         .print("\(Date()) routeUpload")
+        .receive(on: RunLoop.main)
         .sink(receiveCompletion: { (completion) in
             if case let .failure(error) = completion {
                 workout.state = .failed
                 workout.uploadResult = error.localizedDescription
+                UsageLogger.workoutUploaded(uploadParameters: uploadParameters, status: workout.state.rawValue, error: error.localizedDescription)
             }
             else {
                 workout.state = .uploaded
+                UsageLogger.workoutUploaded(uploadParameters: uploadParameters, status: workout.state.rawValue)
             }
             self.save()
             

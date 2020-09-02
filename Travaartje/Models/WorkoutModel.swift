@@ -24,7 +24,7 @@ public class WorkoutModel: ObservableObject {
             uploadResult = workout.uploadResult
         }
     }
-
+    
     public typealias StravaUploadFactory = () -> (StravaUploadProtocol)
     @Published public var workouts = [Workout]()
     private var context: NSManagedObjectContext
@@ -33,7 +33,7 @@ public class WorkoutModel: ObservableObject {
     private let healthStoreCombine: HKHealthStoreCombine
     private let stravaAuth: StravaOAuthProtocol
     private let stravaUploadFactory: StravaUploadFactory
-
+    
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
                 healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
@@ -98,13 +98,13 @@ public class WorkoutModel: ObservableObject {
                         print(error)
                     }
                 }
-
+                
                 if newWorkoutFound {
                     self.save()
                     self.fetchStoredWorkouts()
                 }
-            }
-            .store(in: &cancellables)
+        }
+        .store(in: &cancellables)
     }
     
     func upload(_ workout: Workout) -> AnyPublisher<UploadStatus, Never> {
@@ -124,39 +124,44 @@ public class WorkoutModel: ObservableObject {
                             return (token, gpxRoot)
                         }
                         throw StravaCombineError.uploadFailed(NSLocalizedString("Travaartje is not connected to your Strava account. You can do this on the settings page.", comment: ""))
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .first()
-            .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
-                self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
-                                                     activityType: workout.workout?.stravaActivityType ?? .workout,
-                                                     accessToken: token.access_token)
-            }
-            .print("\(Date()) routeUpload")
-            .sink(receiveCompletion: { (completion) in
-                if case let .failure(error) = completion {
-                    workout.state = .failed
-                    workout.uploadResult = error.localizedDescription
                 }
-                else {
-                    workout.state = .uploaded
-                }
-                self.save()
-                
-                uploadStatusSubject.send(UploadStatus(workout))
-                uploadStatusSubject.send(completion: .finished)
-            }) { (upload) in
-                workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
-                self.save()
-                
-                uploadStatusSubject.send(UploadStatus(workout))
+                .eraseToAnyPublisher()
+        }
+        .first()
+        .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
+            return self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
+                                                        uploadParameters: UploadParameters(activityType: workout.workout?.stravaActivityType ?? .workout,
+                                                                                           name: workout.name,
+                                                                                           description: workout.descr,
+                                                                                           commute: workout.commute,
+                                                                                           trainer: false,
+                                                                                           private: false),
+                                                        accessToken: token.access_token)
+        }
+        .print("\(Date()) routeUpload")
+        .sink(receiveCompletion: { (completion) in
+            if case let .failure(error) = completion {
+                workout.state = .failed
+                workout.uploadResult = error.localizedDescription
             }
-            .store(in: &cancellables)
+            else {
+                workout.state = .uploaded
+            }
+            self.save()
+            
+            uploadStatusSubject.send(UploadStatus(workout))
+            uploadStatusSubject.send(completion: .finished)
+        }) { (upload) in
+            workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
+            self.save()
+            
+            uploadStatusSubject.send(UploadStatus(workout))
+        }
+        .store(in: &cancellables)
         
         return uploadStatusSubject.eraseToAnyPublisher()
     }
-
+    
     func save() {
         if context.hasChanges {
             try? context.save()

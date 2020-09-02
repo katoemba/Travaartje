@@ -46,6 +46,15 @@ struct WorkoutListView: View {
                 }
                 .navigationBarTitle("Travaartje")
                 .navigationBarItems(
+                    leading:
+                    Button(action: {
+                        self.workoutModel.reloadHealthKitWorkouts()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title)
+                    }
+                    .accessibility(identifier: "Reload"),
+
                     trailing:
                     Button(action: {
                         self.showSettings = true

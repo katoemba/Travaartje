@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 import StravaCombine
 import KeychainAccess
@@ -34,9 +35,19 @@ public class SettingsModel: ObservableObject {
                 updatedSettings.append(Setting(identifier: "FollowOnStrava", icon: "eye", label: NSLocalizedString("Follow the developer on Strava", comment: ""), action: .openStrava))
                 updatedSettings.append(Setting(identifier: "New", icon: "tray.full", label: NSLocalizedString("What's new", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/whats-new")!)))
                 updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: NSLocalizedString("Frequently asked questions", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/faq")!)))
+                updatedSettings.append(Setting(identifier: "Open source", icon: "cloud", label: NSLocalizedString("Open source", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/open-source")!)))
+
+                var components = URLComponents(string: "https://www.travaartje.net/report-a-problem")
+                components?.queryItems = [URLQueryItem(name: "device", value: UIDevice.current.model),
+                                          URLQueryItem(name: "iosversion", value: "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"),
+                                          URLQueryItem(name: "appversion", value: "\(Bundle.main.releaseVersionNumberPretty):\(Bundle.main.buildVersionNumber ?? "0")"),
+                                          URLQueryItem(name: "screensize", value: "\(UIScreen.main.bounds.width)x\(UIScreen.main.bounds.height)")]
+                if let url = components?.url {
+                    updatedSettings.append(Setting(identifier: "Report a problem", icon: "exclamationmark.bubble", label: NSLocalizedString("Report a problem", comment: ""), action: .openURL(url)))
+                }
                 updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: NSLocalizedString("Privacy", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/privacy")!)))
                 updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: NSLocalizedString("Acknowledgements", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/acknowledgements")!)))
-                
+
                 self.settings = updatedSettings
             }
             .store(in: &cancellables)
@@ -85,5 +96,17 @@ extension StravaToken {
         if let data = try? PropertyListEncoder().encode(self) {
             try? StravaToken.keychain.set(data, key: StravaToken.tokenKey)
         }
+    }
+}
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
+    var releaseVersionNumberPretty: String {
+        return "v\(releaseVersionNumber ?? "0.0")"
     }
 }

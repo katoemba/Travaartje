@@ -21,6 +21,7 @@
 		C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C535011924EB24E9009F5900 /* KingfisherSwiftUI */; };
 		C53947D524F3E0B700C6137E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D424F3E0B700C6137E /* OnboardingView.swift */; };
 		C53947D724F3EAC300C6137E /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D624F3EAC300C6137E /* StepView.swift */; };
+		C545A11D2504D3F70010214F /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */; };
 		C5479ABC24FEC6310004B5A3 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */; };
 		C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
 		C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C56213A424C82775004A0FBA /* Travaartje.xcdatamodeld */; };
@@ -536,6 +537,7 @@
 			files = (
 				C547D23724CAE2BA0029F5B5 /* Travaartje.xcdatamodeld in Sources */,
 				C547D23524CAD86D0029F5B5 /* HealthKitCombineMock.swift in Sources */,
+				C545A11D2504D3F70010214F /* AppDefaults.swift in Sources */,
 				C590E41E24E724A300387173 /* StravaCombineMock.swift in Sources */,
 				C552E42724C1A408000E06B7 /* TravaartjeTests.swift in Sources */,
 			);

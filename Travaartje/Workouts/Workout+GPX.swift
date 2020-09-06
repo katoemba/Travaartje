@@ -41,7 +41,8 @@ extension Workout {
                 root.metadata = metadata
 
                 let heartRateUnit = HKUnit(from: "count/min")
-                let distanceCorrection = self.calculateDistanceCorrection(workoutDetails.locationSamples, workoutDistance: workoutDetails.workout.totalDistance?.doubleValue(for: .meter()) ?? 0.0)
+                let workoutDistance = workoutDetails.workout.totalDistance?.doubleValue(for: .meter()) ?? 0.0
+                let distanceCorrection = self.calculateDistanceCorrection(workoutDetails.locationSamples, workoutDistance: workoutDistance)
                 var heartRateIndex = 0
                 var distance = 0.0
                 var previousLocation: CLLocation? = nil
@@ -75,6 +76,60 @@ extension Workout {
                 return root
             })
             .eraseToAnyPublisher()
+    }
+    
+    /// A function to generate a file without gps data. It puts in a trackpoint for every 5 seconds.
+    /// - Parameter healthKitCombine: an object that conforms to the HKHealthStoreCombine protocol
+    /// - Returns: a tcx-formatted Data object
+    public func tcxData(healthKitCombine: HKHealthStoreCombine) -> Data {
+        guard let hkWorkout = workout else { return Data() }
+        
+        let dateFormatter = ISO8601DateFormatter()
+        let distanceUnit = HKUnit(from: "m")
+        let energyUnit = HKUnit(from: "kcal")
+        let offset = 0
+        var distance = 0.0
+        
+        var tcxData = Data()
+        tcxData.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("<TrainingCenterDatabase xsi:schemaLocation=\"http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd\" xmlns:ns5=\"http://www.garmin.com/xmlschemas/ActivityGoals/v1\" xmlns:ns3=\"http://www.garmin.com/xmlschemas/ActivityExtension/v2\" xmlns:ns2=\"http://www.garmin.com/xmlschemas/UserProfile/v2\" xmlns=\"http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n".data(using: String.Encoding.utf8)!)
+        tcxData.append(" <Activities>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("  <Activity Sport=\"\(hkWorkout.stravaActivityType.rawValue)\">\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("   <Id>\(dateFormatter.string(from: hkWorkout.startDate.addingTimeInterval(TimeInterval(offset))))</Id>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("   <Lap StartTime=\"\(dateFormatter.string(from: hkWorkout.startDate.addingTimeInterval(TimeInterval(offset))))\">\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("    <TotalTimeSeconds>\(Int(hkWorkout.duration))</TotalTimeSeconds>\n".data(using: String.Encoding.utf8)!)
+        if let totalDistance = hkWorkout.totalDistance {
+            tcxData.append("    <DistanceMeters>\(Int(totalDistance.doubleValue(for: distanceUnit)))</DistanceMeters>\n".data(using: String.Encoding.utf8)!)
+        }
+        else {
+            tcxData.append("    <DistanceMeters>0.0</DistanceMeters>\n".data(using: String.Encoding.utf8)!)
+        }
+        if let maximumSpeed = hkWorkout.metadata?[HKMetadataKeyMaximumSpeed] {
+            tcxData.append("    <MaximumSpeed>\(maximumSpeed)</MaximumSpeed>\n".data(using: String.Encoding.utf8)!)
+        }
+        
+        if let totalEnergyBurned = hkWorkout.totalEnergyBurned {
+            tcxData.append("    <Calories>\(Int(totalEnergyBurned.doubleValue(for: energyUnit)))</Calories>\n".data(using: String.Encoding.utf8)!)
+        }
+        
+        let interval = 5
+        let distancePer5Seconds = (hkWorkout.totalDistance?.doubleValue(for: distanceUnit) ?? Double(0.0)) / (hkWorkout.duration / Double(interval))
+        for sec in 0..<Int(hkWorkout.duration) / interval {
+            tcxData.append("     <Trackpoint>\n".data(using: String.Encoding.utf8)!)
+            tcxData.append("      <Time>\(dateFormatter.string(from: hkWorkout.startDate.addingTimeInterval(TimeInterval(sec * interval + offset))))</Time>\n".data(using: String.Encoding.utf8)!)
+            
+            tcxData.append("      <DistanceMeters>\(String(format: "%.1f", distance))</DistanceMeters>\n".data(using: String.Encoding.utf8)!)
+            distance = distance + distancePer5Seconds
+            
+            tcxData.append("     </Trackpoint>\n".data(using: String.Encoding.utf8)!)
+        }
+
+        tcxData.append("   </Lap>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("  </Activity>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append(" </Activities>\n".data(using: String.Encoding.utf8)!)
+        tcxData.append("</TrainingCenterDatabase>\n".data(using: String.Encoding.utf8)!)
+        
+        return tcxData
     }
     
     private func applyHalman(_ samples: [CLLocation]) -> [CLLocation] {

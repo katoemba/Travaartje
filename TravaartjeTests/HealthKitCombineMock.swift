@@ -10,13 +10,16 @@ import Foundation
 import HealthKit
 import Combine
 import HealthKitCombine
+import CoreLocation
 
 #if targetEnvironment(simulator)
 class HealthKitCombineMock: HKHealthStoreCombine {
     public var shouldAuthorizeResult = true
     public var authorizationResult = true
     public var error: Error?
-    
+    public var locationSamples = [CLLocation]()
+    public var heartRateSamples = [HKQuantitySample]()
+
     public var hkWorkouts = [HKWorkout]()
     
     func shouldAuthorize() -> AnyPublisher<Bool, Error> {
@@ -72,7 +75,7 @@ class HealthKitCombineMock: HKHealthStoreCombine {
     }
     
     func workoutDetails(_ workout: HKWorkout) -> AnyPublisher<WorkoutDetails, Error> {
-        let workoutDetails = WorkoutDetails(workout: workout, locationSamples: [], heartRateSamples: [])
+        let workoutDetails = WorkoutDetails(workout: workout, locationSamples: locationSamples, heartRateSamples: heartRateSamples)
         return CurrentValueSubject<WorkoutDetails, Error>(workoutDetails)
             .eraseToAnyPublisher()
     }

@@ -27,6 +27,7 @@ class TravaartjeUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
+        app.launchArguments += ["-testWithRoute", "1"]
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -35,6 +36,7 @@ class TravaartjeUITests: XCTestCase {
         let run = app.tables.cells.element(boundBy: 0)
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
         XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send")
+        XCTAssertFalse(run.staticTexts["NoRouteWarning"].exists)
         run.buttons["WorkoutAction"].tap()
         
         XCTAssert(run.buttons["In Progress"].waitForExistence(timeout: 2.0))
@@ -49,6 +51,7 @@ class TravaartjeUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL", "-test"]
+        app.launchArguments += ["-testWithRoute", "1"]
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -57,6 +60,7 @@ class TravaartjeUITests: XCTestCase {
         let run = app.tables.cells.element(boundBy: 0)
         XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
         XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend")
+        XCTAssertFalse(run.staticTexts["NoRouteWarning"].exists)
         run.buttons["WorkoutAction"].tap()
 
         XCTAssert(run.buttons["Bezig"].waitForExistence(timeout: 2.0))
@@ -67,6 +71,20 @@ class TravaartjeUITests: XCTestCase {
         XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")
     }
     
+    func testNoRouteWorkoutList() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
+        app.launch()
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let run = app.tables.cells.element(boundBy: 0)
+        XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
+        XCTAssertEqual(run.staticTexts["NoRouteWarning"].label, "No route data")
+    }
+
     func testWorkoutListEmpty() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()

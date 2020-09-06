@@ -21,6 +21,7 @@ public class Workout: NSManagedObject, Identifiable {
     @NSManaged public var stravaId: Int
     @NSManaged public var uploadDate: Date
     @NSManaged public var uploadResult: String
+    @NSManaged public var hasRoute: Bool
 
     @Published public var workout: HKWorkout?
 }

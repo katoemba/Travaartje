@@ -34,6 +34,10 @@
 "Privacy" = "Privacy";
 "Acknowledgements" = "Bedankjes";
 "Report a problem" = "Rapporteer een probleem";
+"No route data" = "Geen route gegevens";
+"Travaartje could not find route data for this workout. Do you want to upload it without a route?" = "Travaartje kan geen route gegevens vinden voor deze workout. Wil je de workout versturen zonder route?";
+"Yes" = "Ja";
+"No" = "Nee";
 
 "Welcome" = "Welkom";
 "Travaartje lets you upload workouts that you recorded with the Workout app on your AppleWatch or iPhone to Strava in the easiest possible way." = "Met Travaartje kan je workouts die je opgenomen hebt met je AppleWatch of iPhone heel eenvoudig naar Strava versturen.";

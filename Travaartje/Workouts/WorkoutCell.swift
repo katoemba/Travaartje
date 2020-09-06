@@ -45,6 +45,7 @@ struct WorkoutCell: View {
     @State private var showDetails: Bool = false
     var workoutModel: WorkoutModel
     @State var cancellables: Set<AnyCancellable> = []
+    @State private var noRouteAlert = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
@@ -84,6 +85,16 @@ struct WorkoutCell: View {
                 }
                 
                 Spacer()
+                
+                if !workout.hasRoute {
+                    Image(systemName: "exclamationmark.triangle")
+                        .accessibility(identifier: "WorkoutStateIcon")
+                        .foregroundColor(.yellow)
+
+                    Text("No route data")
+                        .foregroundColor(.yellow)
+                        .accessibility(identifier: "NoRouteWarning")
+                }
             }
             
             Divider()
@@ -120,12 +131,17 @@ struct WorkoutCell: View {
                 Spacer()
 
                 Button(action: {
-                    self.workoutModel.upload(self.workout)
-                        .sink {
-                            self.workout.state = $0.state
-                            self.workout.uploadResult = $0.uploadResult
-                        }
-                        .store(in: &self.cancellables)
+                    if self.workout.hasRoute {
+                        self.workoutModel.upload(self.workout)
+                            .sink {
+                                self.workout.state = $0.state
+                                self.workout.uploadResult = $0.uploadResult
+                            }
+                            .store(in: &self.cancellables)
+                    }
+                    else {
+                        self.noRouteAlert = true
+                    }
                 }) {
                     HStack {
                         Image(systemName: "paperplane")
@@ -135,6 +151,21 @@ struct WorkoutCell: View {
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.15))
                     .cornerRadius(8)
+                }
+                .alert(isPresented: $noRouteAlert) { () -> Alert in
+                    let yesButton = Alert.Button.default(Text("Yes")) {
+                        self.noRouteAlert = false
+                        self.workoutModel.upload(self.workout)
+                            .sink {
+                                self.workout.state = $0.state
+                                self.workout.uploadResult = $0.uploadResult
+                            }
+                            .store(in: &self.cancellables)
+                    }
+                    let noButton = Alert.Button.cancel(Text("No")) {
+                        self.noRouteAlert = false
+                    }
+                    return Alert(title: Text("No route data"), message: Text("Travaartje could not find route data for this workout. Do you want to upload it without a route?"), primaryButton: noButton, secondaryButton: yesButton)
                 }
                 .accessibility(identifier: "WorkoutAction")
                 .buttonStyle(BorderlessButtonStyle())

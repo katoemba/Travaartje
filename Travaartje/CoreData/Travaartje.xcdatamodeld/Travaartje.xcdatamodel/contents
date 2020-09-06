@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Workout" representedClassName="Workout" syncable="YES">
         <attribute name="commute" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="hasRoute" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="healthKitId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String"/>
@@ -12,6 +13,6 @@
         <attribute name="workoutDate" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Workout" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="Workout" positionX="-63" positionY="-18" width="128" height="193"/>
     </elements>
 </model>

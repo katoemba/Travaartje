@@ -13,6 +13,7 @@ import CoreData
 import Combine
 import StravaCombine
 import SwiftUI
+import CoreLocation
 
 class TravaartjeTests: XCTestCase {
     var cancellable: AnyCancellable?
@@ -20,39 +21,51 @@ class TravaartjeTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         let context = AppDelegate.shared.persistentContainer.viewContext
         let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine
         let stravaOAuth = AppDelegate.shared.stravaOAuth
         let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine, stravaOAuth: stravaOAuth)
 
-        // Reset the models after each test, as this data carries over into subsequent tests.
+        // Reset the model before each test, as this data carries over into subsequent tests.
         for workout in model.workouts {
             workout.state = .new
             workout.uploadResult = ""
             workout.stravaId = 0
+            workout.hasRoute = false
         }
+        model.save()
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        // Cancel all subscriptions as cleanup.
+        cancellables = Set<AnyCancellable>()
     }
 
     func testWorkoutModel() {
         let context = AppDelegate.shared.persistentContainer.viewContext
-        let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine
+        let healthKitCombineMock = HealthKitCombineMock()
+        healthKitCombineMock.hkWorkouts = AppDelegate.shared.hkWorkouts
+        //let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine as! Travaartje.HealthKitCombineMock
         let stravaOAuth = AppDelegate.shared.stravaOAuth
-        let model = WorkoutModel(context: context, healthStoreCombine: healthKitStoreCombine, stravaOAuth: stravaOAuth)
+        let model = WorkoutModel(context: context, healthStoreCombine: healthKitCombineMock, stravaOAuth: stravaOAuth)
 
         var workouts = [Workout]()
-        let expectation = self.expectation(description: "Load workouts")
+        let noRouteExpectation = self.expectation(description: "Load workouts without route")
+        noRouteExpectation.isInverted = true
         model.reloadHealthKitWorkouts()
-        model.$workouts
+        let withoutRouteCancellable = model.$workouts
+            .filter { $0.count > 0 }
             .sink {
                 workouts = $0
-                expectation.fulfill()
+                if workouts[0].hasRoute == true {
+                    noRouteExpectation.fulfill()
+                }
             }
-            .store(in: &cancellables)
-        waitForExpectations(timeout: 1, handler: nil)
+        
+        model.reloadHealthKitWorkouts()
+        wait(for: [noRouteExpectation], timeout: 1)
 
         XCTAssertEqual(workouts.count, 2)
         
@@ -63,6 +76,7 @@ class TravaartjeTests: XCTestCase {
             XCTAssertEqual(run.distance, "8.8 km")
             XCTAssertEqual(run.duration, "1:07:20")
             XCTAssertEqual(run.date, "May 17, 2020 at 2:07 PM")
+            XCTAssertFalse(run.hasRoute)
 
             let ride = workouts[1]
             XCTAssertEqual(ride.state, .new)
@@ -70,6 +84,44 @@ class TravaartjeTests: XCTestCase {
             XCTAssertEqual(ride.distance, "5.6 km")
             XCTAssertEqual(ride.duration, "16:40")
             XCTAssertEqual(ride.date, "May 17, 2020 at 8:58 AM")
+            XCTAssertFalse(run.hasRoute)
+        }
+        
+        withoutRouteCancellable.cancel()
+        healthKitCombineMock.locationSamples = [CLLocation(latitude: 10.0, longitude: 10.0), CLLocation(latitude: 10.5, longitude: 10.5)]
+        let withRouteExpection = self.expectation(description: "Load workouts with route")
+        model.reloadHealthKitWorkouts()
+        model.$workouts
+            .filter { $0.count > 0 }
+            .filter { $0[0].hasRoute }
+            .removeDuplicates()
+            .sink {
+                workouts = $0
+                withRouteExpection.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        model.reloadHealthKitWorkouts()
+        wait(for: [withRouteExpection], timeout: 1)
+
+        XCTAssertEqual(workouts.count, 2)
+        
+        if workouts.count == 2 {
+            let run = workouts[0]
+            XCTAssertEqual(run.state, .new)
+            XCTAssertEqual(run.type, "Run")
+            XCTAssertEqual(run.distance, "8.8 km")
+            XCTAssertEqual(run.duration, "1:07:20")
+            XCTAssertEqual(run.date, "May 17, 2020 at 2:07 PM")
+            XCTAssertTrue(run.hasRoute)
+
+            let ride = workouts[1]
+            XCTAssertEqual(ride.state, .new)
+            XCTAssertEqual(ride.type, "Ride")
+            XCTAssertEqual(ride.distance, "5.6 km")
+            XCTAssertEqual(ride.duration, "16:40")
+            XCTAssertEqual(ride.date, "May 17, 2020 at 8:58 AM")
+            XCTAssertTrue(run.hasRoute)
         }
     }
 
@@ -260,5 +312,99 @@ class TravaartjeTests: XCTestCase {
             .store(in: &cancellables)
 
         wait(for: [notAuthorizedExpectation], timeout: 1.0)
+    }
+
+    func testWithRouteUpload() {
+        let uploadName = "Let's run"
+        let uploadDescription = "That's how we roll"
+        let uploadCommute = false
+
+        let context = AppDelegate.shared.persistentContainer.viewContext
+        let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine as! Travaartje.HealthKitCombineMock
+        healthKitStoreCombine.locationSamples = [CLLocation(latitude: 10.0, longitude: 10.0), CLLocation(latitude: 10.5, longitude: 10.5)]
+        let stravaOAuth = AppDelegate.shared.stravaOAuth
+        let stravaUploadMock = StravaUploadMock()
+        stravaUploadMock.uploadValidator = { (data, dataType, uploadParameters) in
+            XCTAssertEqual(dataType, DataType.gpx)
+            XCTAssertEqual(uploadParameters.name, uploadName)
+            XCTAssertEqual(uploadParameters.description, uploadDescription)
+            XCTAssertEqual(uploadParameters.commute, uploadCommute)
+            XCTAssertEqual(uploadParameters.activityType, StravaActivityType.ride)
+        }
+        let model = WorkoutModel(context: context,
+                                 healthStoreCombine: healthKitStoreCombine,
+                                 stravaOAuth: stravaOAuth,
+                                 stravaUploadFactory: { stravaUploadMock })
+
+        // First, reload the workouts with location data.
+        let withRouteExpection = self.expectation(description: "Load workouts with route")
+        model.reloadHealthKitWorkouts()
+        model.$workouts
+            .filter { $0.count > 0 }
+            .filter { $0[0].hasRoute }
+            .removeDuplicates()
+            .sink { (_) in
+                withRouteExpection.fulfill()
+            }
+            .store(in: &cancellables)
+
+        model.reloadHealthKitWorkouts()
+        wait(for: [withRouteExpection], timeout: 1)
+
+        // Second, initiate the upload.
+        let uploadedExpectation = expectation(description: "File uploaded")
+
+        model.workouts[1].name = uploadName
+        model.workouts[1].descr = uploadDescription
+        model.workouts[1].commute = uploadCommute
+        model.upload(model.workouts[1])
+            .filter { $0.state == Workout.State.uploaded }
+            .last()
+            .sink { (uploadStatus) in
+                uploadedExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+
+        wait(for: [uploadedExpectation], timeout: 2.0)
+    }
+
+    func testNoRouteUpload() {
+        let uploadName = "Let's run"
+        let uploadDescription = "That's how we roll"
+        let uploadCommute = true
+
+        let context = AppDelegate.shared.persistentContainer.viewContext
+        //let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine
+        let healthKitCombineMock = HealthKitCombineMock()
+        healthKitCombineMock.hkWorkouts = AppDelegate.shared.hkWorkouts
+
+        let stravaOAuth = AppDelegate.shared.stravaOAuth
+        let stravaUploadMock = StravaUploadMock()
+        stravaUploadMock.uploadValidator = { (data, dataType, uploadParameters) in
+            XCTAssertEqual(dataType, DataType.tcx)
+            XCTAssertEqual(uploadParameters.name, uploadName)
+            XCTAssertEqual(uploadParameters.description, uploadDescription)
+            XCTAssertEqual(uploadParameters.commute, uploadCommute)
+            XCTAssertEqual(uploadParameters.activityType, StravaActivityType.run)
+        }
+        let model = WorkoutModel(context: context,
+                                 healthStoreCombine: healthKitCombineMock,
+                                 stravaOAuth: stravaOAuth,
+                                 stravaUploadFactory: { stravaUploadMock })
+
+        let uploadedExpectation = expectation(description: "File uploaded")
+
+        model.workouts[0].name = uploadName
+        model.workouts[0].descr = uploadDescription
+        model.workouts[0].commute = uploadCommute
+        model.upload(model.workouts[0])
+            .filter { $0.state == Workout.State.uploaded }
+            .last()
+            .sink { (uploadStatus) in
+                uploadedExpectation.fulfill()
+            }
+            .store(in: &cancellables)
+
+        wait(for: [uploadedExpectation], timeout: 2.0)
     }
 }

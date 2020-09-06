@@ -84,6 +84,7 @@ public class WorkoutModel: ObservableObject {
                     fetchWorkout.predicate = NSPredicate(format: "healthKitId == %@", workout.uuid as CVarArg)
                     do {
                         let storedWorkouts = try self.context.fetch(fetchWorkout)
+                        var workoutToCheck: Workout? = nil
                         if storedWorkouts.count == 0 {
                             let newWorkout = Workout(context: self.context, workout: workout)
                             newWorkout.healthKitId = workout.uuid
@@ -93,6 +94,23 @@ public class WorkoutModel: ObservableObject {
                             newWorkout.stravaId = 0
                             
                             newWorkoutFound = true
+                            workoutToCheck = newWorkout
+                        }
+                        else if storedWorkouts[0].hasRoute == false {
+                            workoutToCheck = storedWorkouts[0]
+                        }
+
+                        if let workoutToCheck = workoutToCheck {
+                            self.healthStoreCombine.workoutDetails(workout)
+                                .receive(on: RunLoop.main)
+                                .map { $0.locationSamples.count > 0 }
+                                .sink(receiveCompletion: { (_) in
+                                }, receiveValue: { (hasRoute) in
+                                    workoutToCheck.hasRoute = hasRoute
+                                    self.save()
+                                    self.fetchStoredWorkouts()
+                                })
+                                .store(in: &self.cancellables)
                         }
                     }
                     catch {
@@ -121,24 +139,39 @@ public class WorkoutModel: ObservableObject {
         workout.uploadResult = ""
         uploadStatusSubject.send(UploadStatus(workout))
         
-        workout.gpxRoute(healthKitCombine: healthStoreCombine)
+        var dataPublished: AnyPublisher<(Data, DataType), Error>
+        
+        if workout.hasRoute {
+            dataPublished = workout.gpxRoute(healthKitCombine: healthStoreCombine)
+                .map { ($0.gpx().data(using: .utf8)!, .gpx) }
+                .eraseToAnyPublisher()
+        }
+        else {
+            let dataSubject = CurrentValueSubject<(Data, DataType), Error>((workout.tcxData(healthKitCombine: healthStoreCombine), .tcx))
+            
+            dataPublished = dataSubject
+                .eraseToAnyPublisher()
+        }
+        
+        dataPublished
             .subscribe(on: RunLoop.main)
-            .flatMap(maxPublishers: .max(1)) { (gpxRoot) -> AnyPublisher<(StravaToken, GPXRoot), Error> in
+            .flatMap(maxPublishers: .max(1)) { (data, dataType) -> AnyPublisher<(StravaToken, Data, DataType), Error> in
                 workout.state = .uploadingFile
                 return self.stravaAuth.token
-                    .tryMap { (token) -> (StravaToken, GPXRoot) in
+                    .tryMap { (token) -> (StravaToken, Data, DataType) in
                         if let token = token {
-                            return (token, gpxRoot)
+                            return (token, data, dataType)
                         }
                         throw StravaCombineError.uploadFailed(NSLocalizedString("Travaartje is not connected to your Strava account. You can do this on the settings page.", comment: ""))
                 }
                 .eraseToAnyPublisher()
         }
         .first()
-        .flatMap(maxPublishers: .max(1)) { (token, gpxRoot)  in
-            return self.stravaUploadFactory().uploadGpx(gpxRoot.gpx().data(using: .utf8)!,
-                                                        uploadParameters: uploadParameters,
-                                                        accessToken: token.access_token)
+        .flatMap(maxPublishers: .max(1)) { (token, data, dataType)  in
+            return self.stravaUploadFactory().uploadData(data: data,
+                                                         dataType: dataType,
+                                                         uploadParameters: uploadParameters,
+                                                         accessToken: token.access_token)
         }
         .print("\(Date()) routeUpload")
         .receive(on: RunLoop.main)

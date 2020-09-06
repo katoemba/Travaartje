@@ -55,13 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     #if targetEnvironment(simulator)
+    lazy var hkWorkouts: [HKWorkout] = {
+        guard AppDefaults.standard.integer(forKey: "testNoWorkouts") != 1 else { return [] }
+            
+        let runDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 14, minute: 7, second: 58).date!
+        let rideDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 08, minute: 58, second: 23).date!
+        return [HKWorkout(activityType: .running, start: runDate, end: runDate.addingTimeInterval(4040), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 8765.9), metadata: nil),
+                HKWorkout(activityType: .cycling, start: rideDate, end: rideDate.addingTimeInterval(1000), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 5609.0), metadata: nil)]
+    }()
     lazy var healthKitStoreCombine: HKHealthStoreCombine = {
         let healthKitMock = HealthKitCombineMock()
-        if AppDefaults.standard.integer(forKey: "testNoWorkouts") != 1 {
-            let runDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 14, minute: 7, second: 58).date!
-            let rideDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 08, minute: 58, second: 23).date!
-            healthKitMock.hkWorkouts = [HKWorkout(activityType: .running, start: runDate, end: runDate.addingTimeInterval(4040), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 8765.9), metadata: nil),
-                                        HKWorkout(activityType: .cycling, start: rideDate, end: rideDate.addingTimeInterval(1000), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 5609.0), metadata: nil)]
+        healthKitMock.hkWorkouts = hkWorkouts
+        if AppDefaults.standard.integer(forKey: "testWithRoute") == 1 {
+            healthKitMock.locationSamples = [CLLocation(latitude: 10.0, longitude: 10.0), CLLocation(latitude: 10.5, longitude: 10.5)]
         }
         return healthKitMock
     }()

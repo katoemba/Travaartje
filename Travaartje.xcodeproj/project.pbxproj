@@ -910,8 +910,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/katoemba/StravaCombine.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		C5E4F17F24CDD56B0005EEF9 /* XCRemoteSwiftPackageReference "HCKalmanFilter" */ = {
@@ -926,8 +926,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/katoemba/HealthKitCombine.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -191,6 +191,9 @@ public class WorkoutModel: ObservableObject {
             uploadStatusSubject.send(completion: .finished)
         }) { (upload) in
             workout.state = upload.activity_id == nil ? .stravaProcessing : .uploaded
+            if let activity_id = upload.activity_id {
+                workout.stravaId = activity_id
+            }
             self.save()
             
             uploadStatusSubject.send(UploadStatus(workout))

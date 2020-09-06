@@ -318,12 +318,14 @@ class TravaartjeTests: XCTestCase {
         let uploadName = "Let's run"
         let uploadDescription = "That's how we roll"
         let uploadCommute = false
+        let stravaId = 9900345
 
         let context = AppDelegate.shared.persistentContainer.viewContext
         let healthKitStoreCombine = AppDelegate.shared.healthKitStoreCombine as! Travaartje.HealthKitCombineMock
         healthKitStoreCombine.locationSamples = [CLLocation(latitude: 10.0, longitude: 10.0), CLLocation(latitude: 10.5, longitude: 10.5)]
         let stravaOAuth = AppDelegate.shared.stravaOAuth
         let stravaUploadMock = StravaUploadMock()
+        stravaUploadMock.activity_id = stravaId
         stravaUploadMock.uploadValidator = { (data, dataType, uploadParameters) in
             XCTAssertEqual(dataType, DataType.gpx)
             XCTAssertEqual(uploadParameters.name, uploadName)
@@ -366,6 +368,7 @@ class TravaartjeTests: XCTestCase {
             .store(in: &cancellables)
 
         wait(for: [uploadedExpectation], timeout: 2.0)
+        XCTAssertEqual(model.workouts[1].stravaId, stravaId)
     }
 
     func testNoRouteUpload() {

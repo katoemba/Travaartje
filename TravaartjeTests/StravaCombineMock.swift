@@ -36,6 +36,7 @@ class StravaUploadMock: StravaUploadProtocol {
     typealias UploadValidator = (Data, DataType, UploadParameters) -> (Void)
     private let statusSubject = PassthroughSubject<UploadStatus, Error>()
     var uploadValidator: UploadValidator = { (_, _, _) in }
+    var activity_id = 123
 
     func uploadData(data: Data, dataType: DataType, uploadParameters: UploadParameters, accessToken: String) -> AnyPublisher<UploadStatus, Error> {
         uploadValidator(data, dataType, uploadParameters)
@@ -48,7 +49,7 @@ class StravaUploadMock: StravaUploadProtocol {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1600),
                                       execute: {
-                                        let uploadStatus = UploadStatus(id: 1, status: "Your activity is ready.", activity_id: 123)
+                                        let uploadStatus = UploadStatus(id: 1, status: "Your activity is ready.", activity_id: self.activity_id)
                                         self.statusSubject.send(uploadStatus)
         })
 

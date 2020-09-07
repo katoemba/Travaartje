@@ -30,6 +30,15 @@ class StravaOAuthMock: StravaOAuthProtocol {
     func deauthorize() {
         tokenSubject.send(nil)
     }
+
+    func refreshTokenIfNeeded() {
+        if let tokenInfo = tokenSubject.value, Date(timeIntervalSince1970: tokenInfo.expires_at) <= Date() {
+            tokenSubject.send(StravaToken(access_token: tokenInfo.access_token,
+                                          expires_at: tokenInfo.expires_at + 6*3600,
+                                          refresh_token: tokenInfo.refresh_token,
+                                          athlete: tokenInfo.athlete))
+        }
+    }
 }
 
 class StravaUploadMock: StravaUploadProtocol {

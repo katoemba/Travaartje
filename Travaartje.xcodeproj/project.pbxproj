@@ -79,6 +79,8 @@
 		C535011624EB2167009F5900 /* AthleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteCell.swift; sourceTree = "<group>"; };
 		C53947D424F3E0B700C6137E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C53947D624F3EAC300C6137E /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		C545A11E250619800010214F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C545A11F2506404D0010214F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C547877D24C4661E0002BF47 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitCombineMock.swift; sourceTree = "<group>"; };
@@ -185,6 +187,8 @@
 		C552E40324C1A407000E06B7 = {
 			isa = PBXGroup;
 			children = (
+				C545A11F2506404D0010214F /* LICENSE */,
+				C545A11E250619800010214F /* README.md */,
 				C56213AB24C829B9004A0FBA /* CoreData */,
 				C552E40E24C1A407000E06B7 /* Travaartje */,
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
@@ -910,8 +914,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/katoemba/StravaCombine.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		C5E4F17F24CDD56B0005EEF9 /* XCRemoteSwiftPackageReference "HCKalmanFilter" */ = {

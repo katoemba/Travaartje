@@ -43,4 +43,4 @@ A full set of unit tests and UI tests is included.
 
 ## Who do I talk to? ##
 
-* In case of questions you can contact berrie at travaartje dot net
+In case of questions you can contact berrie at travaartje dot net

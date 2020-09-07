@@ -141,6 +141,7 @@ public class WorkoutModel: ObservableObject {
         
         var dataPublished: AnyPublisher<(Data, DataType), Error>
         
+        stravaAuth.refreshTokenIfNeeded()
         if workout.hasRoute {
             dataPublished = workout.gpxRoute(healthKitCombine: healthStoreCombine)
                 .map { ($0.gpx().data(using: .utf8)!, .gpx) }

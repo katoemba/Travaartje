@@ -60,7 +60,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        AppDelegate.shared.workoutModel.reloadHealthKitWorkouts()        
+        AppDelegate.shared.workoutModel.reloadHealthKitWorkouts()
+        AppDelegate.shared.stravaOAuth.refreshTokenIfNeeded()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

@@ -35,6 +35,8 @@
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Travaartje wants to read your workout and heartrate data so it can export your workouts to Strava. </string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Travaartje wants to read your workout and heartrate data so it can export your workouts to Strava. </string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -61,8 +63,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

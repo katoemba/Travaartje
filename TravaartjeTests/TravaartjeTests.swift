@@ -74,16 +74,16 @@ class TravaartjeTests: XCTestCase {
             XCTAssertEqual(run.state, .new)
             XCTAssertEqual(run.type, "Run")
             XCTAssertEqual(run.distance, "8.8 km")
-            XCTAssertEqual(run.duration, "1:07:20")
+            XCTAssertEqual(run.duration, "46:11")
             XCTAssertEqual(run.date, "May 17, 2020 at 2:07 PM")
             XCTAssertFalse(run.hasRoute)
 
             let ride = workouts[1]
             XCTAssertEqual(ride.state, .new)
             XCTAssertEqual(ride.type, "Ride")
-            XCTAssertEqual(ride.distance, "5.6 km")
-            XCTAssertEqual(ride.duration, "16:40")
-            XCTAssertEqual(ride.date, "May 17, 2020 at 8:58 AM")
+            XCTAssertEqual(ride.distance, "85.6 km")
+            XCTAssertEqual(ride.duration, "3:18:22")
+            XCTAssertEqual(ride.date, "May 16, 2020 at 8:58 AM")
             XCTAssertFalse(run.hasRoute)
         }
         
@@ -111,16 +111,16 @@ class TravaartjeTests: XCTestCase {
             XCTAssertEqual(run.state, .new)
             XCTAssertEqual(run.type, "Run")
             XCTAssertEqual(run.distance, "8.8 km")
-            XCTAssertEqual(run.duration, "1:07:20")
+            XCTAssertEqual(run.duration, "46:11")
             XCTAssertEqual(run.date, "May 17, 2020 at 2:07 PM")
             XCTAssertTrue(run.hasRoute)
 
             let ride = workouts[1]
             XCTAssertEqual(ride.state, .new)
             XCTAssertEqual(ride.type, "Ride")
-            XCTAssertEqual(ride.distance, "5.6 km")
-            XCTAssertEqual(ride.duration, "16:40")
-            XCTAssertEqual(ride.date, "May 17, 2020 at 8:58 AM")
+            XCTAssertEqual(ride.distance, "85.6 km")
+            XCTAssertEqual(ride.duration, "3:18:22")
+            XCTAssertEqual(ride.date, "May 16, 2020 at 8:58 AM")
             XCTAssertTrue(run.hasRoute)
         }
     }
@@ -149,7 +149,7 @@ class TravaartjeTests: XCTestCase {
             XCTAssertEqual(run.state, .new)
             XCTAssertEqual(run.type, "Run")
             XCTAssertEqual(run.distance, "8.8 km")
-            XCTAssertEqual(run.duration, "1:07:20")
+            XCTAssertEqual(run.duration, "46:11")
             XCTAssertEqual(run.date, "May 17, 2020 at 2:07 PM")
         }
     }

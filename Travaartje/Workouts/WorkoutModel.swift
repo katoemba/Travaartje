@@ -174,17 +174,16 @@ public class WorkoutModel: ObservableObject {
                                                          uploadParameters: uploadParameters,
                                                          accessToken: token.access_token)
         }
-        .print("\(Date()) routeUpload")
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { (completion) in
             if case let .failure(error) = completion {
                 workout.state = .failed
                 workout.uploadResult = error.localizedDescription
-                UsageLogger.workoutUploadFailed(uploadParameters: uploadParameters, error: error.localizedDescription)
+                UsageLogger.workoutUploadFailed(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, error: error.localizedDescription)
             }
             else {
                 workout.state = .uploaded
-                UsageLogger.workoutUploadSucceeded(uploadParameters: uploadParameters)
+                UsageLogger.workoutUploadSucceeded(uploadParameters: uploadParameters, hasRoute: workout.hasRoute)
             }
             self.save()
             

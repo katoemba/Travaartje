@@ -12,13 +12,15 @@ import AppCenterAnalytics
 import StravaCombine
 
 class UsageLogger {
-    static func workoutUploadSucceeded(uploadParameters: UploadParameters) {
-        MSAnalytics.trackEvent("Upload Succeeded", withProperties: ["activity": uploadParameters.activityType.rawValue])
+    static func workoutUploadSucceeded(uploadParameters: UploadParameters, hasRoute: Bool) {
+        MSAnalytics.trackEvent("Upload Succeeded", withProperties: ["activity": uploadParameters.activityType.rawValue,
+                                                                    "gps": hasRoute ? "Yes" : "No"])
     }
 
-    static func workoutUploadFailed(uploadParameters: UploadParameters, error: String) {
+    static func workoutUploadFailed(uploadParameters: UploadParameters, hasRoute: Bool, error: String) {
         MSAnalytics.trackEvent("Upload Failed", withProperties: ["activity": uploadParameters.activityType.rawValue,
-                                                                "error": error])
+                                                                 "gps": hasRoute ? "Yes" : "No",
+                                                                 "error": error])
     }
 }
     

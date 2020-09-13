@@ -20,7 +20,7 @@ You can use the source code to learn about various programming topics in an actu
 
 * iOS 13
 * Swift 5.1
-* XCode 12
+* XCode 11
 
 ## Building
 

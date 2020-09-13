@@ -68,9 +68,9 @@
         "package": "StravaCombine",
         "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "c9d8dd6f5f2b71cdaca65e3a64298471cc254896",
-          "version": null
+          "version": "1.1.0"
         }
       },
       {

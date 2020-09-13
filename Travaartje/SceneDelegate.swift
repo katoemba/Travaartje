@@ -39,6 +39,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
     }
+    
+    // MARK: Handle URL for Strava authentication
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let urlContext = URLContexts.first,
+            let code = URLComponents(string: urlContext.url.absoluteString)?.queryItems?.filter({$0.name == "code"}).first?.value else { return }
+            
+        AppDelegate.shared.stravaOAuth.processCode(code)
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

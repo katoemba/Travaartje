@@ -66,6 +66,21 @@ public class SettingsModel: ObservableObject {
     
     func authorize() {
         stravaAuth.authorize()
+            .sink(receiveCompletion: { (result) in
+                switch result {
+                case let .failure(error):
+                    switch error {
+                    case let .authorizationFailed(location, description):
+                        UsageLogger.internalError(location: location, description: "Authorization failed: " + description)
+                    default:
+                        UsageLogger.internalError(location: "authorize", description: "Unexpected error")
+                    }
+                case .finished:
+                    break
+                }
+            }) { (_) in
+            }
+            .store(in: &cancellables)
     }
 
     func deauthorize() {
@@ -78,7 +93,7 @@ extension StravaToken {
         "Travaartje.Token"
     }
     private static var keychain: Keychain {
-        Keychain(service: "com.katoemba.travaartje")
+        Keychain(service: "com.katoemba.Travaartje")
     }
     
     static func load() -> StravaToken? {

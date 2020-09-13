@@ -22,5 +22,10 @@ class UsageLogger {
                                                                  "gps": hasRoute ? "Yes" : "No",
                                                                  "error": error])
     }
+    
+    static func internalError(location: String, description: String) {
+        MSAnalytics.trackEvent("Internal Error", withProperties: ["location": location,
+                                                                  "description": description])
+    }
 }
     

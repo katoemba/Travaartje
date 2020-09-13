@@ -22,7 +22,7 @@ struct AthleteCell: View {
             Spacer()
                 .frame(width: 0.0)
             
-            KFImage(URL(string: self.athlete.profile)!)
+            KFImage(self.athlete.imageURL)
                 .onSuccess { r in
             }
             .onFailure { e in
@@ -39,9 +39,9 @@ struct AthleteCell: View {
             .cornerRadius(10)
             
             VStack(alignment: .leading, spacing: 10.0) {
-                Text(self.athlete.firstname + " " + self.athlete.lastname)
+                Text(self.athlete.displayName)
                     .accessibility(identifier: "NameLabel")
-                Text(self.athlete.city + ", " + self.athlete.country)
+                Text(self.athlete.displayLocation)
                     .accessibility(identifier: "LocationLabel")
             }
             
@@ -78,6 +78,55 @@ struct AthleteCell_Previews: PreviewProvider {
                     .padding()
                     .environment(\.locale, locale)
                     .previewDisplayName(Locale.current.localizedString(forIdentifier: locale.identifier))
+            }
+        }
+    }
+}
+
+extension Athlete {
+    var imageURL: URL {
+        if let url = URL(string: profile ?? profile_medium ?? "") {
+            return url
+        }
+        else {
+            return URL(string: "https://www.travaartje.net")!
+        }
+    }
+    
+    var displayName: String {
+        if let firstname = firstname {
+            if let lastname = lastname {
+                return firstname + " " + lastname
+            }
+            else {
+                return firstname
+            }
+        }
+        else {
+            if let lastname = lastname {
+                return lastname
+            }
+            else {
+                return "---"
+            }
+        }
+    }
+    
+    var displayLocation: String {
+        if let city = city {
+            if let country = country {
+                return city + ", " + country
+            }
+            else {
+                return city
+            }
+        }
+        else {
+            if let country = country {
+                return country
+            }
+            else {
+                return "---"
             }
         }
     }

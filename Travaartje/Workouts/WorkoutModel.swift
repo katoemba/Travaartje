@@ -34,6 +34,8 @@ public class WorkoutModel: ObservableObject {
     private let stravaAuth: StravaOAuthProtocol
     private let stravaUploadFactory: StravaUploadFactory
     
+    @Published public private(set) var canUpload: Bool = false
+    
     public init(context: NSManagedObjectContext,
                 limit: Int = 10,
                 healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
@@ -44,6 +46,10 @@ public class WorkoutModel: ObservableObject {
         self.healthStoreCombine = healthStoreCombine
         self.stravaAuth = stravaOAuth
         self.stravaUploadFactory = stravaUploadFactory
+        stravaAuth.token
+            .map { $0 != nil }
+            .assign(to: \.canUpload, on: self)
+            .store(in: &cancellables)
         fetchStoredWorkouts()
         reloadHealthKitWorkouts()        
     }

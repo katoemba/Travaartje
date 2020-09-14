@@ -43,7 +43,7 @@ struct WorkoutCell: View {
     @ObservedObject var workout: Workout
     @State private var showUploadResult: Bool = false
     @State private var showDetails: Bool = false
-    var workoutModel: WorkoutModel
+    @ObservedObject var workoutModel: WorkoutModel
     @State var cancellables: Set<AnyCancellable> = []
     @State private var noRouteAlert = false
     
@@ -169,6 +169,8 @@ struct WorkoutCell: View {
                 }
                 .accessibility(identifier: "WorkoutAction")
                 .buttonStyle(BorderlessButtonStyle())
+                .disabled(!workoutModel.canUpload)
+                .opacity(workoutModel.canUpload ? 1.0 : 0.6)
             }
         }
         .foregroundColor(.white)

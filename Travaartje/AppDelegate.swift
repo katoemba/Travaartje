@@ -142,7 +142,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     lazy var stravaOAuth: StravaOAuthProtocol = {
-        StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(), presentationAnchor: gWindow!)
+        StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(), presentationAnchor: gWindow!, openAppFactory: { (appURL, _) -> (Bool) in
+            if UIApplication.shared.canOpenURL(appURL) {
+                UIApplication.shared.open(appURL, options: [:])
+                return true
+            }
+            return false
+        })
     }()
     lazy var workoutModel: WorkoutModel = {
         return WorkoutModel(context: persistentContainer.viewContext,

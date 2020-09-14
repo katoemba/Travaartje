@@ -18,9 +18,13 @@ class UsageLogger {
     }
 
     static func workoutUploadFailed(uploadParameters: UploadParameters, hasRoute: Bool, error: String) {
+        var processedError = error
+        if error.contains("duplicate") {
+            processedError = "Duplicate workout"
+        }
         MSAnalytics.trackEvent("Upload Failed", withProperties: ["activity": uploadParameters.activityType.rawValue,
                                                                  "gps": hasRoute ? "Yes" : "No",
-                                                                 "error": error])
+                                                                 "error": processedError])
     }
     
     static func internalError(location: String, description: String) {

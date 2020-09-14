@@ -67,6 +67,38 @@ extension Workout {
             return "Swim"
         case .cycling:
             return "Ride"
+        case .downhillSkiing:
+            return "Skiing"
+        case .crossCountrySkiing:
+            return "Skiing"
+        case .rowing:
+            return "Rowing"
+        case .skatingSports:
+            return "Skating"
+        case .soccer:
+            return "Soccer"
+        case .snowboarding:
+            return "Snowboard"
+        case .surfingSports:
+            return "Surfing"
+        case .hiking:
+            return "Hike"
+        case .walking:
+            return "Walk"
+        case .wheelchairRunPace:
+            return "Weelchair"
+        case .crossTraining:
+            return "Crossfit"
+        case .climbing:
+            return "Rock Climb"
+        case .sailing:
+            return "Sail"
+        case .yoga:
+            return "Yoga"
+        case .paddleSports:
+            return "Paddle"
+        case .golf:
+            return "Golf"
         default:
             return "Other"
         }

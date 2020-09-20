@@ -13,18 +13,19 @@ struct SettingsView: View {
     @ObservedObject var settingsModel: SettingsModel
 
     var body: some View {
-        List(settingsModel.settings) { setting in
-            if setting.athlete != nil {
-                AthleteCell(athlete: setting.athlete!)
-            }
-            else {
-                SettingCell(setting: setting)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 10.0) {
+                ForEach(settingsModel.settings, id: \.self.identifier) { setting in
+                    if setting.athlete != nil {
+                        AthleteCell(athlete: setting.athlete!)
+                    }
+                    else {
+                        SettingCell(setting: setting)
+                    }
+                }
             }
         }
-        .onAppear(perform: {
-            UITableView.appearance().separatorStyle = .none
-            UITableViewCell.appearance().selectionStyle = .none
-        })
+        .padding(.horizontal)
     }
 }
 

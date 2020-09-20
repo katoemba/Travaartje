@@ -37,7 +37,7 @@ struct WorkoutListView: View {
                 }
             }
         }
-        .padding(.all)
+        .padding(.horizontal)
         .navigationBarTitle("Travaartje")
         .navigationBarItems(
             leading:

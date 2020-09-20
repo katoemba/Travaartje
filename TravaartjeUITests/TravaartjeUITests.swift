@@ -33,18 +33,21 @@ class TravaartjeUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let run = app.tables.cells.element(boundBy: 0)
-        XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
-        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Send")
-        XCTAssertFalse(run.staticTexts["NoRouteWarning"].exists)
-        run.buttons["WorkoutAction"].tap()
+        let workoutTypePredicate = NSPredicate(format: "identifier == %@", "WorkoutType")
+        let workoutActionPredicate = NSPredicate(format: "identifier == %@", "WorkoutAction")
+        let workoutDetailsPredicate = NSPredicate(format: "identifier == %@", "WorkoutDetails")
+
+        XCTAssertEqual(app.staticTexts.matching(workoutTypePredicate).element(boundBy: 0).label, "Run")
+        XCTAssertEqual(app.buttons.matching(workoutActionPredicate).element(boundBy: 0).label, "Send")
+        XCTAssertEqual(app.buttons.matching(workoutDetailsPredicate).element(boundBy: 0).label, "Details")
+        XCTAssertFalse(app.staticTexts["NoRouteWarning"].exists)
+        app.buttons.matching(workoutActionPredicate).element(boundBy: 0).tap()
         
-        XCTAssert(run.buttons["In Progress"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.buttons["In Progress"].waitForExistence(timeout: 2.0))
 
-        XCTAssert(run.buttons["Send Again"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.buttons["Send Again"].waitForExistence(timeout: 2.0))
 
-        let ride = app.tables.cells.element(boundBy: 1)
-        XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Ride")
+        XCTAssertEqual(app.staticTexts.matching(workoutTypePredicate).element(boundBy: 1).label, "Ride")
     }
 
     func testWorkoutListDutch() throws {
@@ -57,18 +60,21 @@ class TravaartjeUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let run = app.tables.cells.element(boundBy: 0)
-        XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Loopje")
-        XCTAssertEqual(run.buttons["WorkoutAction"].label, "Verzend")
-        XCTAssertFalse(run.staticTexts["NoRouteWarning"].exists)
-        run.buttons["WorkoutAction"].tap()
+        let workoutTypePredicate = NSPredicate(format: "identifier == %@", "WorkoutType")
+        let workoutActionPredicate = NSPredicate(format: "identifier == %@", "WorkoutAction")
+        let workoutDetailsPredicate = NSPredicate(format: "identifier == %@", "WorkoutDetails")
 
-        XCTAssert(run.buttons["Bezig"].waitForExistence(timeout: 2.0))
+        XCTAssertEqual(app.staticTexts.matching(workoutTypePredicate).element(boundBy: 0).label, "Loopje")
+        XCTAssertEqual(app.buttons.matching(workoutActionPredicate).element(boundBy: 0).label, "Verzend")
+        XCTAssertEqual(app.buttons.matching(workoutDetailsPredicate).element(boundBy: 0).label, "Details")
+        XCTAssertFalse(app.staticTexts["NoRouteWarning"].exists)
+        app.buttons.matching(workoutActionPredicate).element(boundBy: 0).tap()
 
-        XCTAssert(run.buttons["Verzend opnieuw"].waitForExistence(timeout: 2.0))
+        XCTAssert(app.buttons["Bezig"].waitForExistence(timeout: 2.0))
 
-        let ride = app.tables.cells.element(boundBy: 1)
-        XCTAssertEqual(ride.staticTexts["WorkoutType"].label, "Rit")
+        XCTAssert(app.buttons["Verzend opnieuw"].waitForExistence(timeout: 2.0))
+
+        XCTAssertEqual(app.staticTexts.matching(workoutTypePredicate).element(boundBy: 1).label, "Rit")
     }
     
     func testNoRouteWorkoutList() throws {
@@ -80,9 +86,10 @@ class TravaartjeUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let run = app.tables.cells.element(boundBy: 0)
-        XCTAssertEqual(run.staticTexts["WorkoutType"].label, "Run")
-        XCTAssertEqual(run.staticTexts["NoRouteWarning"].label, "No route data")
+        let workoutTypePredicate = NSPredicate(format: "identifier == %@", "WorkoutType")
+        
+        XCTAssertEqual(app.staticTexts.matching(workoutTypePredicate).element(boundBy: 0).label, "Run")
+        XCTAssertEqual(app.staticTexts["NoRouteWarning"].firstMatch.label, "No route data")
     }
 
     func testWorkoutListEmpty() throws {
@@ -95,7 +102,7 @@ class TravaartjeUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        XCTAssertTrue(app.tables.cells.staticTexts["No workouts found, did you give Travaartje access to your workouts in the Privacy settings?"].exists)
+        XCTAssertTrue(app.staticTexts["No workouts found, did you give Travaartje access to your workouts in the Privacy settings?"].exists)
     }
     
     func testWorkoutDetails() throws {
@@ -103,8 +110,9 @@ class TravaartjeUITests: XCTestCase {
         app.launchArguments += ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-test"]
         app.launch()
 
-        let run = app.tables.cells.element(boundBy: 0)
-        run.buttons["Details"].tap()
+        let workoutDetailsPredicate = NSPredicate(format: "identifier == %@", "WorkoutDetails")
+        let detailsButton = app.buttons.matching(workoutDetailsPredicate).element(boundBy: 0)
+        detailsButton.tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Name")
         XCTAssertEqual(app.tables.textFields["Description"].placeholderValue, "Description")
@@ -116,8 +124,8 @@ class TravaartjeUITests: XCTestCase {
         
         app.buttons["Done"].tap()
 
-        run.buttons["Details"].tap()
-        
+        detailsButton.tap()
+
         XCTAssertEqual(app.tables.textFields["Name"].value as? String, "My Run")
         XCTAssertEqual(app.tables.textFields["Description"].value as? String, "My Description")
     }
@@ -127,8 +135,9 @@ class TravaartjeUITests: XCTestCase {
         app.launchArguments += ["-AppleLanguages", "(nl)", "-AppleLocale", "nl_NL", "-test"]
         app.launch()
 
-        let run = app.tables.cells.element(boundBy: 0)
-        run.buttons["Details"].tap()
+        let workoutDetailsPredicate = NSPredicate(format: "identifier == %@", "WorkoutDetails")
+        let detailsButton = app.buttons.matching(workoutDetailsPredicate).element(boundBy: 0)
+        detailsButton.tap()
         
         XCTAssertEqual(app.tables.textFields["Name"].placeholderValue, "Naam")
         XCTAssertEqual(app.tables.textFields["Description"].placeholderValue, "Beschrijving")

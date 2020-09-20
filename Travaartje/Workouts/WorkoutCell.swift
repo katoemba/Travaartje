@@ -39,13 +39,15 @@ extension Workout {
     }
 }
 
+
+
 struct WorkoutCell: View {
     @ObservedObject var workout: Workout
     @State private var showUploadResult: Bool = false
-    @State private var showDetails: Bool = false
     @ObservedObject var workoutModel: WorkoutModel
     @State var cancellables: Set<AnyCancellable> = []
     @State private var noRouteAlert = false
+    @Binding var workoutToShowDetailsFor: Workout?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
@@ -102,7 +104,7 @@ struct WorkoutCell: View {
 
             HStack() {
                 Button(action: {
-                    self.showDetails = true
+                    workoutToShowDetailsFor = workout
                 }) {
                     HStack {
                         Image(systemName: "pencil.circle")
@@ -115,18 +117,6 @@ struct WorkoutCell: View {
                 }
                 .accessibility(identifier: "WorkoutDetails")
                 .buttonStyle(BorderlessButtonStyle())
-                .sheet(isPresented: self.$showDetails) {
-                    NavigationView {
-                        WorkoutDetailView(workout: self.workout)
-                            .navigationBarItems(
-                                trailing:
-                                Button("Done") {
-                                    self.workoutModel.save()
-                                    self.showDetails = false
-                                }
-                        )
-                    }
-                }
 
                 Spacer()
 
@@ -187,11 +177,12 @@ struct WorkoutCell: View {
 struct WorkoutCell_Previews: PreviewProvider {
     static let localizations = Bundle.main.localizations.map(Locale.init).filter { $0.identifier != "base" }
     static let model = AppDelegate.shared.workoutModel
+    @State static var workoutToShowDetailsFor: Workout?
 
     static var previews: some View {
         Group {
             ForEach(localizations, id: \.identifier) { locale in
-                WorkoutCell(workout: model.workouts[0], workoutModel: model)
+                WorkoutCell(workout: model.workouts[0], workoutModel: model, workoutToShowDetailsFor: $workoutToShowDetailsFor)
                     .previewLayout(PreviewLayout.fixed(width: 400, height: 170))
                     .padding()
                     .environment(\.locale, locale)

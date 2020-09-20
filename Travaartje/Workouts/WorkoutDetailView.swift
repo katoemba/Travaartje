@@ -27,8 +27,9 @@ struct WorkoutDetailView: View {
 }
 
 struct WorkoutDetailView_Previews: PreviewProvider {
+    static let model = AppDelegate.shared.workoutModel
+
     static var previews: some View {
-        let model = AppDelegate.shared.workoutModel
         return WorkoutDetailView(workout: model.workouts[0])
     }
 }

@@ -32,9 +32,9 @@
         "package": "HealthKitCombine",
         "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
         "state": {
-          "branch": null,
-          "revision": "33d48f194520a95cd81fc9f68c5bf13d93aa64a6",
-          "version": "1.0.0"
+          "branch": "master",
+          "revision": "c10fbc71f88af848695a25e9fe7037a1d36c6763",
+          "version": null
         }
       },
       {
@@ -68,9 +68,9 @@
         "package": "StravaCombine",
         "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
         "state": {
-          "branch": null,
-          "revision": "c9d8dd6f5f2b71cdaca65e3a64298471cc254896",
-          "version": "1.1.0"
+          "branch": "master",
+          "revision": "1f64cd4a5304e1fd8e70c7f62ffd7a1f65064fad",
+          "version": null
         }
       },
       {

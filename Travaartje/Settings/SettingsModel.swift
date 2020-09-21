@@ -47,6 +47,7 @@ public class SettingsModel: ObservableObject {
                 }
                 updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: NSLocalizedString("Privacy", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/privacy")!)))
                 updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: NSLocalizedString("Acknowledgements", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/acknowledgements")!)))
+                updatedSettings.append(Setting(identifier: "Version", icon: "info.circle", label: "Travaartje \(Bundle.main.releaseVersionNumberPretty), build \(Bundle.main.buildVersionNumber ?? "0")", action: .info))
 
                 self.settings = updatedSettings
             }

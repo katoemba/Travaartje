@@ -16,6 +16,7 @@ public class Setting: ObservableObject, Identifiable {
         case showAccount(Athlete)
         case connectAccount
         case toggle
+        case info
     }
     let action: Action
     let identifier: String

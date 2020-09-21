@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple.git",
         "state": {
           "branch": null,
-          "revision": "ab06868f0b1901aabed6c8697aaf42e5fd5cd634",
-          "version": "3.3.3"
+          "revision": "96794627f4c0873c0d0ff058aae78da3abbba487",
+          "version": "3.3.4"
         }
       },
       {
@@ -32,9 +32,9 @@
         "package": "HealthKitCombine",
         "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "c10fbc71f88af848695a25e9fe7037a1d36c6763",
-          "version": null
+          "version": "1.0.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {
           "branch": null,
-          "revision": "3d0ea2c0806791abcc5d7f0d9f62f1cfd4a7264d",
-          "version": "4.2.0"
+          "revision": "654d52d30f3dd4592e944c3e0bccb53178c992f6",
+          "version": "4.2.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "175eeb4618b0a6ef4d69a7409b6a74ddd235a093",
-          "version": "5.15.0"
+          "revision": "ffc614446cab6ae106619606698d642c23ed25be",
+          "version": "5.15.3"
         }
       },
       {
@@ -68,9 +68,9 @@
         "package": "StravaCombine",
         "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "1f64cd4a5304e1fd8e70c7f62ffd7a1f65064fad",
-          "version": null
+          "version": "1.2.0"
         }
       },
       {

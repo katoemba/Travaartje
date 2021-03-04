@@ -13,6 +13,7 @@
 		C50B35C12500170D0080D536 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C50B35C02500170D0080D536 /* AppCenterAnalytics */; };
 		C50B35C52500187E0080D536 /* UsageLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B35C42500187E0080D536 /* UsageLogger.swift */; };
 		C511A16C25F10313004A3858 /* HealthKitCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C511A16B25F10313004A3858 /* HealthKitCombine */; };
+		C511A17225F11465004A3858 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C511A17125F11465004A3858 /* ToastView.swift */; };
 		C51FA0B024F838D90029C763 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51FA0AF24F838D90029C763 /* RootView.swift */; };
 		C523A1C624F56DF300FED1A6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C523A1C524F56DF300FED1A6 /* KeychainAccess */; };
 		C523A1C924F5872100FED1A6 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523A1C824F5872100FED1A6 /* OnboardingModel.swift */; };
@@ -107,6 +108,7 @@
 		C504578224D4411500D14221 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		C50B35C42500187E0080D536 /* UsageLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageLogger.swift; sourceTree = "<group>"; };
+		C511A17125F11465004A3858 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C51FA0AF24F838D90029C763 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C523A1C824F5872100FED1A6 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		C535011424EB0252009F5900 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				C552E40F24C1A407000E06B7 /* AppDelegate.swift */,
 				C552E41124C1A407000E06B7 /* SceneDelegate.swift */,
 				C51FA0AF24F838D90029C763 /* RootView.swift */,
+				C511A17125F11465004A3858 /* ToastView.swift */,
 				C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */,
 				C50B35C42500187E0080D536 /* UsageLogger.swift */,
 				C504579524D84A6000D14221 /* Secrets.swift */,
@@ -598,6 +601,7 @@
 				C535011524EB0252009F5900 /* WebView.swift in Sources */,
 				C50B35C52500187E0080D536 /* UsageLogger.swift in Sources */,
 				C562136424C736A0004A0FBA /* WorkoutDetailView.swift in Sources */,
+				C511A17225F11465004A3858 /* ToastView.swift in Sources */,
 				C590E41D24E724A300387173 /* StravaCombineMock.swift in Sources */,
 				C535011724EB2167009F5900 /* AthleteCell.swift in Sources */,
 				C504579624D84A6000D14221 /* Secrets.swift in Sources */,

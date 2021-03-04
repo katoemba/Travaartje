@@ -55,6 +55,7 @@
 "Travaartje could not find route data for this workout. Do you want to upload it without a route?" = "Travaartje kan geen route gegevens vinden voor deze workout. Wil je de workout versturen zonder route?";
 "Yes" = "Ja";
 "No" = "Nee";
+"Close" = "Sluit";
 
 "Welcome" = "Welkom";
 "Travaartje lets you upload workouts that you recorded with the Workout app on your AppleWatch or iPhone to Strava in the easiest possible way." = "Met Travaartje kan je workouts die je opgenomen hebt met je AppleWatch of iPhone heel eenvoudig naar Strava versturen.";
@@ -70,3 +71,5 @@
 
 "No new workouts" = "Geen nieuwe workouts";
 "Show new workouts and upload them with 1 click." = "Je laatste workouts, klaar om te verzenden.";
+"All set, let's get started!\n\nOh, and if you're running iOS 14 or later, don't forget to checkout the Travaartje widget that shows your latest workout on your homescreen with the possibility to upload them with 1 click." = "Klaar, laten we beginnen.\n\nEn oh ja, gebruik je iOS 14 of nieuwer? Probeer dan ook de bijgeleverde widget die je laatste workout laat zien op je homescreen, met de mogelijkheid die direct te verzenden naar Strava.";
+"Would you like to upload your workouts even quicker?\n\nCheckout the Travaartje widget that shows your latest workout on your homescreen with the possibility to upload it with 1 click." = "Wil je je workouts nog sneller verzenden?\n\Probeer dan de Travaartje widget die je laatste workout toont op je homescreen, en je deze met 1 klik laat versturen.";

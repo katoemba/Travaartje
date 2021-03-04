@@ -29,9 +29,18 @@ class OnboardingModel: ObservableObject {
     @Published var onboardingDone = AppDefaults.standard.bool(forKey: AppDefaults.onboardingRequiredKey) {
         didSet {
             AppDefaults.standard.set(onboardingDone, forKey: AppDefaults.onboardingRequiredKey)
+            if onboardingDone {
+                // Don't show the widget toaster when onboarding is done.
+                widgetNotificationShown = true
+            }
         }
     }
-    
+    @Published var widgetNotificationShown = AppDefaults.standard.bool(forKey: AppDefaults.widgetNotificationShownKey) {
+        didSet {
+            AppDefaults.standard.set(widgetNotificationShown, forKey: AppDefaults.widgetNotificationShownKey)
+        }
+    }
+
     private let activeStepSubject = CurrentValueSubject<Int, Never>(1)
     private let stepsSubject = PassthroughSubject<[OnboardingStep], Never>()
     @Published var steps = [OnboardingStep]()
@@ -92,7 +101,7 @@ class OnboardingModel: ObservableObject {
                                           isActive: false,
                                           imageSystemName: "3.circle",
                                           text: NSLocalizedString("Get started", comment: ""),
-                                          descriptiveText: NSLocalizedString("All set, let's get started!", comment: ""),
+                                          descriptiveText: NSLocalizedString("All set, let's get started!\n\nOh, and if you're running iOS 14 or later, don't forget to checkout the Travaartje widget that shows your latest workout on your homescreen with the possibility to upload them with 1 click.", comment: ""),
                                           accessibilityIdentifier: "StepLabel",
                                           action: {
                                             withAnimation {

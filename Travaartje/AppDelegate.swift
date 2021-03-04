@@ -13,6 +13,7 @@ import Combine
 import CoreData
 import HealthKitCombine
 import StravaCombine
+import WidgetKit
 import AppCenter
 import AppCenterCrashes
 import AppCenterAnalytics
@@ -33,8 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
 
-        MSAppCenter.start(Secrets.appcenterSecret, withServices: [MSAnalytics.self, MSCrashes.self])
-        
+        AppCenter.start(withAppSecret: Secrets.appcenterSecret, services: [Analytics.self, Crashes.self])
+        lookForNewWorkouts(application: application)
+
         return true
     }
     
@@ -50,6 +52,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    // MARK: - New workout monitoring
+    
+    func lookForNewWorkouts(application: UIApplication) {
+        if #available(iOS 14.0, *) {
+            let workoutModel = self.workoutModel
+            healthKitStoreCombine.startObservingNewWorkouts()
+                .flatMap({ (_) -> AnyPublisher<Int, Never> in
+                    workoutModel.newHealthKitWorkoutCount()
+                })
+                .sink { (_) in
+                } receiveValue: { (newWorkoutCount) in
+                    WidgetCenter.shared.reloadTimelines(ofKind: "com.katoemba.travaartje-widget")
+                }
+                .store(in: &cancellables)
+        }
     }
     
     // MARK: - Core Data stack
@@ -142,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     lazy var stravaOAuth: StravaOAuthProtocol = {
-        StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(), presentationAnchor: gWindow!, openAppFactory: { (appURL, _) -> (Bool) in
+        StravaOAuth(config: StravaConfig.standard, tokenInfo: StravaToken.load(), openAppFactory: { (appURL, _) -> (Bool) in
             if UIApplication.shared.canOpenURL(appURL) {
                 UIApplication.shared.open(appURL, options: [:])
                 return true

@@ -66,7 +66,7 @@ public class SettingsModel: ObservableObject {
     }
     
     func authorize() {
-        stravaAuth.authorize()
+        stravaAuth.authorize(presentationAnchor: gWindow!)
             .sink(receiveCompletion: { (result) in
                 switch result {
                 case let .failure(error):

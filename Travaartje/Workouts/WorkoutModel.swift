@@ -12,7 +12,7 @@ import CoreData
 import HealthKitCombine
 import StravaCombine
 import CoreGPX
-
+import WidgetKit
 
 public class WorkoutModel: ObservableObject {
     struct UploadStatus {
@@ -56,7 +56,10 @@ public class WorkoutModel: ObservableObject {
     
     private func fetchStoredWorkouts() {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
-        request.fetchLimit = limit
+        let limit = self.limit
+        // Fetch some extra stored workouts to compensate for deleted workouts
+        // The real limit will be re-applied at the end
+        request.fetchLimit = limit + 10
         request.sortDescriptors = [NSSortDescriptor(key: "workoutDate", ascending: false)]
         do {
             let storedWorkouts = try context.fetch(request)
@@ -68,7 +71,7 @@ public class WorkoutModel: ObservableObject {
                             storedWorkout.workout = workout
                         }
                     }
-                    return storedWorkouts
+                    return Array(storedWorkouts.compactMap { $0.workout == nil ? nil : $0 }.prefix(limit))
                 })
                 .assign(to: \.workouts, on: self)
                 .store(in: &cancellables)
@@ -130,6 +133,34 @@ public class WorkoutModel: ObservableObject {
                 }
         }
         .store(in: &cancellables)
+    }
+    
+    /// Return the number of workouts found in HealthKit, and not yet loaded into Travaartje. This can be used to show a badge for the number of new workouts
+    /// - Returns: A publisher for the number of new workouts. Will publish 0 in case an error occurs.
+    func newHealthKitWorkoutCount() -> AnyPublisher<Int, Never> {
+        healthStoreCombine.workouts(limit)
+            .replaceError(with: [])
+            .removeDuplicates()
+            .map { (workouts) in
+                var newWorkoutCount = 0
+                for workout in workouts {
+                    let fetchWorkout = NSFetchRequest<Workout>(entityName: "Workout")
+                    fetchWorkout.predicate = NSPredicate(format: "healthKitId == %@", workout.uuid as CVarArg)
+                    do {
+                        let storedWorkouts = try self.context.fetch(fetchWorkout)
+                        if storedWorkouts.count == 0 {
+                            newWorkoutCount += 1
+                        }
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+                
+                return newWorkoutCount
+            }
+            .replaceError(with: 0)
+            .eraseToAnyPublisher()
     }
     
     func upload(_ workout: Workout) -> AnyPublisher<UploadStatus, Never> {
@@ -201,7 +232,10 @@ public class WorkoutModel: ObservableObject {
                 workout.stravaId = activity_id
             }
             self.save()
-            
+            if #available(iOS 14.0, *) {
+                WidgetCenter.shared.reloadTimelines(ofKind: "com.katoemba.travaartje-widget")
+            }
+
             uploadStatusSubject.send(UploadStatus(workout))
         }
         .store(in: &cancellables)

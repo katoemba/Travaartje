@@ -2,20 +2,20 @@
   "object": {
     "pins": [
       {
-        "package": "App Center",
+        "package": "AppCenter",
         "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple.git",
         "state": {
           "branch": null,
-          "revision": "96794627f4c0873c0d0ff058aae78da3abbba487",
-          "version": "3.3.4"
+          "revision": "484dead179e6d7edd534d0d7defdf65c14a5b426",
+          "version": "4.1.0"
         }
       },
       {
         "package": "CoreGPX",
-        "repositoryURL": "https://github.com/vincentneo/CoreGPX.git",
+        "repositoryURL": "https://github.com/katoemba/CoreGPX",
         "state": {
           "branch": "master",
-          "revision": "8fe97cbd4021180589f74c901e5b4a04eb5bd966",
+          "revision": "b56b137985b0fc1821a7389cd3a4de44bda26039",
           "version": null
         }
       },
@@ -32,9 +32,9 @@
         "package": "HealthKitCombine",
         "repositoryURL": "https://github.com/katoemba/HealthKitCombine.git",
         "state": {
-          "branch": null,
-          "revision": "c10fbc71f88af848695a25e9fe7037a1d36c6763",
-          "version": "1.0.1"
+          "branch": "master",
+          "revision": "dbc8d131c5e549ccb37d89f4ad584f3d57992b97",
+          "version": null
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {
           "branch": null,
-          "revision": "654d52d30f3dd4592e944c3e0bccb53178c992f6",
-          "version": "4.2.1"
+          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
+          "version": "4.2.2"
         }
       },
       {
@@ -51,26 +51,26 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "ffc614446cab6ae106619606698d642c23ed25be",
-          "version": "5.15.3"
+          "revision": "2a10bf41da75599a9f8e872dbd44fe0155a2e00c",
+          "version": "5.15.8"
         }
       },
       {
         "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/plcrashreporter.git",
+        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
         "state": {
           "branch": null,
-          "revision": "6b7ca9a2faad6ea990ff60b0a3ee4fdf3db59150",
-          "version": "1.7.2"
+          "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
+          "version": "1.8.1"
         }
       },
       {
         "package": "StravaCombine",
         "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
         "state": {
-          "branch": null,
-          "revision": "1f64cd4a5304e1fd8e70c7f62ffd7a1f65064fad",
-          "version": "1.2.0"
+          "branch": "master",
+          "revision": "b369f56061445c2807fc67ee1f08c706617e874d",
+          "version": null
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/Jounce/Surge",
         "state": {
           "branch": null,
-          "revision": "b9777a8d0c1df1ed0a22d238fb987c60d13513ac",
-          "version": "2.3.0"
+          "revision": "6e4a47e63da8801afe6188cf039e9f04eb577721",
+          "version": "2.3.2"
         }
       }
     ]

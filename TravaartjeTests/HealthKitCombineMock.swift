@@ -19,10 +19,15 @@ class HealthKitCombineMock: HKHealthStoreCombine {
     public var error: Error?
     public var locationSamples = [CLLocation]()
     public var heartRateSamples = [HKQuantitySample]()
+    public var newWorkoutSubject = PassthroughSubject<HKWorkout, Error>()
 
     public var hkWorkouts = [HKWorkout]()
     
     func shouldAuthorize() -> AnyPublisher<Bool, Error> {
+        shouldAuthorize(includeSharePermission: false)
+    }
+
+    func shouldAuthorize(includeSharePermission: Bool) -> AnyPublisher<Bool, Error> {
         Just(shouldAuthorizeResult)
             .tryMap { (result) -> Bool in
                 guard error == nil else { throw error! }
@@ -30,14 +35,26 @@ class HealthKitCombineMock: HKHealthStoreCombine {
             }
             .eraseToAnyPublisher()
     }
-
+    
+    
     func authorize() -> AnyPublisher<Bool, Error> {
+        authorize(requestSharePermission: false)
+    }
+
+    func authorize(requestSharePermission: Bool) -> AnyPublisher<Bool, Error> {
         Just(authorizationResult)
             .tryMap { (result) -> Bool in
                 guard error == nil else { throw error! }
                 return result
             }
             .eraseToAnyPublisher()
+    }
+
+    func startObservingNewWorkouts() -> AnyPublisher<HKWorkout, Error> {
+        newWorkoutSubject.eraseToAnyPublisher()
+    }
+    
+    func stopObservingNewWorkouts() {
     }
     
     func workouts(_ limit: Int) -> AnyPublisher<[HKWorkout], Error> {

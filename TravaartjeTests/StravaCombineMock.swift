@@ -9,10 +9,10 @@
 import Foundation
 import Combine
 import StravaCombine
+import AuthenticationServices
 
 #if targetEnvironment(simulator)
 class StravaOAuthMock: StravaOAuthProtocol {
-    
     private let tokenSubject: CurrentValueSubject<StravaToken?, Never>
     var stravaToken: StravaToken?
     var token: AnyPublisher<StravaToken?, Never> {
@@ -24,7 +24,7 @@ class StravaOAuthMock: StravaOAuthProtocol {
         tokenSubject = CurrentValueSubject<StravaToken?, Never>(token)
     }
     
-    func authorize() -> AnyPublisher<StravaToken?, StravaCombineError> {
+    func authorize(presentationAnchor: ASPresentationAnchor) -> AnyPublisher<StravaToken?, StravaCombineError> {
         tokenSubject.send(stravaToken)
         return PassthroughSubject<StravaToken?, StravaCombineError>().eraseToAnyPublisher()
     }

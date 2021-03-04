@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1200"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Set the build number to the count of Git commits&#10;cd $SRCROOT&#10;buildNumber=$(git rev-list --count HEAD)&#10;/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion $buildNumber&quot; &quot;${INFOPLIST_FILE}&quot;&#10;/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion $buildNumber&quot; &quot;$SRCROOT/TravaartjeWidget/Info.plist&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "C552E40B24C1A407000E06B7"
+                     BuildableName = "Travaartje.app"
+                     BlueprintName = "Travaartje"
+                     ReferencedContainer = "container:Travaartje.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Set the build number to the count of Git commits&#10;cd $SRCROOT&#10;buildNumber=$(git rev-list --count HEAD)&#10;/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion 1&quot; &quot;${INFOPLIST_FILE}&quot;&#10;/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion 1&quot; &quot;$SRCROOT/TravaartjeWidget/Info.plist&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "C552E40B24C1A407000E06B7"
+                     BuildableName = "Travaartje.app"
+                     BlueprintName = "Travaartje"
+                     ReferencedContainer = "container:Travaartje.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

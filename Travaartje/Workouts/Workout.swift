@@ -60,7 +60,50 @@ extension Workout {
     
     public var type: String {
         guard let workout = workout else { return "Unknown" }
-        switch workout.workoutActivityType {
+        
+        return workout.type
+    }
+    
+    public var date: String {
+        guard let workout = workout else { return "Unknown" }
+
+        return workout.date
+    }
+    
+    public var distance: String {
+        guard let workout = workout else { return "Unknown" }
+
+        return workout.distance
+    }
+    
+    public var duration: String {
+        guard let workout = workout else { return "Unknown" }
+        
+        return workout.durationString
+    }
+}
+
+extension Workout {
+    convenience init(context: NSManagedObjectContext, workout: HKWorkout) {
+        self.init(context: context)
+        self.workout = workout
+    }
+
+    convenience init(context: NSManagedObjectContext, healthKitId: UUID) {
+        self.init(context: context)
+        self.healthKitId = healthKitId
+    }
+}
+
+extension Workout {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Workout> {
+        return NSFetchRequest<Workout>(entityName: "Workout")
+    }
+}
+
+extension HKWorkout {
+    public var type: String {
+        switch workoutActivityType {
         case .running:
             return "Run"
         case .swimming:
@@ -105,29 +148,23 @@ extension Workout {
     }
     
     public var date: String {
-        guard let workout = workout else { return "Unknown" }
-
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         formatter.doesRelativeDateFormatting = true
 
-        return formatter.string(from: workout.startDate)
+        return formatter.string(from: startDate)
     }
     
     public var distance: String {
-        guard let workout = workout else { return "Unknown" }
-
-        let km = workout.totalDistance?.doubleValue(for: .meterUnit(with: .kilo)) ?? 0.0
+        let km = totalDistance?.doubleValue(for: .meterUnit(with: .kilo)) ?? 0.0
         return String(format: "%.1f km", km)
     }
     
-    public var duration: String {
-        guard let workout = workout else { return "Unknown" }
-
-        let hours = Int(workout.duration / 3600.0)
-        let minutes = Int((workout.duration - Double(hours) * 3600.0) / 60.0)
-        let seconds = Int(workout.duration - Double(hours) * 3600.0 - Double(minutes) * 60.0)
+    public var durationString: String {
+        let hours = Int(duration / 3600.0)
+        let minutes = Int((duration - Double(hours) * 3600.0) / 60.0)
+        let seconds = Int(duration - Double(hours) * 3600.0 - Double(minutes) * 60.0)
 
         if hours > 0 {
             return String(format: "%d:%02d:%02d", hours, minutes, seconds)
@@ -136,23 +173,5 @@ extension Workout {
             return String(format: "%02d:%02d", minutes, seconds)
         }
     }
-    
-}
 
-extension Workout {
-    convenience init(context: NSManagedObjectContext, workout: HKWorkout) {
-        self.init(context: context)
-        self.workout = workout
-    }
-
-    convenience init(context: NSManagedObjectContext, healthKitId: UUID) {
-        self.init(context: context)
-        self.healthKitId = healthKitId
-    }
-}
-
-extension Workout {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Workout> {
-        return NSFetchRequest<Workout>(entityName: "Workout")
-    }
 }

@@ -13,23 +13,23 @@ import StravaCombine
 
 class UsageLogger {
     static func workoutUploadSucceeded(uploadParameters: UploadParameters, hasRoute: Bool) {
-        MSAnalytics.trackEvent("Upload Succeeded", withProperties: ["activity": uploadParameters.activityType.rawValue,
-                                                                    "gps": hasRoute ? "Yes" : "No"])
+        Analytics.trackEvent("Upload Succeeded", withProperties: ["activity": uploadParameters.activityType.rawValue,
+                                                                  "gps": hasRoute ? "Yes" : "No"])
     }
-
+    
     static func workoutUploadFailed(uploadParameters: UploadParameters, hasRoute: Bool, error: String) {
         var processedError = error
         if error.contains("duplicate") {
             processedError = "Duplicate workout"
         }
-        MSAnalytics.trackEvent("Upload Failed", withProperties: ["activity": uploadParameters.activityType.rawValue,
-                                                                 "gps": hasRoute ? "Yes" : "No",
-                                                                 "error": processedError])
+        Analytics.trackEvent("Upload Failed", withProperties: ["activity": uploadParameters.activityType.rawValue,
+                                                               "gps": hasRoute ? "Yes" : "No",
+                                                               "error": processedError])
     }
     
     static func internalError(location: String, description: String) {
-        MSAnalytics.trackEvent("Internal Error", withProperties: ["location": location,
-                                                                  "description": description])
+        Analytics.trackEvent("Internal Error", withProperties: ["location": location,
+                                                                "description": description])
     }
 }
-    
+

@@ -9,10 +9,12 @@
 import UIKit
 import SwiftUI
 import HealthKit
+import Combine
 
 public var gWindow: UIWindow?
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var cancellabes = Set<AnyCancellable>()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -37,18 +39,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
-        }
+        }        
     }
     
     // MARK: Handle URL for Strava authentication
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let urlContext = URLContexts.first,
-            let code = URLComponents(string: urlContext.url.absoluteString)?.queryItems?.filter({$0.name == "code"}).first?.value else { return }
-            
-        AppDelegate.shared.stravaOAuth.processCode(code)
-    }
+        guard let urlContext = URLContexts.first else { return }
+        
+        if let code = URLComponents(string: urlContext.url.absoluteString)?.queryItems?.filter({$0.name == "code"}).first?.value {
+            AppDelegate.shared.stravaOAuth.processCode(code)
+        }
+        else {
+            let components = urlContext.url.absoluteString.split(separator: "?")
+            guard components.count == 2, components[0] == "widget://travaartje-upload-newest-workout" else { return }
 
+            let keyValues = components[1].split(separator: "=")
+            guard keyValues.count == 2, keyValues[0] == "upload", (keyValues[1] == "true" || keyValues[1] == "false")  else { return }
+
+            AppDelegate.shared.workoutModel.reloadHealthKitWorkouts()
+            
+            if keyValues[1] == "true" {
+                Just(1)
+                    .delay(for: 0.5, scheduler: RunLoop.main)
+                    .map { (_) in
+                        AppDelegate.shared.workoutModel.workouts[0]
+                    }
+                    .filter { $0.state == .new }
+                    .flatMap {
+                        AppDelegate.shared.workoutModel.upload($0)
+                    }
+                    .sink { (_) in
+                    }
+                    .store(in: &cancellabes)
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

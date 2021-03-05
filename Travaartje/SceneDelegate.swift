@@ -67,7 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                     .filter { $0.state == .new }
                     .flatMap {
-                        AppDelegate.shared.workoutModel.upload($0)
+                        AppDelegate.shared.workoutModel.upload($0, fromWidget: true)
                     }
                     .sink { (_) in
                     }

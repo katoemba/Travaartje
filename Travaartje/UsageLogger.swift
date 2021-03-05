@@ -12,18 +12,20 @@ import AppCenterAnalytics
 import StravaCombine
 
 class UsageLogger {
-    static func workoutUploadSucceeded(uploadParameters: UploadParameters, hasRoute: Bool) {
+    static func workoutUploadSucceeded(uploadParameters: UploadParameters, hasRoute: Bool, fromWidget: Bool) {
         Analytics.trackEvent("Upload Succeeded", withProperties: ["activity": uploadParameters.activityType.rawValue,
-                                                                  "gps": hasRoute ? "Yes" : "No"])
+                                                                  "gps": hasRoute ? "Yes" : "No",
+                                                                  "fromWidget": fromWidget ? "Yes" : "No"])
     }
     
-    static func workoutUploadFailed(uploadParameters: UploadParameters, hasRoute: Bool, error: String) {
+    static func workoutUploadFailed(uploadParameters: UploadParameters, hasRoute: Bool, fromWidget: Bool, error: String) {
         var processedError = error
         if error.contains("duplicate") {
             processedError = "Duplicate workout"
         }
         Analytics.trackEvent("Upload Failed", withProperties: ["activity": uploadParameters.activityType.rawValue,
                                                                "gps": hasRoute ? "Yes" : "No",
+                                                               "fromWidget": fromWidget ? "Yes" : "No",
                                                                "error": processedError])
     }
     

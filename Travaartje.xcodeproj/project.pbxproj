@@ -59,6 +59,8 @@
 		C59BC91825F0EC3B00DD6A1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C562136124C72F2D004A0FBA /* Localizable.strings */; };
 		C59BC91D25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */; };
 		C59BC91E25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */; };
+		C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */; };
+		C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */; };
 		C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4166724E46A91008F08E7 /* StravaCombine */; };
 		C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */; };
 		C5E4F18324CE29EE0005EEF9 /* Workout+GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */; };
@@ -158,6 +160,8 @@
 		C59BC91F25F0F4BE00DD6A1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/SettingsIntents.intentdefinition; sourceTree = "<group>"; };
 		C59BC92625F0F4D200DD6A1A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SettingsIntents.strings; sourceTree = "<group>"; };
 		C59BC92C25F0F50F00DD6A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsIntents.strings; sourceTree = "<group>"; };
+		C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
+		C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityWorkoutCell.swift; sourceTree = "<group>"; };
 		C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+GPX.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -335,6 +339,8 @@
 			children = (
 				C5569D9525EBA3210023F693 /* TravaartjeWidget.swift */,
 				C5550C6025ED829E00A77D7F /* WorkoutModel.swift */,
+				C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */,
+				C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */,
 				C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */,
 				C5569D9725EBA3220023F693 /* Assets.xcassets */,
 				C5569D9925EBA3220023F693 /* Info.plist */,
@@ -634,9 +640,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */,
 				C5569D9625EBA3210023F693 /* TravaartjeWidget.swift in Sources */,
 				C59BC91E25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */,
 				C5550C6125ED829E00A77D7F /* WorkoutModel.swift in Sources */,
+				C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */,
 				C5569DB025EBB0480023F693 /* Workout.swift in Sources */,
 				C5550C6625ED857C00A77D7F /* Travaartje.xcdatamodeld in Sources */,
 			);

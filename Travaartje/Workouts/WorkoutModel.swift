@@ -163,7 +163,7 @@ public class WorkoutModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func upload(_ workout: Workout) -> AnyPublisher<UploadStatus, Never> {
+    func upload(_ workout: Workout, fromWidget: Bool = false) -> AnyPublisher<UploadStatus, Never> {
         let uploadStatusSubject = PassthroughSubject<UploadStatus, Never>()
         let uploadParameters = UploadParameters(activityType: workout.workout?.stravaActivityType ?? .workout,
         name: workout.name,
@@ -216,11 +216,11 @@ public class WorkoutModel: ObservableObject {
             if case let .failure(error) = completion {
                 workout.state = .failed
                 workout.uploadResult = error.localizedDescription
-                UsageLogger.workoutUploadFailed(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, error: error.localizedDescription)
+                UsageLogger.workoutUploadFailed(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget, error: error.localizedDescription)
             }
             else {
                 workout.state = .uploaded
-                UsageLogger.workoutUploadSucceeded(uploadParameters: uploadParameters, hasRoute: workout.hasRoute)
+                UsageLogger.workoutUploadSucceeded(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget)
             }
             self.save()
             

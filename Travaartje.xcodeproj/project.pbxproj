@@ -61,6 +61,7 @@
 		C59BC91E25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */; };
 		C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */; };
 		C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */; };
+		C5CC0D2F25F242C70024AFCA /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
 		C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4166724E46A91008F08E7 /* StravaCombine */; };
 		C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */; };
 		C5E4F18324CE29EE0005EEF9 /* Workout+GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */; };
@@ -642,6 +643,7 @@
 			files = (
 				C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */,
 				C5569D9625EBA3210023F693 /* TravaartjeWidget.swift in Sources */,
+				C5CC0D2F25F242C70024AFCA /* HealthKitCombineMock.swift in Sources */,
 				C59BC91E25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */,
 				C5550C6125ED829E00A77D7F /* WorkoutModel.swift in Sources */,
 				C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */,

@@ -18,13 +18,30 @@ struct WorkoutProvider: IntentTimelineProvider {
     func placeholder(in context: Context) -> WorkoutEntry {
         return WorkoutEntry.demo(2)
     }
+    
+    func getStore() -> HKHealthStoreCombine {
+        #if targetEnvironment(simulator)
+        let hkWorkouts: [HKWorkout] = {
+            let runDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 17, hour: 14, minute: 7, second: 58).date!
+            let rideDate = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, year: 2020, month: 5, day: 16, hour: 08, minute: 58, second: 23).date!
+            return [HKWorkout(activityType: .running, start: runDate, end: runDate.addingTimeInterval(2771), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 8765.9), metadata: nil),
+                    HKWorkout(activityType: .cycling, start: rideDate, end: rideDate.addingTimeInterval(11902), workoutEvents: nil, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .meter(), doubleValue: 85609.0), metadata: nil)]
+        }()
+
+        let healthKitMock = HealthKitCombineMock()
+        healthKitMock.hkWorkouts = hkWorkouts
+        return healthKitMock
+        #else
+        return HKHealthStore()
+        #endif
+    }
 
     func getSnapshot(for configuration: TravaartjeWidgetConfigurationIntent, in context: Context, completion: @escaping (WorkoutEntry) -> ()) {
         if context.isPreview {
             completion(WorkoutEntry.demo(2))
         }
         else {
-            let store = HKHealthStore()
+            let store = getStore()
             store.workouts(2)
                 .map {
                     $0.compactMap { (configuration.showOnlyNewWorkouts == false || WorkoutModel.shared.storedWorkout($0)?.state == .new) ? $0 : nil }
@@ -41,7 +58,7 @@ struct WorkoutProvider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: TravaartjeWidgetConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let store = HKHealthStore()
+        let store = getStore()
         store.workouts(2)
             .map {
                 $0.compactMap { (configuration.showOnlyNewWorkouts == false || WorkoutModel.shared.storedWorkout($0)?.state == .new) ? $0 : nil }

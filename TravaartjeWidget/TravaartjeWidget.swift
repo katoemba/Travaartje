@@ -135,7 +135,7 @@ struct TravaartjeWidgetEntryView : View {
                         .frame(height: 60.0)
                 }
                 else {
-                    if sizeCategory > .extraExtraLarge {
+                    if sizeCategory > .extraLarge {
                         AccessibilityWorkoutCell(workoutState: entry.workouts[0])
                     }
                     else {

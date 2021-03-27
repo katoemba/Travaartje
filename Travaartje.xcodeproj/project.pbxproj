@@ -163,6 +163,7 @@
 		C59BC92C25F0F50F00DD6A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsIntents.strings; sourceTree = "<group>"; };
 		C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityWorkoutCell.swift; sourceTree = "<group>"; };
+		C5DADB032607847C00778D4A /* HealthKitCombine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HealthKitCombine; path = ../HealthKitCombine; sourceTree = "<group>"; };
 		C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+GPX.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,6 +259,7 @@
 				C552E42524C1A408000E06B7 /* TravaartjeTests */,
 				C552E43024C1A408000E06B7 /* TravaartjeUITests */,
 				C5569D9425EBA3210023F693 /* TravaartjeWidget */,
+				C5DADB032607847C00778D4A /* HealthKitCombine */,
 				C552E40D24C1A407000E06B7 /* Products */,
 				C552E44024C327A9000E06B7 /* Frameworks */,
 			);

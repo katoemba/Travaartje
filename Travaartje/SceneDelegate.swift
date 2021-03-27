@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import HealthKit
 import Combine
+import HealthKitCombine
 
 public var gWindow: UIWindow?
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -60,12 +61,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             AppDelegate.shared.workoutModel.reloadHealthKitWorkouts()
             
             if keyValues[1] == "true" {
+                // This uses a poor mans retry method to look for gps points
                 Just(1)
                     .delay(for: 0.5, scheduler: RunLoop.main)
+                    .filter { (_) in
+                        AppDelegate.shared.workoutModel.workouts.count > 0
+                    }
                     .map { (_) in
                         AppDelegate.shared.workoutModel.workouts[0]
                     }
                     .filter { $0.state == .new }
+                    .flatMap {
+                        self.loadRoute($0, delay: .milliseconds(500))
+                    }
+                    .flatMap {
+                        self.loadRoute($0, delay: .milliseconds(1000))
+                    }
+                    .flatMap {
+                        self.loadRoute($0, delay: .milliseconds(1500))
+                    }
                     .flatMap {
                         AppDelegate.shared.workoutModel.upload($0, fromWidget: true)
                     }
@@ -74,6 +88,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .store(in: &cancellabes)
             }
         }
+    }
+    
+    func loadRoute(_ workout: Workout, delay: RunLoop.SchedulerTimeType.Stride) -> AnyPublisher<Workout, Never> {
+        guard workout.hasRoute == false, let hkWorkout = workout.workout else { return Just(workout).eraseToAnyPublisher() }
+
+        return Just(hkWorkout)
+            .delay(for: delay, scheduler: RunLoop.main)
+            .flatMap { (hkWorkout) -> AnyPublisher<Workout, Never> in
+                hkWorkout.workoutWithDetails
+                    .map { details in
+                        workout.hasRoute = (details.locationSamples.count > 0)
+                        return workout
+                    }
+                    .replaceError(with: workout)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

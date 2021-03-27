@@ -35,7 +35,7 @@ extension Workout {
             })
             .map({ (workoutDetails) -> GPXRoot in
                 let root = GPXRoot(withExtensionAttributes: [:], schemaLocation: "")
-                root.creator = "Apple Watch with barometer"
+                root.creator = workoutDetails.workout.device?.hardwareVersion ?? "Apple Watch"
                 let metadata = GPXMetadata()
                 metadata.time = workoutDetails.workout.startDate
                 root.metadata = metadata

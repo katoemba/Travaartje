@@ -216,11 +216,11 @@ public class WorkoutModel: ObservableObject {
             if case let .failure(error) = completion {
                 workout.state = .failed
                 workout.uploadResult = error.localizedDescription
-                UsageLogger.workoutUploadFailed(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget, error: error.localizedDescription)
+                UsageLogger.shared.workoutUploadFailed(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget, error: error.localizedDescription)
             }
             else {
                 workout.state = .uploaded
-                UsageLogger.workoutUploadSucceeded(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget)
+                UsageLogger.shared.workoutUploadSucceeded(uploadParameters: uploadParameters, hasRoute: workout.hasRoute, fromWidget: fromWidget)
             }
             self.save()
             

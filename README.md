@@ -32,7 +32,6 @@ STRAVA_SECRET = mysecret
 STRAVA_CLIENT_ID = myclientid
 REDIRECT_URI = myuri
 DEVELOPER_STRAVA_ID = mystravaid
-APPCENTER_SECRET = myappcentersecret
 ```
 
 During the build process they will be temporarily put into the Secrets.swift file.

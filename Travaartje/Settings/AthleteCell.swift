@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 import StravaCombine
-import KingfisherSwiftUI
+import Kingfisher
 import os
 
 struct AthleteCell: View {
@@ -23,20 +23,16 @@ struct AthleteCell: View {
                 .frame(width: 0.0)
             
             KFImage(self.athlete.imageURL)
-                .onSuccess { r in
-            }
-            .onFailure { e in
-            }
-            .placeholder {
-                // Placeholder while downloading.
-                Image(systemName: "arrow.2.circlepath.circle")
-                    .font(.largeTitle)
-                    .opacity(0.3)
-            }
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 60.0, height: 60.0)
-            .cornerRadius(10)
+                .placeholder {
+                    // Placeholder while downloading.
+                    Image(systemName: "arrow.2.circlepath.circle")
+                        .font(.largeTitle)
+                        .opacity(0.3)
+                }
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 60.0, height: 60.0)
+                .cornerRadius(10)
             
             VStack(alignment: .leading, spacing: 10.0) {
                 Text(self.athlete.displayName)

@@ -72,9 +72,9 @@ public class SettingsModel: ObservableObject {
                 case let .failure(error):
                     switch error {
                     case let .authorizationFailed(location, description):
-                        UsageLogger.internalError(location: location, description: "Authorization failed: " + description)
+                        UsageLogger.shared.internalError(location: location, description: "Authorization failed: " + description)
                     default:
-                        UsageLogger.internalError(location: "authorize", description: "Unexpected error")
+                        UsageLogger.shared.internalError(location: "authorize", description: "Unexpected error")
                     }
                 case .finished:
                     break

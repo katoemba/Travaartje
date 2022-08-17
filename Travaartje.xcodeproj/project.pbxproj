@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		C504578324D4411500D14221 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504578224D4411500D14221 /* WorkoutCell.swift */; };
 		C504579624D84A6000D14221 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504579524D84A6000D14221 /* Secrets.swift */; };
-		C50B35BF2500170D0080D536 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = C50B35BE2500170D0080D536 /* AppCenterCrashes */; };
-		C50B35C12500170D0080D536 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C50B35C02500170D0080D536 /* AppCenterAnalytics */; };
 		C50B35C52500187E0080D536 /* UsageLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B35C42500187E0080D536 /* UsageLogger.swift */; };
 		C511A16C25F10313004A3858 /* HealthKitCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C511A16B25F10313004A3858 /* HealthKitCombine */; };
 		C511A17225F11465004A3858 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C511A17125F11465004A3858 /* ToastView.swift */; };
@@ -19,7 +17,6 @@
 		C523A1C924F5872100FED1A6 /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C523A1C824F5872100FED1A6 /* OnboardingModel.swift */; };
 		C535011524EB0252009F5900 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535011424EB0252009F5900 /* WebView.swift */; };
 		C535011724EB2167009F5900 /* AthleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535011624EB2167009F5900 /* AthleteCell.swift */; };
-		C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C535011924EB24E9009F5900 /* KingfisherSwiftUI */; };
 		C53947D524F3E0B700C6137E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D424F3E0B700C6137E /* OnboardingView.swift */; };
 		C53947D724F3EAC300C6137E /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53947D624F3EAC300C6137E /* StepView.swift */; };
 		C545A11D2504D3F70010214F /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5479ABB24FEC6310004B5A3 /* AppDefaults.swift */; };
@@ -62,6 +59,10 @@
 		C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */; };
 		C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */; };
 		C5CC0D2F25F242C70024AFCA /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
+		C5CE09C828AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		C5CE09CA28AD33E000355E39 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */; };
+		C5CE09CC28AD364600355E39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5CE09CB28AD364600355E39 /* GoogleService-Info.plist */; };
+		C5CE09CE28AD387300355E39 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09CD28AD387300355E39 /* Kingfisher */; };
 		C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4166724E46A91008F08E7 /* StravaCombine */; };
 		C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */ = {isa = PBXBuildFile; productRef = C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */; };
 		C5E4F18324CE29EE0005EEF9 /* Workout+GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */; };
@@ -163,6 +164,7 @@
 		C59BC92C25F0F50F00DD6A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsIntents.strings; sourceTree = "<group>"; };
 		C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityWorkoutCell.swift; sourceTree = "<group>"; };
+		C5CE09CB28AD364600355E39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C5DADB032607847C00778D4A /* HealthKitCombine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HealthKitCombine; path = ../HealthKitCombine; sourceTree = "<group>"; };
 		C5E4F18224CE29EE0005EEF9 /* Workout+GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+GPX.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,12 +175,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54D3C9925693F0600266F88 /* CoreGPX in Frameworks */,
-				C535011A24EB24E9009F5900 /* KingfisherSwiftUI in Frameworks */,
+				C5CE09C828AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */,
+				C5CE09CE28AD387300355E39 /* Kingfisher in Frameworks */,
 				C523A1C624F56DF300FED1A6 /* KeychainAccess in Frameworks */,
-				C50B35BF2500170D0080D536 /* AppCenterCrashes in Frameworks */,
+				C5CE09CA28AD33E000355E39 /* FirebaseCrashlytics in Frameworks */,
 				C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */,
-				C50B35C12500170D0080D536 /* AppCenterAnalytics in Frameworks */,
 				C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */,
 				C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */,
 			);
@@ -292,6 +294,7 @@
 				C552E41524C1A408000E06B7 /* Assets.xcassets */,
 				C552E41A24C1A408000E06B7 /* LaunchScreen.storyboard */,
 				C552E41D24C1A408000E06B7 /* Info.plist */,
+				C5CE09CB28AD364600355E39 /* GoogleService-Info.plist */,
 				C562136124C72F2D004A0FBA /* Localizable.strings */,
 				C552E44324C32895000E06B7 /* Travaartje.entitlements */,
 				C552E41724C1A408000E06B7 /* Preview Content */,
@@ -384,11 +387,11 @@
 				C5F5BBCC24CB1B2B0065A283 /* HealthKitCombine */,
 				C5E4F18024CDD56B0005EEF9 /* HCKalmanFilter */,
 				C5E4166724E46A91008F08E7 /* StravaCombine */,
-				C535011924EB24E9009F5900 /* KingfisherSwiftUI */,
 				C523A1C524F56DF300FED1A6 /* KeychainAccess */,
-				C50B35BE2500170D0080D536 /* AppCenterCrashes */,
-				C50B35C02500170D0080D536 /* AppCenterAnalytics */,
 				C54D3C9825693F0600266F88 /* CoreGPX */,
+				C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */,
+				C5CE09CD28AD387300355E39 /* Kingfisher */,
 			);
 			productName = Travaartje;
 			productReference = C552E40C24C1A407000E06B7 /* Travaartje.app */;
@@ -492,8 +495,8 @@
 				C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */,
 				C535011824EB24E9009F5900 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				C50B35BD2500170D0080D536 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */,
+				C5CE09C628AD33E000355E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = C552E40D24C1A407000E06B7 /* Products */;
 			projectDirPath = "";
@@ -514,6 +517,7 @@
 			files = (
 				C552E41C24C1A408000E06B7 /* LaunchScreen.storyboard in Resources */,
 				C562135F24C72F2D004A0FBA /* Localizable.strings in Resources */,
+				C5CE09CC28AD364600355E39 /* GoogleService-Info.plist in Resources */,
 				C552E41924C1A408000E06B7 /* Preview Assets.xcassets in Resources */,
 				C552E41624C1A408000E06B7 /* Assets.xcassets in Resources */,
 			);
@@ -561,7 +565,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n    STRAVA_CLIENT_ID=`grep STRAVA_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n    STRAVA_SECRET=`grep STRAVA_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n    REDIRECT_URI=`grep REDIRECT_URI ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n    DEVELOPER_STRAVA_ID=`grep DEVELOPER_STRAVA_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing DEVELOPER_STRAVA_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${APPCENTER_SECRET}\" ]; then\n    APPCENTER_SECRET=`grep APPCENTER_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${APPCENTER_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing APPCENTER_SECRET\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/; s/{DEVELOPER_STRAVA_ID}/${DEVELOPER_STRAVA_ID}/; s/{APPCENTER_SECRET}/${APPCENTER_SECRET}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n    STRAVA_CLIENT_ID=`grep STRAVA_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n    STRAVA_SECRET=`grep STRAVA_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n    REDIRECT_URI=`grep REDIRECT_URI ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n    DEVELOPER_STRAVA_ID=`grep DEVELOPER_STRAVA_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing DEVELOPER_STRAVA_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n    GOOGLE_CLIENT_ID=`grep GOOGLE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n    GOOGLE_REVERSE_CLIENT_ID=`grep GOOGLE_REVERSE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_REVERSE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n    GOOGLE_API_KEY=`grep GOOGLE_API_KEY ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_API_KEY\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n    GOOGLE_GCM_SENDER_ID=`grep GOOGLE_GCM_SENDER_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_GCM_SENDER_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n    GOOGLE_APP_ID=`grep GOOGLE_APP_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_APP_ID\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/; s/{DEVELOPER_STRAVA_ID}/${DEVELOPER_STRAVA_ID}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n\nsed -i \".orig\" \"s/{GOOGLE_CLIENT_ID}/${GOOGLE_CLIENT_ID}/; s/{GOOGLE_REVERSE_CLIENT_ID}/${GOOGLE_REVERSE_CLIENT_ID}/; s/{GOOGLE_API_KEY}/${GOOGLE_API_KEY}/; s/{GOOGLE_GCM_SENDER_ID}/${GOOGLE_GCM_SENDER_ID}/; s/{GOOGLE_APP_ID}/${GOOGLE_APP_ID}/;\" ${SRCROOT}/Travaartje/GoogleService-Info.plist\n";
 			showEnvVarsInLog = 0;
 		};
 		C504579B24D8532C00D14221 /* Reset Secrets */ = {
@@ -580,7 +584,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmv ${SRCROOT}/Travaartje/Secrets.swift.orig ${SRCROOT}/Travaartje/Secrets.swift\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmv ${SRCROOT}/Travaartje/Secrets.swift.orig ${SRCROOT}/Travaartje/Secrets.swift\nmv ${SRCROOT}/Travaartje/GoogleService-Info.plist.orig ${SRCROOT}/Travaartje/GoogleService-Info.plist\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1053,14 +1057,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C50B35BD2500170D0080D536 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 		C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
@@ -1074,7 +1070,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.15.0;
+				minimumVersion = 6.0.0;
 			};
 		};
 		C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */ = {
@@ -1083,6 +1079,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		C5CE09C628AD33E000355E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
 			};
 		};
 		C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */ = {
@@ -1112,16 +1116,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C50B35BE2500170D0080D536 /* AppCenterCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C50B35BD2500170D0080D536 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterCrashes;
-		};
-		C50B35C02500170D0080D536 /* AppCenterAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C50B35BD2500170D0080D536 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterAnalytics;
-		};
 		C511A16B25F10313004A3858 /* HealthKitCombine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C5F5BBCB24CB1B2B0065A283 /* XCRemoteSwiftPackageReference "HealthKitCombine" */;
@@ -1132,15 +1126,25 @@
 			package = C523A1C424F56DF300FED1A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
-		C535011924EB24E9009F5900 /* KingfisherSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C535011824EB24E9009F5900 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = KingfisherSwiftUI;
-		};
 		C54D3C9825693F0600266F88 /* CoreGPX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */;
 			productName = CoreGPX;
+		};
+		C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5CE09C628AD33E000355E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5CE09C628AD33E000355E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		C5CE09CD28AD387300355E39 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C535011824EB24E9009F5900 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		C5E4166724E46A91008F08E7 /* StravaCombine */ = {
 			isa = XCSwiftPackageProductDependency;

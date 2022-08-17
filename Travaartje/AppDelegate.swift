@@ -14,9 +14,6 @@ import CoreData
 import HealthKitCombine
 import StravaCombine
 import WidgetKit
-import AppCenter
-import AppCenterCrashes
-import AppCenterAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
 
-        AppCenter.start(withAppSecret: Secrets.appcenterSecret, services: [Analytics.self, Crashes.self])
+        UsageLogger.shared.initialize()
         lookForNewWorkouts(application: application)
 
         return true

@@ -13,6 +13,7 @@ class AppDefaults: UserDefaults {
     static let onboardingRequiredKey = "Travaartje.Onboarding.Required"
     static let lastUploadedWorkout = "Travaartje.Last.Uploaded.Workout"
     static let widgetNotificationShownKey = "Travaartje.Widget.Notification.Shown"
+    static let minimumHeartRateMeasurementsPerMinute = "Travaartje.MinimumHeartRateMeasurementsPerMinute"
 
     override static var standard: UserDefaults {
         return UserDefaults.init(suiteName: appDefaultsGroupName)!

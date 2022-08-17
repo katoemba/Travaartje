@@ -16,7 +16,16 @@ import CoreGPX
 import StravaCombine
 
 extension Workout {
-    public func gpxRoute(applyHallman: Bool = true, healthKitCombine: HKHealthStoreCombine) -> AnyPublisher<GPXRoot, Error> {
+    private func includeHeartRate(workoutDetails: WorkoutDetails, minimumHeartRatePerMinute: Int) -> Bool {
+        if minimumHeartRatePerMinute > 0 &&
+            TimeInterval(workoutDetails.heartRateSamples.count) < (workoutDetails.workout.duration / (Double(minimumHeartRatePerMinute) * 60.0)) {
+            return false
+        }
+
+        return true
+    }
+    
+    public func gpxRoute(applyHallman: Bool = true, healthKitCombine: HKHealthStoreCombine, minimumHeartRatePerMinute: Int = 0) -> AnyPublisher<GPXRoot, Error> {
         CurrentValueSubject<Workout, Error>(self)
             .tryMap({ (workout) -> HKWorkout in
                 guard let workout = workout.workout else { throw HealthKitCombineError.init(kind: .noDataFound, errorCode: "No workouts found") }
@@ -43,10 +52,12 @@ extension Workout {
                 let heartRateUnit = HKUnit(from: "count/min")
                 let workoutDistance = workoutDetails.workout.totalDistance?.doubleValue(for: .meter()) ?? 0.0
                 let distanceCorrection = self.calculateDistanceCorrection(workoutDetails.locationSamples, workoutDistance: workoutDistance)
+                let includeHeartRate = self.includeHeartRate(workoutDetails: workoutDetails, minimumHeartRatePerMinute: minimumHeartRatePerMinute)
                 var heartRateIndex = 0
                 var distance = 0.0
                 var previousLocation: CLLocation? = nil
                 
+                 
                 let segment = GPXTrackSegment()
                 for location in workoutDetails.locationSamples {
                     let trackPoint = GPXTrackPoint(location)

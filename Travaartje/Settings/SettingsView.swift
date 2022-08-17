@@ -9,8 +9,10 @@
 import SwiftUI
 import StravaCombine
 
+
 struct SettingsView: View {
     @ObservedObject var settingsModel: SettingsModel
+    @State var sett: Bool = false
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -18,6 +20,9 @@ struct SettingsView: View {
                 ForEach(settingsModel.settings, id: \.self.identifier) { setting in
                     if setting.athlete != nil {
                         AthleteCell(athlete: setting.athlete!)
+                    }
+                    else if setting.action == .toggle {
+                        SettingCell(setting: setting, enabled: AppDefaults.standard.bool(forKey: setting.identifier))
                     }
                     else {
                         SettingCell(setting: setting)

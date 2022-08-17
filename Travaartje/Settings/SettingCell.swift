@@ -12,13 +12,12 @@ import os
 
 struct SettingCell: View {
     @ObservedObject var setting: Setting
-    @State var enabled: String = "checkmark.circle"
+    @State var enabled: Bool = false
     @State var showWebView: Bool = false
     @Environment(\.settingsModel) var settingsModel: SettingsModel
     
     var body: some View {
         Button(action: {
-            self.enabled = self.enabled == "circle" ? "checkmark.circle" : "circle"
             if self.setting.url != nil {
                 self.showWebView = true
             }
@@ -29,6 +28,11 @@ struct SettingCell: View {
             }
             else if self.setting.action == .connectAccount {
                 self.settingsModel.authorize()
+            }
+            else if self.setting.action == .toggle {
+                let newValue = !AppDefaults.standard.bool(forKey: self.setting.identifier)
+                self.enabled = newValue
+                AppDefaults.standard.set(newValue, forKey: self.setting.identifier)
             }
         }) {
             HStack(alignment: .center, spacing: 10.0) {
@@ -43,7 +47,7 @@ struct SettingCell: View {
                 Spacer()
                 
                 if self.setting.action == .toggle {
-                    Image(systemName: self.enabled)
+                    Image(systemName: self.enabled ? "checkmark.circle" : "circle")
                 } else {
                     EmptyView()
                 }

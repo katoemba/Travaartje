@@ -37,7 +37,7 @@ public class WorkoutModel: ObservableObject {
     @Published public private(set) var canUpload: Bool = false
     
     public init(context: NSManagedObjectContext,
-                limit: Int = 10,
+                limit: Int = 50,
                 healthStoreCombine: HKHealthStoreCombine = HKHealthStore(),
                 stravaOAuth: StravaOAuthProtocol,
                 stravaUploadFactory: @escaping StravaUploadFactory = { StravaUpload(StravaConfig.standard) }) {

@@ -303,7 +303,7 @@ class TravaartjeTests: XCTestCase {
 
         let notAuthorizedExpectation = expectation(description: "Not authorized")
 
-        model.upload(model.workouts[0])
+        model.upload(model.workouts[0], minimumHeartRatePerMinute: 4)
             .sink { (uploadStatus) in
                 if uploadStatus.state == Workout.State.failed {
                     notAuthorizedExpectation.fulfill()
@@ -359,7 +359,7 @@ class TravaartjeTests: XCTestCase {
         model.workouts[1].name = uploadName
         model.workouts[1].descr = uploadDescription
         model.workouts[1].commute = uploadCommute
-        model.upload(model.workouts[1])
+        model.upload(model.workouts[1], minimumHeartRatePerMinute: 4)
             .filter { $0.state == Workout.State.uploaded }
             .last()
             .sink { (uploadStatus) in
@@ -400,7 +400,7 @@ class TravaartjeTests: XCTestCase {
         model.workouts[0].name = uploadName
         model.workouts[0].descr = uploadDescription
         model.workouts[0].commute = uploadCommute
-        model.upload(model.workouts[0])
+        model.upload(model.workouts[0], minimumHeartRatePerMinute: 4)
             .filter { $0.state == Workout.State.uploaded }
             .last()
             .sink { (uploadStatus) in

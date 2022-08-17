@@ -17,8 +17,12 @@ import StravaCombine
 
 extension Workout {
     private func includeHeartRate(workoutDetails: WorkoutDetails, minimumHeartRatePerMinute: Int) -> Bool {
+        if workoutDetails.heartRateSamples.count == 0 {
+            return false
+        }
+        
         if minimumHeartRatePerMinute > 0 &&
-            TimeInterval(workoutDetails.heartRateSamples.count) < (workoutDetails.workout.duration / (Double(minimumHeartRatePerMinute) * 60.0)) {
+            Double(workoutDetails.heartRateSamples.count) <= ((workoutDetails.workout.duration / 60.0) * Double(minimumHeartRatePerMinute)) {
             return false
         }
 
@@ -67,7 +71,7 @@ extension Workout {
                     }
                     gpxExtensions.append(at: nil, contents: ["distance": "\(distance)"])
 
-                    if workoutDetails.heartRateSamples.count > 0 {
+                    if includeHeartRate {
                         // Find the next heart rate sample just prior to the date of the location timestamp
                         while heartRateIndex + 1 < workoutDetails.heartRateSamples.count,
                             workoutDetails.heartRateSamples[heartRateIndex + 1].startDate <= location.timestamp {

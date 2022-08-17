@@ -1,79 +1,86 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AppCenter",
-        "repositoryURL": "https://github.com/microsoft/appcenter-sdk-apple.git",
-        "state": {
-          "branch": null,
-          "revision": "484dead179e6d7edd534d0d7defdf65c14a5b426",
-          "version": "4.1.0"
-        }
-      },
-      {
-        "package": "CoreGPX",
-        "repositoryURL": "https://github.com/katoemba/CoreGPX",
-        "state": {
-          "branch": "master",
-          "revision": "b56b137985b0fc1821a7389cd3a4de44bda26039",
-          "version": null
-        }
-      },
-      {
-        "package": "HCKalmanFilter",
-        "repositoryURL": "https://github.com/katoemba/HCKalmanFilter",
-        "state": {
-          "branch": "master",
-          "revision": "1c4ebb34bcf3f2dcfeb20529784fa5eea2138557",
-          "version": null
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
-        "state": {
-          "branch": null,
-          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
-          "version": "4.2.2"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
-        "state": {
-          "branch": null,
-          "revision": "1a0c2df04b31ed7aa318354f3583faea24f006fc",
-          "version": "5.15.8"
-        }
-      },
-      {
-        "package": "PLCrashReporter",
-        "repositoryURL": "https://github.com/microsoft/PLCrashReporter.git",
-        "state": {
-          "branch": null,
-          "revision": "de6b8f9db4b2a0aa859a5507550a70548e4da936",
-          "version": "1.8.1"
-        }
-      },
-      {
-        "package": "StravaCombine",
-        "repositoryURL": "https://github.com/katoemba/StravaCombine.git",
-        "state": {
-          "branch": "master",
-          "revision": "b369f56061445c2807fc67ee1f08c706617e874d",
-          "version": null
-        }
-      },
-      {
-        "package": "Surge",
-        "repositoryURL": "https://github.com/Jounce/Surge",
-        "state": {
-          "branch": null,
-          "revision": "6e4a47e63da8801afe6188cf039e9f04eb577721",
-          "version": "2.3.2"
-        }
+  "pins" : [
+    {
+      "identity" : "appcenter-sdk-apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/appcenter-sdk-apple.git",
+      "state" : {
+        "revision" : "484dead179e6d7edd534d0d7defdf65c14a5b426",
+        "version" : "4.1.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "coregpx",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/katoemba/CoreGPX",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b56b137985b0fc1821a7389cd3a4de44bda26039"
+      }
+    },
+    {
+      "identity" : "hckalmanfilter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/katoemba/HCKalmanFilter",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1c4ebb34bcf3f2dcfeb20529784fa5eea2138557"
+      }
+    },
+    {
+      "identity" : "healthkitcombine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/katoemba/HealthKitCombine.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "dbc8d131c5e549ccb37d89f4ad584f3d57992b97"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "1a0c2df04b31ed7aa318354f3583faea24f006fc",
+        "version" : "5.15.8"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/PLCrashReporter.git",
+      "state" : {
+        "revision" : "de6b8f9db4b2a0aa859a5507550a70548e4da936",
+        "version" : "1.8.1"
+      }
+    },
+    {
+      "identity" : "stravacombine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/katoemba/StravaCombine.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b369f56061445c2807fc67ee1f08c706617e874d"
+      }
+    },
+    {
+      "identity" : "surge",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jounce/Surge",
+      "state" : {
+        "revision" : "6e4a47e63da8801afe6188cf039e9f04eb577721",
+        "version" : "2.3.2"
+      }
+    }
+  ],
+  "version" : 2
 }

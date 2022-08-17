@@ -31,7 +31,7 @@ public class SettingsModel: ObservableObject {
                 else {
                     updatedSettings.append(Setting(identifier: "ConnectStrava", icon: "person.crop.circle.badge.plus", label: NSLocalizedString("Connect your Strava account", comment: ""), action: .connectAccount))
                 }
-                updatedSettings.append(Setting(identifier: "AutomaticUpload", icon: "heart.circle", label: "Heartrate", action: .toggle))
+                updatedSettings.append(Setting(identifier: AppDefaults.skipHeartRateWhenInsufficient, icon: "heart.slash.circle", label: NSLocalizedString("Exclude heart rate upon insufficient measurements", comment: ""), action: .toggle))
                 updatedSettings.append(Setting(identifier: "FollowOnStrava", icon: "eye", label: NSLocalizedString("Follow the developer on Strava", comment: ""), action: .openStrava))
                 updatedSettings.append(Setting(identifier: "New", icon: "tray.full", label: NSLocalizedString("What's new", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/whats-new")!)))
                 updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: NSLocalizedString("Frequently asked questions", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/faq")!)))

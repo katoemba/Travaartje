@@ -56,6 +56,7 @@
 "Yes" = "Yes";
 "No" = "No";
 "Close" = "Close";
+"Exclude heart rate upon insufficient measurements" = "No heart rate upon insufficient measurements";
 
 "Welcome" = "Welcome";
 "Travaartje lets you upload workouts that you recorded with the Workout app on your AppleWatch or iPhone to Strava in the easiest possible way." = "Travaartje lets you upload workouts that you recorded with the Workout app on your AppleWatch or iPhone to Strava in the easiest possible way.";

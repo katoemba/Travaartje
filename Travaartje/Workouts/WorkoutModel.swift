@@ -163,7 +163,7 @@ public class WorkoutModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func upload(_ workout: Workout, fromWidget: Bool = false) -> AnyPublisher<UploadStatus, Never> {
+    func upload(_ workout: Workout, fromWidget: Bool = false, minimumHeartRatePerMinute: Int) -> AnyPublisher<UploadStatus, Never> {
         let uploadStatusSubject = PassthroughSubject<UploadStatus, Never>()
         let uploadParameters = UploadParameters(activityType: workout.workout?.stravaActivityType ?? .workout,
         name: workout.name,
@@ -180,7 +180,7 @@ public class WorkoutModel: ObservableObject {
         
         stravaAuth.refreshTokenIfNeeded()
         if workout.hasRoute {
-            dataPublished = workout.gpxRoute(healthKitCombine: healthStoreCombine)
+            dataPublished = workout.gpxRoute(healthKitCombine: healthStoreCombine, minimumHeartRatePerMinute: minimumHeartRatePerMinute)
                 .map { ($0.gpx().data(using: .utf8)!, .gpx) }
                 .eraseToAnyPublisher()
         }

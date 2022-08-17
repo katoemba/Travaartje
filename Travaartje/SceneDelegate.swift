@@ -81,7 +81,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         self.loadRoute($0, delay: .milliseconds(1500))
                     }
                     .flatMap {
-                        AppDelegate.shared.workoutModel.upload($0, fromWidget: true)
+                        AppDelegate.shared.workoutModel.upload($0, fromWidget: true, minimumHeartRatePerMinute: AppDefaults.standard.minimumHeartRateMeasurementsPerMinute)
                     }
                     .sink { (_) in
                     }

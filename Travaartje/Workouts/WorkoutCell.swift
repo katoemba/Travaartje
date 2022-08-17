@@ -122,7 +122,7 @@ struct WorkoutCell: View {
 
                 Button(action: {
                     if self.workout.hasRoute {
-                        self.workoutModel.upload(self.workout)
+                        self.workoutModel.upload(self.workout, minimumHeartRatePerMinute: AppDefaults.standard.minimumHeartRateMeasurementsPerMinute)
                             .sink {
                                 self.workout.state = $0.state
                                 self.workout.uploadResult = $0.uploadResult
@@ -145,7 +145,7 @@ struct WorkoutCell: View {
                 .alert(isPresented: $noRouteAlert) { () -> Alert in
                     let yesButton = Alert.Button.default(Text("Yes")) {
                         self.noRouteAlert = false
-                        self.workoutModel.upload(self.workout)
+                        self.workoutModel.upload(self.workout, minimumHeartRatePerMinute: AppDefaults.standard.minimumHeartRateMeasurementsPerMinute)
                             .sink {
                                 self.workout.state = $0.state
                                 self.workout.uploadResult = $0.uploadResult

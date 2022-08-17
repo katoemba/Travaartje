@@ -43,6 +43,7 @@ struct SettingCell: View {
                     .frame(width: 30.0)
                 Text(setting.label)
                     .accessibility(identifier: "SettingLabel")
+                    .multilineTextAlignment(.leading)
 
                 Spacer()
                 

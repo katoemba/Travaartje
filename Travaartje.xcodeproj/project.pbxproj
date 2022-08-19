@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -371,11 +371,12 @@
 			buildConfigurationList = C552E43624C1A408000E06B7 /* Build configuration list for PBXNativeTarget "Travaartje" */;
 			buildPhases = (
 				C504579724D84D5A00D14221 /* Preprocess Secrets */,
+				C5CE09D028AFE5FC00355E39 /* Preprocess Google Secrets */,
 				C552E40824C1A407000E06B7 /* Sources */,
-				C504579B24D8532C00D14221 /* Reset Secrets */,
 				C552E40924C1A407000E06B7 /* Frameworks */,
 				C552E40A24C1A407000E06B7 /* Resources */,
 				C5569D9D25EBA3220023F693 /* Embed App Extensions */,
+				C504579B24D8532C00D14221 /* Reset Secrets */,
 			);
 			buildRules = (
 			);
@@ -551,6 +552,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C504579724D84D5A00D14221 /* Preprocess Secrets */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -565,11 +567,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n    STRAVA_CLIENT_ID=`grep STRAVA_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n    STRAVA_SECRET=`grep STRAVA_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n    REDIRECT_URI=`grep REDIRECT_URI ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n    DEVELOPER_STRAVA_ID=`grep DEVELOPER_STRAVA_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing DEVELOPER_STRAVA_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n    GOOGLE_CLIENT_ID=`grep GOOGLE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n    GOOGLE_REVERSE_CLIENT_ID=`grep GOOGLE_REVERSE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_REVERSE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n    GOOGLE_API_KEY=`grep GOOGLE_API_KEY ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_API_KEY\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n    GOOGLE_GCM_SENDER_ID=`grep GOOGLE_GCM_SENDER_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_GCM_SENDER_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n    GOOGLE_APP_ID=`grep GOOGLE_APP_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/Secrets.swift: warning: Missing GOOGLE_APP_ID\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/; s/{DEVELOPER_STRAVA_ID}/${DEVELOPER_STRAVA_ID}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n\nsed -i \".orig\" \"s/{GOOGLE_CLIENT_ID}/${GOOGLE_CLIENT_ID}/; s/{GOOGLE_REVERSE_CLIENT_ID}/${GOOGLE_REVERSE_CLIENT_ID}/; s/{GOOGLE_API_KEY}/${GOOGLE_API_KEY}/; s/{GOOGLE_GCM_SENDER_ID}/${GOOGLE_GCM_SENDER_ID}/; s/{GOOGLE_APP_ID}/${GOOGLE_APP_ID}/;\" ${SRCROOT}/Travaartje/GoogleService-Info.plist\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n    STRAVA_CLIENT_ID=`grep STRAVA_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing STRAVA_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${STRAVA_SECRET}\" ]; then\n    STRAVA_SECRET=`grep STRAVA_SECRET ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${STRAVA_SECRET}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing STRAVA_SECRET\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_URI}\" ]; then\n    REDIRECT_URI=`grep REDIRECT_URI ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${REDIRECT_URI}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing REDIRECT_URI\"\n  FAILED=true\nfi\n\nif [ -z \"${REDIRECT_SCHEMA_NAME}\" ]; then\n    REDIRECT_SCHEMA_NAME=`grep REDIRECT_SCHEMA_NAME ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${REDIRECT_SCHEMA_NAME}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing REDIRECT_SCHEMA_NAME\"\n  FAILED=true\nfi\n\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n    DEVELOPER_STRAVA_ID=`grep DEVELOPER_STRAVA_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${DEVELOPER_STRAVA_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing DEVELOPER_STRAVA_ID\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\necho \"All env values found, pre-processing!\"\n\necho ${STRAVA_CLIENT_ID}\necho ${STRAVA_SECRET}\necho ${REDIRECT_URI}\necho ${REDIRECT_SCHEMA_NAME}\necho ${DEVELOPER_STRAVA_ID}\n\necho \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/; s/{REDIRECT_SCHEMA_NAME}/${REDIRECT_SCHEMA_NAME}/; s/{DEVELOPER_STRAVA_ID}/${DEVELOPER_STRAVA_ID}/;\"\n\nsed -i \".orig\" \"s/{STRAVA_CLIENT_ID}/${STRAVA_CLIENT_ID}/; s/{STRAVA_SECRET}/${STRAVA_SECRET}/; s/{REDIRECT_URI}/${REDIRECT_URI}/; s/{REDIRECT_SCHEMA_NAME}/${REDIRECT_SCHEMA_NAME}/; s/{DEVELOPER_STRAVA_ID}/${DEVELOPER_STRAVA_ID}/;\" ${SRCROOT}/Travaartje/Secrets.swift\n";
 		};
 		C504579B24D8532C00D14221 /* Reset Secrets */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -585,7 +587,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nmv ${SRCROOT}/Travaartje/Secrets.swift.orig ${SRCROOT}/Travaartje/Secrets.swift\nmv ${SRCROOT}/Travaartje/GoogleService-Info.plist.orig ${SRCROOT}/Travaartje/GoogleService-Info.plist\n";
-			showEnvVarsInLog = 0;
+		};
+		C5CE09D028AFE5FC00355E39 /* Preprocess Google Secrets */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Preprocess Google Secrets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nFAILED=false\n\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n    GOOGLE_CLIENT_ID=`grep GOOGLE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing GOOGLE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n    GOOGLE_REVERSE_CLIENT_ID=`grep GOOGLE_REVERSE_CLIENT_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_REVERSE_CLIENT_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing GOOGLE_REVERSE_CLIENT_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n    GOOGLE_API_KEY=`grep GOOGLE_API_KEY ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_API_KEY}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing GOOGLE_API_KEY\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n    GOOGLE_GCM_SENDER_ID=`grep GOOGLE_GCM_SENDER_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_GCM_SENDER_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing GOOGLE_GCM_SENDER_ID\"\n  FAILED=true\nfi\n\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n    GOOGLE_APP_ID=`grep GOOGLE_APP_ID ${SRCROOT}/Travaartje/secrets | awk '{ print $3 }'`\nfi\nif [ -z \"${GOOGLE_APP_ID}\" ]; then\n  echo \"${SRCROOT}/Travaartje/secrets: warning: Missing GOOGLE_APP_ID\"\n  FAILED=true\nfi\n\nif [ \"$FAILED\" = true ]; then\n  exit 1\nfi\n\nsed -i \".orig\" \"s/{GOOGLE_CLIENT_ID}/${GOOGLE_CLIENT_ID}/; s/{GOOGLE_REVERSE_CLIENT_ID}/${GOOGLE_REVERSE_CLIENT_ID}/; s/{GOOGLE_API_KEY}/${GOOGLE_API_KEY}/; s/{GOOGLE_GCM_SENDER_ID}/${GOOGLE_GCM_SENDER_ID}/; s/{GOOGLE_APP_ID}/${GOOGLE_APP_ID}/;\" ${SRCROOT}/Travaartje/GoogleService-Info.plist\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -212,7 +212,7 @@ extension AppDelegate {
 
 extension StravaConfig {
     public static var standard: StravaConfig = {
-        return StravaConfig(client_id: Secrets.stravaClientId, client_secret: Secrets.stravaSecret, redirect_uri: Secrets.redirectUri)
+        return StravaConfig(client_id: Secrets.stravaClientId, client_secret: Secrets.stravaSecret, redirect_uri: Secrets.redirectUri, redirect_schema_name: Secrets.redirectSchemaName)
     }()
 }
 

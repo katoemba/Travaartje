@@ -113,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "d06df9adf50ed8cde5786d935836a5f445f780ba",
-        "version" : "6.3.1"
+        "branch" : "version6-xcode13",
+        "revision" : "d0494dd78f7adf2d3526fdf3267176553020c041"
       }
     },
     {

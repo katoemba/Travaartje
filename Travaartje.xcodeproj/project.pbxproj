@@ -10,6 +10,7 @@
 		C504578324D4411500D14221 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504578224D4411500D14221 /* WorkoutCell.swift */; };
 		C504579624D84A6000D14221 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C504579524D84A6000D14221 /* Secrets.swift */; };
 		C50B35C52500187E0080D536 /* UsageLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B35C42500187E0080D536 /* UsageLogger.swift */; };
+		C50B551C2B8D1FF20085984B /* ConnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B551B2B8D1FF20085984B /* ConnectCell.swift */; };
 		C511A16C25F10313004A3858 /* HealthKitCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C511A16B25F10313004A3858 /* HealthKitCombine */; };
 		C511A17225F11465004A3858 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C511A17125F11465004A3858 /* ToastView.swift */; };
 		C51FA0B024F838D90029C763 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51FA0AF24F838D90029C763 /* RootView.swift */; };
@@ -112,6 +113,7 @@
 		C504578224D4411500D14221 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		C504579524D84A6000D14221 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		C50B35C42500187E0080D536 /* UsageLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageLogger.swift; sourceTree = "<group>"; };
+		C50B551B2B8D1FF20085984B /* ConnectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectCell.swift; sourceTree = "<group>"; };
 		C511A17125F11465004A3858 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C51FA0AF24F838D90029C763 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C523A1C824F5872100FED1A6 /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				C590E42224E9652E00387173 /* SettingsModel.swift */,
 				C590E42024E95FBC00387173 /* SettingsView.swift */,
 				C590E42624E965F800387173 /* SettingCell.swift */,
+				C50B551B2B8D1FF20085984B /* ConnectCell.swift */,
 				C535011624EB2167009F5900 /* AthleteCell.swift */,
 				C535011424EB0252009F5900 /* WebView.swift */,
 			);
@@ -640,6 +643,7 @@
 				C504579624D84A6000D14221 /* Secrets.swift in Sources */,
 				C590E42324E9652E00387173 /* SettingsModel.swift in Sources */,
 				C590E42124E95FBC00387173 /* SettingsView.swift in Sources */,
+				C50B551C2B8D1FF20085984B /* ConnectCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,11 +863,12 @@
 				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Travaartje/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -882,11 +887,12 @@
 				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Travaartje/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1089,8 +1095,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
-				branch = "version6-xcode13";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 		C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */ = {
@@ -1106,7 +1112,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 		C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */ = {

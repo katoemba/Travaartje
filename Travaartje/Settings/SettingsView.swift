@@ -16,10 +16,14 @@ struct SettingsView: View {
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 10.0) {
+            VStack(alignment: .center, spacing: 10.0) {
                 ForEach(settingsModel.settings, id: \.self.identifier) { setting in
                     if setting.athlete != nil {
-                        AthleteCell(athlete: setting.athlete!)
+                        AthleteCell(athlete: setting.athlete!, settingsModel: settingsModel)
+                    }
+                    else if setting.identifier == "ConnectStrava" {
+                        ConnectCell(setting: setting, enabled: true, settingsModel: settingsModel)
+                        
                     }
                     else if setting.action == .toggle {
                         SettingCell(setting: setting, enabled: AppDefaults.standard.bool(forKey: setting.identifier))

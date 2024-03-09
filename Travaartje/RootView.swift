@@ -17,18 +17,21 @@ import Combine
 
     var body: some View {
         NavigationView {
-            if onboardingModel.onboardingDone {
-                ZStack {
-                    WorkoutListView(settingsModel: settingsModel, workoutModel: workoutModel)
-                    
-                    if onboardingModel.widgetNotificationShown == false {
-                        ToastView(shown: $onboardingModel.widgetNotificationShown, title: LocalizedStringKey("Would you like to upload your workouts even quicker?\n\nCheckout the Travaartje widget that shows your latest workout on your homescreen with the possibility to upload it with 1 click."))
+            VStack {
+                if onboardingModel.onboardingDone {
+                    ZStack {
+                        WorkoutListView(settingsModel: settingsModel, workoutModel: workoutModel)
+                        
+                        if onboardingModel.widgetNotificationShown == false {
+                            ToastView(shown: $onboardingModel.widgetNotificationShown, title: LocalizedStringKey("Would you like to upload your workouts even quicker?\n\nCheckout the Travaartje widget that shows your latest workout on your homescreen with the possibility to upload it with 1 click."))
+                        }
                     }
                 }
-            }
-            else {
-                OnboardingView(onboardingModel: onboardingModel)
-                    .transition(.move(edge: .top))
+                else {
+                    OnboardingView(onboardingModel: onboardingModel)
+                        .transition(.move(edge: .top))
+                }
+                Image("api_logo_cptblWith_strava_horiz_light")
             }
         }
     }

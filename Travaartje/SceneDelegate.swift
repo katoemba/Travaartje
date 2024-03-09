@@ -62,7 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             if keyValues[1] == "true" {
                 // This uses a poor mans retry method to look for gps points
-                Just(1)
+                let oneTry = Just(1)
                     .delay(for: 0.5, scheduler: RunLoop.main)
                     .filter { (_) in
                         AppDelegate.shared.workoutModel.workouts.count > 0
@@ -71,6 +71,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         AppDelegate.shared.workoutModel.workouts[0]
                     }
                     .filter { $0.state == .new }
+                
+                let multipleTry = oneTry
                     .flatMap {
                         self.loadRoute($0, delay: .milliseconds(500))
                     }
@@ -80,6 +82,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .flatMap {
                         self.loadRoute($0, delay: .milliseconds(1500))
                     }
+                
+                multipleTry
                     .flatMap {
                         AppDelegate.shared.workoutModel.upload($0, fromWidget: true, minimumHeartRatePerMinute: AppDefaults.standard.minimumHeartRateMeasurementsPerMinute)
                     }

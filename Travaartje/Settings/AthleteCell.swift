@@ -15,7 +15,7 @@ import os
 struct AthleteCell: View {
     @State var athlete: Athlete
     @State var showDetails: Bool = false
-    @ObservedObject var settingsModel: SettingsModel
+    @Environment(\.settingsModel) var settingsModel: SettingsModel
 
     var body: some View {
         HStack(alignment: .center, spacing: 10.0) {
@@ -69,7 +69,7 @@ struct AthleteCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ForEach(localizations, id: \.identifier) { locale in
-                AthleteCell(athlete: athlete, settingsModel: SettingsModel(stravaOAuth: StravaOAuthMock(token: nil)))
+                AthleteCell(athlete: athlete)
                     .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
                     .padding()
                     .environment(\.locale, locale)

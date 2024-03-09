@@ -19,7 +19,7 @@ struct SettingsView: View {
             VStack(alignment: .center, spacing: 10.0) {
                 ForEach(settingsModel.settings, id: \.self.identifier) { setting in
                     if setting.athlete != nil {
-                        AthleteCell(athlete: setting.athlete!, settingsModel: settingsModel)
+                        AthleteCell(athlete: setting.athlete!)
                     }
                     else if setting.identifier == "ConnectStrava" {
                         ConnectCell(setting: setting, enabled: true, settingsModel: settingsModel)

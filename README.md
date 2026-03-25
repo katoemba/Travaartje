@@ -3,7 +3,7 @@
 
 # Travaartje
 
-Travaartje is an iOS app to upload workouts created on AppleWatch or iPhone to Strava with one click. It's available for free on the AppStore, and the full source code is available here for anyone to look at or play with. See also https://travaartje.net.
+Travaartje is an iOS app to upload workouts created on AppleWatch or iPhone to Strava with one click. It's available for free on the AppStore, and the full source code is available here for anyone to look at or play with. See also https://rigelian.net/travaartje.
 
 You can use the source code to learn about various programming topics in an actual app:
 * Using Swift Combine with SwiftUI

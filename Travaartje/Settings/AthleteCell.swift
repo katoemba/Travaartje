@@ -85,7 +85,7 @@ extension Athlete {
             return url
         }
         else {
-            return URL(string: "https://www.travaartje.net")!
+            return URL(string: "https://www.www.rigelian.net/travaartje")!
         }
     }
     

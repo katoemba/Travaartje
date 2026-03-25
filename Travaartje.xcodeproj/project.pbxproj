@@ -40,7 +40,7 @@
 		C5569D9325EBA3210023F693 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5569D9225EBA3210023F693 /* SwiftUI.framework */; };
 		C5569D9625EBA3210023F693 /* TravaartjeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5569D9525EBA3210023F693 /* TravaartjeWidget.swift */; };
 		C5569D9825EBA3220023F693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5569D9725EBA3220023F693 /* Assets.xcassets */; };
-		C5569D9C25EBA3220023F693 /* TravaartjeWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5569D8F25EBA3210023F693 /* TravaartjeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5569D9C25EBA3220023F693 /* TravaartjeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C5569D8F25EBA3210023F693 /* TravaartjeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5569DAB25EBA8B40023F693 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C552E44424C32966000E06B7 /* HealthKit.framework */; };
 		C5569DB025EBB0480023F693 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56213B524C88E61004A0FBA /* Workout.swift */; };
 		C562135F24C72F2D004A0FBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C562136124C72F2D004A0FBA /* Localizable.strings */; };
@@ -57,10 +57,10 @@
 		C59BC91825F0EC3B00DD6A1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C562136124C72F2D004A0FBA /* Localizable.strings */; };
 		C59BC91D25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */; };
 		C59BC91E25F0F4BE00DD6A1A /* SettingsIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C59BC92025F0F4BE00DD6A1A /* SettingsIntents.intentdefinition */; };
+		C5A0DB5F2F74860900FC84B7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C5A0DB5E2F74860900FC84B7 /* FirebaseAnalytics */; };
 		C5CC0D1C25F230490024AFCA /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D1B25F230490024AFCA /* WorkoutCell.swift */; };
 		C5CC0D2625F233B00024AFCA /* AccessibilityWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC0D2525F233B00024AFCA /* AccessibilityWorkoutCell.swift */; };
 		C5CC0D2F25F242C70024AFCA /* HealthKitCombineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C547D23424CAD86D0029F5B5 /* HealthKitCombineMock.swift */; };
-		C5CE09C828AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		C5CE09CA28AD33E000355E39 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */; };
 		C5CE09CC28AD364600355E39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5CE09CB28AD364600355E39 /* GoogleService-Info.plist */; };
 		C5CE09CE28AD387300355E39 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C5CE09CD28AD387300355E39 /* Kingfisher */; };
@@ -96,15 +96,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C5569D9D25EBA3220023F693 /* Embed App Extensions */ = {
+		C5569D9D25EBA3220023F693 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C5569D9C25EBA3220023F693 /* TravaartjeWidgetExtension.appex in Embed App Extensions */,
+				C5569D9C25EBA3220023F693 /* TravaartjeWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -177,7 +177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54D3C9925693F0600266F88 /* CoreGPX in Frameworks */,
-				C5CE09C828AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				C5E4166824E46A91008F08E7 /* StravaCombine in Frameworks */,
 				C5CE09CE28AD387300355E39 /* Kingfisher in Frameworks */,
 				C523A1C624F56DF300FED1A6 /* KeychainAccess in Frameworks */,
@@ -185,6 +184,7 @@
 				C5E4F18124CDD56B0005EEF9 /* HCKalmanFilter in Frameworks */,
 				C552E44524C32966000E06B7 /* HealthKit.framework in Frameworks */,
 				C5F5BBCD24CB1B2B0065A283 /* HealthKitCombine in Frameworks */,
+				C5A0DB5F2F74860900FC84B7 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +378,7 @@
 				C552E40824C1A407000E06B7 /* Sources */,
 				C552E40924C1A407000E06B7 /* Frameworks */,
 				C552E40A24C1A407000E06B7 /* Resources */,
-				C5569D9D25EBA3220023F693 /* Embed App Extensions */,
+				C5569D9D25EBA3220023F693 /* Embed Foundation Extensions */,
 				C504579B24D8532C00D14221 /* Reset Secrets */,
 			);
 			buildRules = (
@@ -393,9 +393,9 @@
 				C5E4166724E46A91008F08E7 /* StravaCombine */,
 				C523A1C524F56DF300FED1A6 /* KeychainAccess */,
 				C54D3C9825693F0600266F88 /* CoreGPX */,
-				C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */,
 				C5CE09CD28AD387300355E39 /* Kingfisher */,
+				C5A0DB5E2F74860900FC84B7 /* FirebaseAnalytics */,
 			);
 			productName = Travaartje;
 			productReference = C552E40C24C1A407000E06B7 /* Travaartje.app */;
@@ -463,8 +463,9 @@
 		C552E40424C1A407000E06B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 2630;
 				ORGANIZATIONNAME = "Katoemba Software";
 				TargetAttributes = {
 					C552E40B24C1A407000E06B7 = {
@@ -770,8 +771,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -791,6 +794,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -832,8 +836,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -846,6 +852,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -855,20 +862,18 @@
 		C552E43724C1A408000E06B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Travaartje/Travaartje.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Travaartje/Preview Content\"";
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Travaartje/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -879,20 +884,18 @@
 		C552E43824C1A408000E06B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Travaartje/Travaartje.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Travaartje/Preview Content\"";
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Travaartje/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -903,10 +906,8 @@
 		C552E43A24C1A408000E06B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -925,10 +926,8 @@
 		C552E43B24C1A408000E06B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -947,9 +946,7 @@
 		C552E43D24C1A408000E06B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -967,9 +964,7 @@
 		C552E43E24C1A408000E06B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -991,15 +986,14 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TravaartjeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje.TravaartjeWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1015,15 +1009,14 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TravaartjeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7DKJ3YJS4;
 				INFOPLIST_FILE = TravaartjeWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.katoemba.Travaartje.TravaartjeWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1096,7 +1089,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 8.0.0;
 			};
 		};
 		C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */ = {
@@ -1112,7 +1105,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				minimumVersion = 12.0.0;
 			};
 		};
 		C5E4166624E46A91008F08E7 /* XCRemoteSwiftPackageReference "StravaCombine" */ = {
@@ -1157,10 +1150,10 @@
 			package = C54D3C9725693F0600266F88 /* XCRemoteSwiftPackageReference "CoreGPX" */;
 			productName = CoreGPX;
 		};
-		C5CE09C728AD33E000355E39 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+		C5A0DB5E2F74860900FC84B7 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C5CE09C628AD33E000355E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
+			productName = FirebaseAnalytics;
 		};
 		C5CE09C928AD33E000355E39 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;

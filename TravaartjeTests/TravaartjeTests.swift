@@ -225,7 +225,7 @@ class TravaartjeTests: XCTestCase {
             for setting in settings {
                 if setting.identifier == "News" {
                     if case let .openURL(faq) = setting.action {
-                        XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/whats-new")!)
+                        XCTAssertEqual(faq, URL(string: "https://www.rigelian.net/travaartje/whats-new")!)
                     }
                     else {
                         XCTAssert(false, "Faq setting has invalid type")
@@ -233,7 +233,7 @@ class TravaartjeTests: XCTestCase {
                 }
                 else if setting.identifier == "FAQ" {
                     if case let .openURL(faq) = setting.action {
-                        XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/faq")!)
+                        XCTAssertEqual(faq, URL(string: "https://www.rigelian.net/travaartje/faq")!)
                     }
                     else {
                         XCTAssert(false, "Faq setting has invalid type")
@@ -241,7 +241,7 @@ class TravaartjeTests: XCTestCase {
                 }
                 else if setting.identifier == "Privacy" {
                     if case let .openURL(faq) = setting.action {
-                        XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/privacy")!)
+                        XCTAssertEqual(faq, URL(string: "https://www.rigelian.net/travaartje/privacy")!)
                     }
                     else {
                         XCTAssert(false, "Privacy setting has invalid type")
@@ -249,7 +249,7 @@ class TravaartjeTests: XCTestCase {
                 }
                 else if setting.identifier == "Acknowledgements" {
                     if case let .openURL(faq) = setting.action {
-                        XCTAssertEqual(faq, URL(string: "https://www.travaartje.net/acknowledgements")!)
+                        XCTAssertEqual(faq, URL(string: "https://www.rigelian.net/travaartje/acknowledgements")!)
                     }
                     else {
                         XCTAssert(false, "Acknowledgements setting has invalid type")

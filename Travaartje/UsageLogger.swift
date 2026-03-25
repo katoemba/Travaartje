@@ -8,8 +8,6 @@
 
 import Foundation
 import StravaCombine
-import FirebaseAnalytics
-import FirebaseCrashlytics
 import Firebase
 
 class UsageLogger {

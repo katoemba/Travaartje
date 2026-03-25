@@ -23,6 +23,6 @@ struct WebView : UIViewRepresentable {
 
 struct WebView_Previews : PreviewProvider {
     static var previews: some View {
-        WebView(request: URLRequest(url: URL(string: "https://www.travaartje.net")!))
+        WebView(request: URLRequest(url: URL(string: "https://www.rigelian.net/travaartje")!))
     }
 }

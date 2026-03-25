@@ -33,11 +33,10 @@ public class SettingsModel: ObservableObject {
                 }
                 updatedSettings.append(Setting(identifier: AppDefaults.skipHeartRateWhenInsufficient, icon: "heart.slash.circle", label: NSLocalizedString("Exclude heart rate upon insufficient measurements", comment: ""), action: .toggle))
                 updatedSettings.append(Setting(identifier: "FollowOnStrava", icon: "eye", label: NSLocalizedString("Follow the developer on Strava", comment: ""), action: .openStrava))
-                updatedSettings.append(Setting(identifier: "New", icon: "tray.full", label: NSLocalizedString("What's new", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/whats-new")!)))
-                updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: NSLocalizedString("Frequently asked questions", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/faq")!)))
-                updatedSettings.append(Setting(identifier: "Open source", icon: "cloud", label: NSLocalizedString("Open source", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/open-source")!)))
+                updatedSettings.append(Setting(identifier: "New", icon: "tray.full", label: NSLocalizedString("What's new", comment: ""), action: .openURL(URL(string: "https://www.rigelian.net/travaartje/whats-new")!)))
+                updatedSettings.append(Setting(identifier: "FAQ", icon: "questionmark.circle", label: NSLocalizedString("Frequently asked questions", comment: ""), action: .openURL(URL(string: "https://www.rigelian.net/travaartje/faq")!)))
 
-                var components = URLComponents(string: "https://www.travaartje.net/report-a-problem")
+                var components = URLComponents(string: "https://www.rigelian.net/travaartje/report-a-problem")
                 components?.queryItems = [URLQueryItem(name: "device", value: UIDevice.current.model),
                                           URLQueryItem(name: "iosversion", value: "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"),
                                           URLQueryItem(name: "appversion", value: "\(Bundle.main.releaseVersionNumberPretty):\(Bundle.main.buildVersionNumber ?? "0")"),
@@ -45,8 +44,8 @@ public class SettingsModel: ObservableObject {
                 if let url = components?.url {
                     updatedSettings.append(Setting(identifier: "Report a problem", icon: "exclamationmark.bubble", label: NSLocalizedString("Report a problem", comment: ""), action: .openURL(url)))
                 }
-                updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: NSLocalizedString("Privacy", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/privacy")!)))
-                updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: NSLocalizedString("Acknowledgements", comment: ""), action: .openURL(URL(string: "https://www.travaartje.net/acknowledgements")!)))
+                updatedSettings.append(Setting(identifier: "Privacy", icon: "hand.raised", label: NSLocalizedString("Privacy", comment: ""), action: .openURL(URL(string: "https://www.rigelian.net/travaartje/privacy")!)))
+                updatedSettings.append(Setting(identifier: "Acknowledgements", icon: "hand.thumbsup", label: NSLocalizedString("Acknowledgements", comment: ""), action: .openURL(URL(string: "https://www.rigelian.net/travaartje/acknowledgements")!)))
                 updatedSettings.append(Setting(identifier: "Version", icon: "info.circle", label: "Travaartje \(Bundle.main.releaseVersionNumberPretty), build \(Bundle.main.buildVersionNumber ?? "0")", action: .info))
 
                 self.settings = updatedSettings
